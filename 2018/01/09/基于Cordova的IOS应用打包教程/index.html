@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="ios+Cordova," />
 
 
 
@@ -79,16 +79,20 @@
 
 
 
-<meta name="description" content="人一定要保持优秀">
-<meta property="og:type" content="website">
-<meta property="og:title" content="CKR技术博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="做移动端开发有一段时间了，对于每次修改交易后打包应用到Pad上测试，期间经历步骤：更新代码到本地-&amp;gt;项目目录下输入cordova prepare-&amp;gt;xcode打包。为了简化这一系列操作，研究了IOS自动打包。本文主要描述如何通过命令为基于Cordova的IOS应用打IPA包，了解后，就可以通过如python、shell等来实现一个自动打包的脚本。本人使用的Xcode版本为8.3。 一、">
+<meta name="keywords" content="ios+Cordova">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于Cordova的IOS应用打包教程">
+<meta property="og:url" content="http://yoursite.com/2018/01/09/基于Cordova的IOS应用打包教程/index.html">
 <meta property="og:site_name" content="CKR技术博客">
-<meta property="og:description" content="人一定要保持优秀">
+<meta property="og:description" content="做移动端开发有一段时间了，对于每次修改交易后打包应用到Pad上测试，期间经历步骤：更新代码到本地-&amp;gt;项目目录下输入cordova prepare-&amp;gt;xcode打包。为了简化这一系列操作，研究了IOS自动打包。本文主要描述如何通过命令为基于Cordova的IOS应用打IPA包，了解后，就可以通过如python、shell等来实现一个自动打包的脚本。本人使用的Xcode版本为8.3。 一、">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/img/20180109/1.jpg">
+<meta property="og:updated_time" content="2018-01-09T11:40:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CKR技术博客">
-<meta name="twitter:description" content="人一定要保持优秀">
+<meta name="twitter:title" content="基于Cordova的IOS应用打包教程">
+<meta name="twitter:description" content="做移动端开发有一段时间了，对于每次修改交易后打包应用到Pad上测试，期间经历步骤：更新代码到本地-&amp;gt;项目目录下输入cordova prepare-&amp;gt;xcode打包。为了简化这一系列操作，研究了IOS自动打包。本文主要描述如何通过命令为基于Cordova的IOS应用打IPA包，了解后，就可以通过如python、shell等来实现一个自动打包的脚本。本人使用的Xcode版本为8.3。 一、">
+<meta name="twitter:image" content="http://yoursite.com/img/20180109/1.jpg">
 
 
 
@@ -118,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/01/09/基于Cordova的IOS应用打包教程/"/>
 
 
 
 
 
-  <title>CKR技术博客</title>
+  <title>基于Cordova的IOS应用打包教程 | CKR技术博客</title>
   
 
 
@@ -143,8 +147,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -247,9 +250,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -279,9 +282,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/09/基于Cordova的IOS应用打包教程/" itemprop="url">基于Cordova的IOS应用打包教程</a></h1>
+          <h1 class="post-title" itemprop="name headline">基于Cordova的IOS应用打包教程</h1>
         
 
         <div class="post-meta">
@@ -353,18 +354,43 @@
       
 
       
-        
-          
-          做移动端开发有一段时间了，对于每次修改交易后打包应用到Pad上测试，期间经历步骤：更新代码到本地-&gt;项目目录下输入cordova prepare-&gt;xcode打包。为了简化这一系列操作，研究了IOS自动打包。本文主要描述如何通过命令为基于Cordova的IOS应用打IPA包，了解后，就可
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/09/基于Cordova的IOS应用打包教程/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+        <p>做移动端开发有一段时间了，对于每次修改交易后打包应用到Pad上测试，期间经历步骤：更新代码到本地-&gt;项目目录下输入cordova prepare-&gt;xcode打包。为了简化这一系列操作，研究了IOS自动打包。本文主要描述如何通过命令为基于Cordova的IOS应用打IPA包，了解后，就可以通过如python、shell等来实现一个自动打包的脚本。本人使用的Xcode版本为8.3。</p>
+<h3 id="一、clean工程"><a href="#一、clean工程" class="headerlink" title="一、clean工程"></a>一、clean工程</h3><p>1.首先进入cordova工程目录<br>platform-&gt;ios,如图：</p>
+<p><img src="/img/20180109/1.jpg"></p>
+<p>2.clean工程</p>
+<pre><code>命令：xcodebuild clean -project ****网点.xcodeproj -scheme ****网点
+
+注:
+  -project ****网点.xcodeproj（编译项目名称）
+  -scheme ****网点 (scheme名称，一般会与你的项目名称相同)
+
+成功后会提示：**CLEAN SUCCEDED**
+</code></pre><h3 id="二、archive导出-xcarchive文件"><a href="#二、archive导出-xcarchive文件" class="headerlink" title="二、archive导出.xcarchive文件"></a>二、archive导出.xcarchive文件</h3><pre><code>命令：xcodebuild archive -project ****网点.xcodeproj -scheme ****网点 -configuration Release -archivePath /Users/chenkerong/Documents/autoPack/archive/****网点.xcarchive
+
+注:
+  -project （同上）
+  -workspace （同上）
+  -scheme （同上）
+  -configuration (Debug/Release)
+  -archivePath （导出.xcarchive文件的目录以及文件名称）
+</code></pre><h3 id="三、导出IPA包"><a href="#三、导出IPA包" class="headerlink" title="三、导出IPA包"></a>三、导出IPA包</h3><pre><code>命令：xcodebuild -exportArchive -archivePath /Users/chenkerong/Documents/autoPack/archive/****网点.xcarchive -exportPath /Users/chenkerong/Documents/autoPack/archive/production/****网点dev -exportOptionsPlist /Users/chenkerong/Documents/autoPack/archive/PrdPlist.plist
+
+注:
+  -archivePath （刚刚导出的.xcarchive文件的目录）
+  -exportPath （将要导出的ipa文件的目录以及文件名）
+  -exportOptionsPlist （配置文件，此处配置开发者证书）
+</code></pre><p>PrdPlist.plist文件：</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;
+&lt;plist version=&quot;1.0&quot;&gt;
+&lt;dict&gt;
+    &lt;key&gt;method&lt;/key&gt;
+    &lt;string&gt;development&lt;/string&gt;
+    &lt;key&gt;teamID&lt;/key&gt;
+    &lt;string&gt;yourTeamID&lt;/string&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;
+</code></pre>
       
     </div>
     
@@ -379,313 +405,36 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/06/Vue.js2.0同级组件通讯/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈柯蓉">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.JPG">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="CKR技术博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/06/Vue.js2.0同级组件通讯/" itemprop="url">Vue.js2.0同级组件通讯</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-06T19:05:30+08:00">
-                2018-01-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端技术/" itemprop="url" rel="index">
-                    <span itemprop="name">前端技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/ios-Cordova/" rel="tag"># ios+Cordova</a>
           
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          
-          近期自己入门Vue2.0，使用其仿了个饿了么APP，在做购物车动画时，需要在同级组件之间传递参数，看了Vue官方文档和一些相关资料，大致总结了三种方法。
-一、单独创建一个事件传递中心组件1.单独创建一个js文件命为EventHandler.js，并创建一个空的Vue对象作为事件传递中心，文件内容如下
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/06/Vue.js2.0同级组件通讯/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/06/Vue.js2.0同级组件通讯/" rel="next" title="Vue.js2.0同级组件通讯">
+                <i class="fa fa-chevron-left"></i> Vue.js2.0同级组件通讯
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/20/移动端像素那些事/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈柯蓉">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.JPG">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="CKR技术博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/20/移动端像素那些事/" itemprop="url">移动端像素那些事</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-20T10:30:19+08:00">
-                2017-12-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端技术/" itemprop="url" rel="index">
-                    <span itemprop="name">前端技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-          最近一段时间，公司安排去做移动端开发，在开发过程中遇到的一些相关知识，在此总结一下。
-物理像素(physical pixel)一个物理像素是显示器(手机屏幕)上最小的物理显示单元，在操作系统的调度下，每一个设备像素都有自己的颜色值和亮度值。
-设备独立像素(density-independent pi
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/20/移动端像素那些事/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -695,160 +444,11 @@
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/09/第一篇Blog/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈柯蓉">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.JPG">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="CKR技术博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/09/第一篇Blog/" itemprop="url">搭建Blog</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-09T14:54:38+08:00">
-                2017-12-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/生活/" itemprop="url" rel="index">
-                    <span itemprop="name">生活</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-在去年刚工作的时候就想着搭建自己的一个技术博客，发表一些自己学习、工作中的技术总结。由于个人执行力较弱，再经历两次尝试放弃后，最终于今日使用Hexo+Github Pages搭建起了个人的第一个技术博客。接下来就搭建过程做个小结。Hexo是什么？
-Hexo是一个高效的博客框架，了解一个技术最快捷的
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/09/第一篇Blog/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+    <div class="post-spread">
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
@@ -856,6 +456,10 @@ Hexo是一个高效的博客框架，了解一个技术最快捷的
 
 
           
+
+  
+
+
 
         </div>
         
@@ -876,8 +480,17 @@ Hexo是一个高效的博客框架，了解一个技术最快捷的
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -957,6 +570,22 @@ Hexo是一个高效的博客框架，了解一个技术最快捷的
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、clean工程"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x4E00;&#x3001;clean&#x5DE5;&#x7A0B;" class="headerlink" title="&#x4E00;&#x3001;clean&#x5DE5;&#x7A0B;"></a>&#x4E00;&#x3001;clean&#x5DE5;&#x7A0B;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、archive导出-xcarchive文件"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x4E8C;&#x3001;archive&#x5BFC;&#x51FA;-xcarchive&#x6587;&#x4EF6;" class="headerlink" title="&#x4E8C;&#x3001;archive&#x5BFC;&#x51FA;.xcarchive&#x6587;&#x4EF6;"></a>&#x4E8C;&#x3001;archive&#x5BFC;&#x51FA;.xcarchive&#x6587;&#x4EF6;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、导出IPA包"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x4E09;&#x3001;&#x5BFC;&#x51FA;IPA&#x5305;" class="headerlink" title="&#x4E09;&#x3001;&#x5BFC;&#x51FA;IPA&#x5305;"></a>&#x4E09;&#x3001;&#x5BFC;&#x51FA;IPA&#x5305;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1091,6 +720,10 @@ Hexo是一个高效的博客框架，了解一个技术最快捷的
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 
