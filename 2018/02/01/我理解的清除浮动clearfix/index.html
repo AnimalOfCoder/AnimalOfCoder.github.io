@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="ios," />
+  <meta name="keywords" content="Css," />
 
 
 
@@ -79,18 +79,27 @@
 
 
 
-<meta name="description" content="近期在开发中遇到一个问题，由于项目是基于cordova开发的ios应用，所以使用的是web前端的技术，而其中最常用到姓名格式校验，我的做法是在input标签上使用keyup的事件处理程序onkeyup加上正则来处理，在chrome中测试没问题。但是打包到pad上以后，就出现了中文输入法不触发keyup、延迟触发keyup等问题。 解决办法用H5的input事件去代替keyup。 拓展：oninpu">
-<meta name="keywords" content="ios">
+<meta name="description" content="昨天和同事讨论了一下布局，聊到浮动，将近过年，手头上没啥活了，今早翻了翻论坛、博客，自己做了些实验，在此把我对清除浮动的理解与大家分享。 浮动简介浮动属性概念就不多说了，它的设计初衷，只是为了实现文本环绕效果。如图：  了解这个初衷以后，就能更好理解清除浮动了。 浮动主要特点 元素浮动之后不占据原来的位置（脱离标准文档流）  浮动的盒子在一行上显示  行内元素浮动之后转换为行内块元素。（不推荐使用">
+<meta name="keywords" content="Css">
 <meta property="og:type" content="article">
-<meta property="og:title" content="键盘事件keyup在IOS中解决办法">
-<meta property="og:url" content="http://yoursite.com/2018/01/12/键盘事件keyup在IOS中解决办法/index.html">
+<meta property="og:title" content="我理解的清除浮动clearfix">
+<meta property="og:url" content="http://yoursite.com/2018/02/01/我理解的清除浮动clearfix/index.html">
 <meta property="og:site_name" content="CKR技术博客">
-<meta property="og:description" content="近期在开发中遇到一个问题，由于项目是基于cordova开发的ios应用，所以使用的是web前端的技术，而其中最常用到姓名格式校验，我的做法是在input标签上使用keyup的事件处理程序onkeyup加上正则来处理，在chrome中测试没问题。但是打包到pad上以后，就出现了中文输入法不触发keyup、延迟触发keyup等问题。 解决办法用H5的input事件去代替keyup。 拓展：oninpu">
+<meta property="og:description" content="昨天和同事讨论了一下布局，聊到浮动，将近过年，手头上没啥活了，今早翻了翻论坛、博客，自己做了些实验，在此把我对清除浮动的理解与大家分享。 浮动简介浮动属性概念就不多说了，它的设计初衷，只是为了实现文本环绕效果。如图：  了解这个初衷以后，就能更好理解清除浮动了。 浮动主要特点 元素浮动之后不占据原来的位置（脱离标准文档流）  浮动的盒子在一行上显示  行内元素浮动之后转换为行内块元素。（不推荐使用">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-12T07:39:45.000Z">
+<meta property="og:image" content="http://yoursite.com/img/20180201/1.jpg">
+<meta property="og:image" content="http://yoursite.com/img/20180201/2.jpg">
+<meta property="og:image" content="http://yoursite.com/img/20180201/3.jpg">
+<meta property="og:image" content="http://yoursite.com/img/20180201/4.jpg">
+<meta property="og:image" content="http://yoursite.com/img/20180201/5.jpg">
+<meta property="og:image" content="http://yoursite.com/img/20180201/6.jpg">
+<meta property="og:image" content="http://yoursite.com/img/20180201/7.jpg">
+<meta property="og:image" content="http://yoursite.com/img/20180201/8.jpg">
+<meta property="og:updated_time" content="2018-02-01T08:24:39.680Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="键盘事件keyup在IOS中解决办法">
-<meta name="twitter:description" content="近期在开发中遇到一个问题，由于项目是基于cordova开发的ios应用，所以使用的是web前端的技术，而其中最常用到姓名格式校验，我的做法是在input标签上使用keyup的事件处理程序onkeyup加上正则来处理，在chrome中测试没问题。但是打包到pad上以后，就出现了中文输入法不触发keyup、延迟触发keyup等问题。 解决办法用H5的input事件去代替keyup。 拓展：oninpu">
+<meta name="twitter:title" content="我理解的清除浮动clearfix">
+<meta name="twitter:description" content="昨天和同事讨论了一下布局，聊到浮动，将近过年，手头上没啥活了，今早翻了翻论坛、博客，自己做了些实验，在此把我对清除浮动的理解与大家分享。 浮动简介浮动属性概念就不多说了，它的设计初衷，只是为了实现文本环绕效果。如图：  了解这个初衷以后，就能更好理解清除浮动了。 浮动主要特点 元素浮动之后不占据原来的位置（脱离标准文档流）  浮动的盒子在一行上显示  行内元素浮动之后转换为行内块元素。（不推荐使用">
+<meta name="twitter:image" content="http://yoursite.com/img/20180201/1.jpg">
 
 
 
@@ -120,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/01/12/键盘事件keyup在IOS中解决办法/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/02/01/我理解的清除浮动clearfix/"/>
 
 
 
 
 
-  <title>键盘事件keyup在IOS中解决办法 | CKR技术博客</title>
+  <title>我理解的清除浮动clearfix | CKR技术博客</title>
   
 
 
@@ -263,7 +272,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/12/键盘事件keyup在IOS中解决办法/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/01/我理解的清除浮动clearfix/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="陈柯蓉">
@@ -280,7 +289,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">键盘事件keyup在IOS中解决办法</h1>
+          <h1 class="post-title" itemprop="name headline">我理解的清除浮动clearfix</h1>
         
 
         <div class="post-meta">
@@ -292,8 +301,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T13:55:27+08:00">
-                2018-01-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-01T09:32:34+08:00">
+                2018-02-01
               </time>
             
 
@@ -315,8 +324,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hybrid-app/" itemprop="url" rel="index">
-                    <span itemprop="name">hybrid app</span>
+                  <a href="/categories/前端技术/" itemprop="url" rel="index">
+                    <span itemprop="name">前端技术</span>
                   </a>
                 </span>
 
@@ -352,10 +361,50 @@
       
 
       
-        <p>近期在开发中遇到一个问题，由于项目是基于cordova开发的ios应用，所以使用的是web前端的技术，而其中最常用到姓名格式校验，我的做法是在input标签上使用keyup的事件处理程序onkeyup加上正则来处理，在chrome中测试没问题。但是打包到pad上以后，就出现了中文输入法不触发keyup、延迟触发keyup等问题。</p>
-<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p>用H5的input事件去代替keyup。</p>
-<h3 id="拓展：oninput等表单事件"><a href="#拓展：oninput等表单事件" class="headerlink" title="拓展：oninput等表单事件"></a>拓展：oninput等表单事件</h3><p>过去我们常使用keydown和keyup辅助表单元素的处理，这要求处理时，表单元素必须处于激活（聚焦）状态。oninput事件可以实时监听文本框的输入变化。现代浏览器支持oninput，其中包括IE9。</p>
-<p>1、onchange事件与onpropertychange事件的区别：<br>onchange事件在内容改变（两次内容有可能还是相等的）且失去焦点时触发；onpropertychange事件却是实时触发，即每增加或删除一个字符就会触发，通过js改变也会触发该事件，但是该事件IE专有。<br>2、oninput事件与onpropertychange事件的区别：<br>oninput事件是IE之外的大多数浏览器支持的事件，在value改变时触发，实时的，即每增加或删除一个字符就会触发，然而通过js改变value时，却不会触发；onpropertychange事件是任何属性改变都会触发的，而oninput却只在value改变时触发，oninput要通过addEventListener()来注册，onpropertychange注册方式跟一般事件一样。（此处都是指在js中动态绑定事件，以实现内容与行为分离）<br>3、oninput与onpropertychange失效的情况：<br>（1）oninput事件：a). 当脚本中改变value时，不会触发；b). 从浏览器的自动下拉提示中选取时，不会触发。<br>（2）onpropertychange事件：当input设置为disable=true后，onpropertychange不会触发。<br>oninvalid事件，在表单元素的值非法时被触发</p>
+        <p>昨天和同事讨论了一下布局，聊到浮动，将近过年，手头上没啥活了，今早翻了翻论坛、博客，自己做了些实验，在此把我对清除浮动的理解与大家分享。</p>
+<h1 id="浮动简介"><a href="#浮动简介" class="headerlink" title="浮动简介"></a>浮动简介</h1><p>浮动属性概念就不多说了，它的设计初衷，只是为了实现文本环绕效果。如图：<br><img src="/img/20180201/1.jpg"></p>
+<p><img src="/img/20180201/2.jpg"></p>
+<p>了解这个初衷以后，就能更好理解清除浮动了。</p>
+<h2 id="浮动主要特点"><a href="#浮动主要特点" class="headerlink" title="浮动主要特点"></a>浮动主要特点</h2><ul>
+<li><p>元素浮动之后不占据原来的位置（脱离标准文档流）</p>
+</li>
+<li><p>浮动的盒子在一行上显示</p>
+</li>
+<li><p>行内元素浮动之后转换为行内块元素。（不推荐使用，转成行内块元素最好使用display: inline-block;）</p>
+</li>
+</ul>
+<h1 id="清除浮动"><a href="#清除浮动" class="headerlink" title="清除浮动"></a>清除浮动</h1><p>重点来了，为什么要清除浮动？<br>当父盒子没有定义高度，嵌套的盒子浮动之后，下边的元素发生位置错误。过程如图：</p>
+<ul>
+<li>需求：希望蓝盒子和黄盒子在一行上，所以给两个盒子加上float：left属性。</li>
+<li><p>加浮动前的样子：<br><img src="/img/20180201/3.jpg"></p>
+</li>
+<li><p>加浮动后的样子：<br><img src="/img/20180201/4.jpg"></p>
+</li>
+<li><p>我们希望的样子：<br><img src="/img/20180201/5.jpg"></p>
+</li>
+</ul>
+<p>要想达成我们希望的样子，我们需要清除浮动。</p>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>在 <a href="http://www.iyunlu.com/view/css-xhtml/55.html" target="_blank" rel="noopener">那些年我们一起清除过的浮动</a> 中提到，准确说法应该叫闭合浮动。我个人理解是，清除浮动不是不用浮动，而是清除浮动产生的不利影响。</p>
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><p>clear: left  |  right  | both<br>用的最多的是clear:both;</p>
+<h2 id="方法（此处列举三个典型的）"><a href="#方法（此处列举三个典型的）" class="headerlink" title="方法（此处列举三个典型的）"></a>方法（此处列举三个典型的）</h2><h3 id="额外标签法"><a href="#额外标签法" class="headerlink" title="额外标签法"></a>额外标签法</h3><p>在最后一个浮动元素后添加标签。<br><img src="/img/20180201/6.jpg"><br>缺点：显而易见，多个无用的标签，若需要100个清除浮动，页面就多100个清除浮动的标签，显然不合适。</p>
+<h3 id="给父集元素使用overflow-hidden，触发BFC。"><a href="#给父集元素使用overflow-hidden，触发BFC。" class="headerlink" title="给父集元素使用overflow:hidden，触发BFC。"></a>给父集元素使用overflow:hidden，触发BFC。</h3><p><img src="/img/20180201/7.jpg"><br>缺点：如果有内容溢出，溢出内容无法显示。<br>至于BFC，感兴趣的朋友可以看看<a href="https://www.w3cplus.com/css/understanding-bfc-and-margin-collapse.html" target="_blank" rel="noopener">深入理解BFC和Margin Collapse</a>。(-.-其实我只了解大概，没深入研究，有空我会深入研究一波，然后记录下我个人的理解和大家分享)</p>
+<h3 id="伪元素清除浮动"><a href="#伪元素清除浮动" class="headerlink" title="伪元素清除浮动"></a>伪元素清除浮动</h3><p>其他地方会称为”伪类“、”伪对象“，受那些年的作者影响，秉着严谨态度，用此名称。<br><img src="/img/20180201/8.jpg"></p>
+<pre><code>.clearfix:after{
+    display: block;
+    content: &quot;.&quot;;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+    line-height: 0;
+    clear: both;
+}
+</code></pre><p>推荐使用。其实此时可看出最后一种方式综合了之前两种方式的优点。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>其实有很多比我写的优秀的文章，为何我还要花小半天时间来写这篇博客呢？其实我只是希望将个人所学、所理解的进行总结、记录，便于日后的学习工作过程中能有更深一层地理解，然后顺便拿来和大家分享一下。学无止境，一步一个脚印方能成功，个人建议这些代码最好手敲一下，不会占用很多时间，但是可以让你理解得更深刻。 呃…. -。-|| 突然感觉自己变佛系码畜了….</p>
+<p>最后，想深入研究的同学，推荐：</p>
+<ul>
+<li><a href="https://www.w3cplus.com/css/understanding-bfc-and-margin-collapse.html" target="_blank" rel="noopener">深入理解BFC和Margin Collapse</a></li>
+<li><a href="http://www.iyunlu.com/view/css-xhtml/55.html" target="_blank" rel="noopener">那些年我们一起清除过的浮动</a></li>
+</ul>
 
       
     </div>
@@ -373,7 +422,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/ios/" rel="tag"># ios</a>
+            <a href="/tags/Css/" rel="tag"># Css</a>
           
         </div>
       
@@ -386,8 +435,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/09/基于Cordova的IOS应用打包教程/" rel="next" title="基于Cordova的IOS应用打包教程">
-                <i class="fa fa-chevron-left"></i> 基于Cordova的IOS应用打包教程
+              <a href="/2018/01/24/Cordova-Vue搭建hybirdApp/" rel="next" title="Cordova+Vue搭建hybirdApp">
+                <i class="fa fa-chevron-left"></i> Cordova+Vue搭建hybirdApp
               </a>
             
           </div>
@@ -395,10 +444,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/01/15/Mac使用心得记录-持续更新/" rel="prev" title="Mac使用心得记录-持续更新">
-                Mac使用心得记录-持续更新 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -550,7 +595,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决办法"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x89E3;&#x51B3;&#x529E;&#x6CD5;" class="headerlink" title="&#x89E3;&#x51B3;&#x529E;&#x6CD5;"></a>&#x89E3;&#x51B3;&#x529E;&#x6CD5;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拓展：oninput等表单事件"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x62D3;&#x5C55;&#xFF1A;oninput&#x7B49;&#x8868;&#x5355;&#x4E8B;&#x4EF6;" class="headerlink" title="&#x62D3;&#x5C55;&#xFF1A;oninput&#x7B49;&#x8868;&#x5355;&#x4E8B;&#x4EF6;"></a>&#x62D3;&#x5C55;&#xFF1A;oninput&#x7B49;&#x8868;&#x5355;&#x4E8B;&#x4EF6;</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#浮动简介"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x6D6E;&#x52A8;&#x7B80;&#x4ECB;" class="headerlink" title="&#x6D6E;&#x52A8;&#x7B80;&#x4ECB;"></a>&#x6D6E;&#x52A8;&#x7B80;&#x4ECB;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#浮动主要特点"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#&#x6D6E;&#x52A8;&#x4E3B;&#x8981;&#x7279;&#x70B9;" class="headerlink" title="&#x6D6E;&#x52A8;&#x4E3B;&#x8981;&#x7279;&#x70B9;"></a>&#x6D6E;&#x52A8;&#x4E3B;&#x8981;&#x7279;&#x70B9;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#清除浮动"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x6E05;&#x9664;&#x6D6E;&#x52A8;" class="headerlink" title="&#x6E05;&#x9664;&#x6D6E;&#x52A8;"></a>&#x6E05;&#x9664;&#x6D6E;&#x52A8;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#&#x6982;&#x5FF5;" class="headerlink" title="&#x6982;&#x5FF5;"></a>&#x6982;&#x5FF5;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性"><span class="nav-number">2.2.</span> <span class="nav-text"><a href="#&#x5C5E;&#x6027;" class="headerlink" title="&#x5C5E;&#x6027;"></a>&#x5C5E;&#x6027;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法（此处列举三个典型的）"><span class="nav-number">2.3.</span> <span class="nav-text"><a href="#&#x65B9;&#x6CD5;&#xFF08;&#x6B64;&#x5904;&#x5217;&#x4E3E;&#x4E09;&#x4E2A;&#x5178;&#x578B;&#x7684;&#xFF09;" class="headerlink" title="&#x65B9;&#x6CD5;&#xFF08;&#x6B64;&#x5904;&#x5217;&#x4E3E;&#x4E09;&#x4E2A;&#x5178;&#x578B;&#x7684;&#xFF09;"></a>&#x65B9;&#x6CD5;&#xFF08;&#x6B64;&#x5904;&#x5217;&#x4E3E;&#x4E09;&#x4E2A;&#x5178;&#x578B;&#x7684;&#xFF09;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#额外标签法"><span class="nav-number">2.3.1.</span> <span class="nav-text"><a href="#&#x989D;&#x5916;&#x6807;&#x7B7E;&#x6CD5;" class="headerlink" title="&#x989D;&#x5916;&#x6807;&#x7B7E;&#x6CD5;"></a>&#x989D;&#x5916;&#x6807;&#x7B7E;&#x6CD5;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#给父集元素使用overflow-hidden，触发BFC。"><span class="nav-number">2.3.2.</span> <span class="nav-text"><a href="#&#x7ED9;&#x7236;&#x96C6;&#x5143;&#x7D20;&#x4F7F;&#x7528;overflow-hidden&#xFF0C;&#x89E6;&#x53D1;BFC&#x3002;" class="headerlink" title="&#x7ED9;&#x7236;&#x96C6;&#x5143;&#x7D20;&#x4F7F;&#x7528;overflow:hidden&#xFF0C;&#x89E6;&#x53D1;BFC&#x3002;"></a>&#x7ED9;&#x7236;&#x96C6;&#x5143;&#x7D20;&#x4F7F;&#x7528;overflow:hidden&#xFF0C;&#x89E6;&#x53D1;BFC&#x3002;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#伪元素清除浮动"><span class="nav-number">2.3.3.</span> <span class="nav-text"><a href="#&#x4F2A;&#x5143;&#x7D20;&#x6E05;&#x9664;&#x6D6E;&#x52A8;" class="headerlink" title="&#x4F2A;&#x5143;&#x7D20;&#x6E05;&#x9664;&#x6D6E;&#x52A8;"></a>&#x4F2A;&#x5143;&#x7D20;&#x6E05;&#x9664;&#x6D6E;&#x52A8;</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</span></a></li></ol></div>
             
 
           </div>
