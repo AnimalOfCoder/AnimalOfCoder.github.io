@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+
+    
+  <url>
+    <loc>https://animalofcoder.github.io/2018/02/01/%E6%88%91%E7%90%86%E8%A7%A3%E7%9A%84%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8clearfix/</loc>
+    <lastmod>2018-02-01T08:24:39.680Z</lastmod>
+    <data>
+        <display>
+        <title>我理解的清除浮动clearfix</title>
+        <pubTime>2018-02-01T01:32:34.000Z</pubTime>
+        
+        <tag>Css</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端技术" url="https://animalofcoder.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://animalofcoder.github.io/2018/01/24/Cordova-Vue%E6%90%AD%E5%BB%BAhybirdApp/</loc>
+    <lastmod>2018-01-24T12:53:19.229Z</lastmod>
+    <data>
+        <display>
+        <title>Cordova+Vue搭建hybirdApp</title>
+        <pubTime>2018-01-24T01:36:47.000Z</pubTime>
+        
+        <tag>Cordova+Vue</tag>
+         
+         
+           
+             
+              <breadCrumb title="hybrid app" url="https://animalofcoder.github.io/categories/hybrid-app/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://animalofcoder.github.io/2018/01/15/Mac%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97%E8%AE%B0%E5%BD%95-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/</loc>
+    <lastmod>2018-01-20T15:15:20.000Z</lastmod>
+    <data>
+        <display>
+        <title>Mac使用心得记录-持续更新</title>
+        <pubTime>2018-01-15T02:53:06.000Z</pubTime>
+        
+        <tag>Mac</tag>
+         
+         
+           
+             
+              <breadCrumb title="生活" url="https://animalofcoder.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://animalofcoder.github.io/2018/01/12/%E9%94%AE%E7%9B%98%E4%BA%8B%E4%BB%B6keyup%E5%9C%A8IOS%E4%B8%AD%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</loc>
+    <lastmod>2018-01-12T07:39:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>键盘事件keyup在IOS中解决办法</title>
+        <pubTime>2018-01-12T05:55:27.000Z</pubTime>
+        
+        <tag>ios</tag>
+         
+         
+           
+             
+              <breadCrumb title="hybrid app" url="https://animalofcoder.github.io/categories/hybrid-app/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://animalofcoder.github.io/2018/01/09/%E5%9F%BA%E4%BA%8ECordova%E7%9A%84IOS%E5%BA%94%E7%94%A8%E6%89%93%E5%8C%85%E6%95%99%E7%A8%8B/</loc>
+    <lastmod>2018-01-09T11:40:34.000Z</lastmod>
+    <data>
+        <display>
+        <title>基于Cordova的IOS应用打包教程</title>
+        <pubTime>2018-01-09T06:25:05.000Z</pubTime>
+        
+        <tag>ios+Cordova</tag>
+         
+         
+           
+             
+              <breadCrumb title="hybrid app" url="https://animalofcoder.github.io/categories/hybrid-app/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://animalofcoder.github.io/2018/01/06/Vue.js2.0%E5%90%8C%E7%BA%A7%E7%BB%84%E4%BB%B6%E9%80%9A%E8%AE%AF/</loc>
+    <lastmod>2018-01-09T11:36:57.000Z</lastmod>
+    <data>
+        <display>
+        <title>Vue.js2.0同级组件通讯</title>
+        <pubTime>2018-01-06T11:05:30.000Z</pubTime>
+        
+        <tag>Vue2.0</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端技术" url="https://animalofcoder.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://animalofcoder.github.io/2017/12/20/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%83%8F%E7%B4%A0%E9%82%A3%E4%BA%9B%E4%BA%8B/</loc>
+    <lastmod>2017-12-20T06:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>移动端像素那些事</title>
+        <pubTime>2017-12-20T02:30:19.000Z</pubTime>
+        
+        <tag>移动端</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端技术" url="https://animalofcoder.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+  <url>
+    <loc>https://animalofcoder.github.io/2017/12/09/%E7%AC%AC%E4%B8%80%E7%AF%87Blog/</loc>
+    <lastmod>2017-12-12T08:03:44.000Z</lastmod>
+    <data>
+        <display>
+        <title>搭建Blog</title>
+        <pubTime>2017-12-09T06:54:38.000Z</pubTime>
+        
+        <tag>Hexo</tag>
+         
+         
+           
+             
+              <breadCrumb title="生活" url="https://animalofcoder.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+</urlset>
