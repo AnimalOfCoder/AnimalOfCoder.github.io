@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="ios+Cordova," />
+  <meta name="keywords" content="js基础," />
 
 
 
@@ -81,20 +81,18 @@
 
 
 
-<meta name="description" content="做移动端开发有一段时间了，对于每次修改交易后打包应用到Pad上测试，期间经历步骤：更新代码到本地-&amp;gt;项目目录下输入cordova prepare-&amp;gt;xcode打包。为了简化这一系列操作，研究了IOS自动打包。本文主要描述如何通过命令为基于Cordova的IOS应用打IPA包，了解后，就可以通过如python、shell等来实现一个自动打包的脚本。本人使用的Xcode版本为8.3。 一、">
-<meta name="keywords" content="ios+Cordova">
+<meta name="description" content="趁着周末有时间，继续来与大家分享一下我对js作用域的理解。 作用域域，表示的是一个范围，作用域就是作用范围。简单点就是，作用域说明的是一个变量可以在什么地方被使用，什么地方不能被使用。特别需要注意的是，js没有块级作用域，唯一可以产生作用域的只有函数。例： for(var i=0; i&amp;lt;9; i++){    var num = i; } console.log(i);    // 9 co">
+<meta name="keywords" content="js基础">
 <meta property="og:type" content="article">
-<meta property="og:title" content="基于Cordova的IOS应用打包教程">
-<meta property="og:url" content="https://animalofcoder.github.io/基于Cordova的IOS应用打包教程/index.html">
+<meta property="og:title" content="谈谈Js作用域">
+<meta property="og:url" content="https://animalofcoder.github.io/谈谈Js作用域/index.html">
 <meta property="og:site_name" content="CKR技术博客">
-<meta property="og:description" content="做移动端开发有一段时间了，对于每次修改交易后打包应用到Pad上测试，期间经历步骤：更新代码到本地-&amp;gt;项目目录下输入cordova prepare-&amp;gt;xcode打包。为了简化这一系列操作，研究了IOS自动打包。本文主要描述如何通过命令为基于Cordova的IOS应用打IPA包，了解后，就可以通过如python、shell等来实现一个自动打包的脚本。本人使用的Xcode版本为8.3。 一、">
+<meta property="og:description" content="趁着周末有时间，继续来与大家分享一下我对js作用域的理解。 作用域域，表示的是一个范围，作用域就是作用范围。简单点就是，作用域说明的是一个变量可以在什么地方被使用，什么地方不能被使用。特别需要注意的是，js没有块级作用域，唯一可以产生作用域的只有函数。例： for(var i=0; i&amp;lt;9; i++){    var num = i; } console.log(i);    // 9 co">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://animalofcoder.github.io/img/20180109/1.jpg">
-<meta property="og:updated_time" content="2018-01-09T11:40:34.000Z">
+<meta property="og:updated_time" content="2018-03-25T13:08:54.754Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="基于Cordova的IOS应用打包教程">
-<meta name="twitter:description" content="做移动端开发有一段时间了，对于每次修改交易后打包应用到Pad上测试，期间经历步骤：更新代码到本地-&amp;gt;项目目录下输入cordova prepare-&amp;gt;xcode打包。为了简化这一系列操作，研究了IOS自动打包。本文主要描述如何通过命令为基于Cordova的IOS应用打IPA包，了解后，就可以通过如python、shell等来实现一个自动打包的脚本。本人使用的Xcode版本为8.3。 一、">
-<meta name="twitter:image" content="https://animalofcoder.github.io/img/20180109/1.jpg">
+<meta name="twitter:title" content="谈谈Js作用域">
+<meta name="twitter:description" content="趁着周末有时间，继续来与大家分享一下我对js作用域的理解。 作用域域，表示的是一个范围，作用域就是作用范围。简单点就是，作用域说明的是一个变量可以在什么地方被使用，什么地方不能被使用。特别需要注意的是，js没有块级作用域，唯一可以产生作用域的只有函数。例： for(var i=0; i&amp;lt;9; i++){    var num = i; } console.log(i);    // 9 co">
 
 
 
@@ -124,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://animalofcoder.github.io/基于Cordova的IOS应用打包教程/"/>
+  <link rel="canonical" href="https://animalofcoder.github.io/谈谈Js作用域/"/>
 
 
 
 
 
-  <title>基于Cordova的IOS应用打包教程 | CKR技术博客</title>
+  <title>谈谈Js作用域 | CKR技术博客</title>
   
 
 
@@ -267,7 +265,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://animalofcoder.github.io/基于Cordova的IOS应用打包教程/">
+    <link itemprop="mainEntityOfPage" href="https://animalofcoder.github.io/谈谈Js作用域/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="陈柯蓉">
@@ -284,7 +282,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">基于Cordova的IOS应用打包教程</h1>
+          <h1 class="post-title" itemprop="name headline">谈谈Js作用域</h1>
         
 
         <div class="post-meta">
@@ -296,8 +294,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-09T14:25:05+08:00">
-                2018-01-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-25T15:00:39+08:00">
+                2018-03-25
               </time>
             
 
@@ -319,8 +317,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hybrid-app/" itemprop="url" rel="index">
-                    <span itemprop="name">hybrid app</span>
+                  <a href="/categories/前端技术/" itemprop="url" rel="index">
+                    <span itemprop="name">前端技术</span>
                   </a>
                 </span>
 
@@ -336,7 +334,7 @@
 
           
           
-             <span id="/基于Cordova的IOS应用打包教程/" class="leancloud_visitors" data-flag-title="基于Cordova的IOS应用打包教程">
+             <span id="/谈谈Js作用域/" class="leancloud_visitors" data-flag-title="谈谈Js作用域">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -367,43 +365,90 @@
       
 
       
-        <p>做移动端开发有一段时间了，对于每次修改交易后打包应用到Pad上测试，期间经历步骤：更新代码到本地-&gt;项目目录下输入cordova prepare-&gt;xcode打包。为了简化这一系列操作，研究了IOS自动打包。本文主要描述如何通过命令为基于Cordova的IOS应用打IPA包，了解后，就可以通过如python、shell等来实现一个自动打包的脚本。本人使用的Xcode版本为8.3。</p>
-<h3 id="一、clean工程"><a href="#一、clean工程" class="headerlink" title="一、clean工程"></a>一、clean工程</h3><p>1.首先进入cordova工程目录<br>platform-&gt;ios,如图：</p>
-<p><img src="/img/20180109/1.jpg"></p>
-<p>2.clean工程</p>
-<pre><code>命令：xcodebuild clean -project ****网点.xcodeproj -scheme ****网点
+        <p>趁着周末有时间，继续来与大家分享一下我对js作用域的理解。</p>
+<h1 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h1><p><strong>域</strong>，表示的是一个范围，<strong>作用域</strong>就是作用范围。<br>简单点就是，作用域说明的是一个变量可以在什么地方被使用，什么地方不能被使用。<br>特别需要注意的是，js没有块级作用域，唯一可以产生作用域的只有函数。<br>例：</p>
+<pre><code>for(var i=0; i&lt;9; i++){
+   var num = i;
+}
+console.log(i);    // 9
+console.log(num);  // 8
+</code></pre><p>(若有块级作用域，上面代码会打印undefined)</p>
+<h2 id="词法作用域（js使用的）"><a href="#词法作用域（js使用的）" class="headerlink" title="词法作用域（js使用的）"></a>词法作用域（js使用的）</h2><p>所谓词法作用域（也叫静态作用域），就是定义在词法阶段的作用域，是由写代码时将变量和块作用域写在哪里来决定的，因此当词法分析器处理代码时会保持作用域不变。<br>可以理解为：js代码一旦写好，作用范围就已经确定好了。</p>
+<p>Js中词法作用域规则：</p>
+<ul>
+<li>函数允许访问函数外的数据</li>
+<li>作用域规则首先使用变量提升分析</li>
+<li>如果当前作用域中有该变量，就不再考虑外边的同名变量</li>
+</ul>
+<p>和词法作用域相对的叫<strong>动态作用域</strong>，咱先看下面代码</p>
+<pre><code>var a = 123;
+function f1 () {
+   console.log(a);
+}
+function f2 () {
+   var a = 456;
+   f1();
+}
+f2(); // 123
+</code></pre><p>(若为动态作用域，以上代码会打印456)</p>
+<p>由此可看出：</p>
+<ul>
+<li>词法作用域是在<strong>代码书写</strong>或定义的时候确定，关注点是<strong>函数在何处声明</strong>。</li>
+<li>动态作用域是在<strong>运行时</strong>确定的，关注点是<strong>函数在何处调用</strong>。</li>
+</ul>
+<h1 id="变量提升、函数提升"><a href="#变量提升、函数提升" class="headerlink" title="变量提升、函数提升"></a>变量提升、函数提升</h1><p>大家都知道Js是解释型语言，但是并不是真正的在运行时从上往下逐句解析执行。<br>Js引擎在对Js代码进行解释执行前，会对Js代码进行预解析，在<strong>预解析</strong>阶段，会将以关键字var 和 function 开头的语句块提前进行处理，即：将变量或函数的声明提前。</p>
+<p>例：</p>
+<pre><code>// 函数提升
+func();
+function func () {
+   alert(&quot;123&quot;);
+}
+</code></pre><p>输出结果： “123”</p>
+<p>等价于：</p>
+<pre><code>function func () {
+   alert(&quot;123&quot;);
+}
+func();
 
-注:
-  -project ****网点.xcodeproj（编译项目名称）
-  -scheme ****网点 (scheme名称，一般会与你的项目名称相同)
 
-成功后会提示：**CLEAN SUCCEDED**
-</code></pre><h3 id="二、archive导出-xcarchive文件"><a href="#二、archive导出-xcarchive文件" class="headerlink" title="二、archive导出.xcarchive文件"></a>二、archive导出.xcarchive文件</h3><pre><code>命令：xcodebuild archive -project ****网点.xcodeproj -scheme ****网点 -configuration Release -archivePath /Users/chenkerong/Documents/autoPack/archive/****网点.xcarchive
+// 变量提升
+alert(a);
+var a = 1;
+</code></pre><p>输出结果： undefined</p>
+<p>等价于：</p>
+<pre><code>var a; // 声明变量
+alert(a); // 变量声明后未进行初始化和赋值操作看，所以弹出undefined
+a = 1;
+</code></pre><p>此处为何只说var和function这两个关键字呢？想必看过ES6的同学应该都知道，如果区块中存在let和const命令，这个区块对这些命令声明的变量，从一开始就形成了封闭作用域。凡是在声明之前就使用这些变量，就会报错。</p>
+<p>下面讲讲一些复杂提升的情况</p>
+<h2 id="函数同名"><a href="#函数同名" class="headerlink" title="函数同名"></a>函数同名</h2><pre><code>func();
+function func () {
+   alert(&quot;This is the first&quot;);
+}    
+func();
+function func () {
+   alert(&quot;This is the last&quot;);
+}
+</code></pre><p>输出结果： “This is the last”</p>
+<p>等价于：</p>
+<pre><code>function func () {
+   alert(&quot;This is the first&quot;);
+}
+function func () {
+   alert(&quot;This is the last&quot;);
+}
+func();
+func();
+</code></pre><h2 id="变量与函数同名"><a href="#变量与函数同名" class="headerlink" title="变量与函数同名"></a>变量与函数同名</h2><pre><code>alert(foo);
+function foo () {}
+var foo = 2;
+</code></pre><p>输出结果：ƒ foo() {}<br>原因：当出现变量声明与函数同名时，只会对函数声明进行提升，变量会被忽略。因此上面代码等价于：</p>
+<pre><code>function foo () {}
+alert(foo);
+var foo = 2;
+</code></pre><h1 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h1><p>当代码在一个环境中执行时，会创建变量对象的一个作用域链。作用域链用途：保证对执行环境有权访问的所有变量和函数的有序访问。（标识符解析是沿着作用域链一级一级地搜索标识符的过程）</p>
+<h2 id="执行环境"><a href="#执行环境" class="headerlink" title="执行环境"></a>执行环境</h2><p>定义了变量或者函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的变量对象（代码无法访问，解析器处理数据时会使用）。</p>
 
-注:
-  -project （同上）
-  -workspace （同上）
-  -scheme （同上）
-  -configuration (Debug/Release)
-  -archivePath （导出.xcarchive文件的目录以及文件名称）
-</code></pre><h3 id="三、导出IPA包"><a href="#三、导出IPA包" class="headerlink" title="三、导出IPA包"></a>三、导出IPA包</h3><pre><code>命令：xcodebuild -exportArchive -archivePath /Users/chenkerong/Documents/autoPack/archive/****网点.xcarchive -exportPath /Users/chenkerong/Documents/autoPack/archive/production/****网点dev -exportOptionsPlist /Users/chenkerong/Documents/autoPack/archive/PrdPlist.plist
-
-注:
-  -archivePath （刚刚导出的.xcarchive文件的目录）
-  -exportPath （将要导出的ipa文件的目录以及文件名）
-  -exportOptionsPlist （配置文件，此处配置开发者证书）
-</code></pre><p>PrdPlist.plist文件：</p>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;
-&lt;plist version=&quot;1.0&quot;&gt;
-&lt;dict&gt;
-    &lt;key&gt;method&lt;/key&gt;
-    &lt;string&gt;development&lt;/string&gt;
-    &lt;key&gt;teamID&lt;/key&gt;
-    &lt;string&gt;yourTeamID&lt;/string&gt;
-&lt;/dict&gt;
-&lt;/plist&gt;
-</code></pre>
       
     </div>
     
@@ -420,7 +465,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/ios-Cordova/" rel="tag"># ios+Cordova</a>
+            <a href="/tags/js基础/" rel="tag"># js基础</a>
           
         </div>
       
@@ -433,8 +478,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Vue.js2.0同级组件通讯/" rel="next" title="Vue.js2.0同级组件通讯">
-                <i class="fa fa-chevron-left"></i> Vue.js2.0同级组件通讯
+              <a href="/谈谈Js中的原型/" rel="next" title="谈谈Js中的原型">
+                <i class="fa fa-chevron-left"></i> 谈谈Js中的原型
               </a>
             
           </div>
@@ -442,10 +487,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/键盘事件keyup在IOS中解决办法/" rel="prev" title="键盘事件keyup在IOS中解决办法">
-                键盘事件keyup在IOS中解决办法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -602,7 +643,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、clean工程"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x4E00;&#x3001;clean&#x5DE5;&#x7A0B;" class="headerlink" title="&#x4E00;&#x3001;clean&#x5DE5;&#x7A0B;"></a>&#x4E00;&#x3001;clean&#x5DE5;&#x7A0B;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、archive导出-xcarchive文件"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x4E8C;&#x3001;archive&#x5BFC;&#x51FA;-xcarchive&#x6587;&#x4EF6;" class="headerlink" title="&#x4E8C;&#x3001;archive&#x5BFC;&#x51FA;.xcarchive&#x6587;&#x4EF6;"></a>&#x4E8C;&#x3001;archive&#x5BFC;&#x51FA;.xcarchive&#x6587;&#x4EF6;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、导出IPA包"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x4E09;&#x3001;&#x5BFC;&#x51FA;IPA&#x5305;" class="headerlink" title="&#x4E09;&#x3001;&#x5BFC;&#x51FA;IPA&#x5305;"></a>&#x4E09;&#x3001;&#x5BFC;&#x51FA;IPA&#x5305;</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#作用域"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x4F5C;&#x7528;&#x57DF;" class="headerlink" title="&#x4F5C;&#x7528;&#x57DF;"></a>&#x4F5C;&#x7528;&#x57DF;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#词法作用域（js使用的）"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#&#x8BCD;&#x6CD5;&#x4F5C;&#x7528;&#x57DF;&#xFF08;js&#x4F7F;&#x7528;&#x7684;&#xFF09;" class="headerlink" title="&#x8BCD;&#x6CD5;&#x4F5C;&#x7528;&#x57DF;&#xFF08;js&#x4F7F;&#x7528;&#x7684;&#xFF09;"></a>&#x8BCD;&#x6CD5;&#x4F5C;&#x7528;&#x57DF;&#xFF08;js&#x4F7F;&#x7528;&#x7684;&#xFF09;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#变量提升、函数提升"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x53D8;&#x91CF;&#x63D0;&#x5347;&#x3001;&#x51FD;&#x6570;&#x63D0;&#x5347;" class="headerlink" title="&#x53D8;&#x91CF;&#x63D0;&#x5347;&#x3001;&#x51FD;&#x6570;&#x63D0;&#x5347;"></a>&#x53D8;&#x91CF;&#x63D0;&#x5347;&#x3001;&#x51FD;&#x6570;&#x63D0;&#x5347;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#函数同名"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#&#x51FD;&#x6570;&#x540C;&#x540D;" class="headerlink" title="&#x51FD;&#x6570;&#x540C;&#x540D;"></a>&#x51FD;&#x6570;&#x540C;&#x540D;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量与函数同名"><span class="nav-number">2.2.</span> <span class="nav-text"><a href="#&#x53D8;&#x91CF;&#x4E0E;&#x51FD;&#x6570;&#x540C;&#x540D;" class="headerlink" title="&#x53D8;&#x91CF;&#x4E0E;&#x51FD;&#x6570;&#x540C;&#x540D;"></a>&#x53D8;&#x91CF;&#x4E0E;&#x51FD;&#x6570;&#x540C;&#x540D;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#作用域链"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x4F5C;&#x7528;&#x57DF;&#x94FE;" class="headerlink" title="&#x4F5C;&#x7528;&#x57DF;&#x94FE;"></a>&#x4F5C;&#x7528;&#x57DF;&#x94FE;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#执行环境"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#&#x6267;&#x884C;&#x73AF;&#x5883;" class="headerlink" title="&#x6267;&#x884C;&#x73AF;&#x5883;"></a>&#x6267;&#x884C;&#x73AF;&#x5883;</span></a></li></ol></li></ol></div>
             
 
           </div>
