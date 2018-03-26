@@ -95,7 +95,7 @@
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180324/4.jpg">
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180324/6.jpg">
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180324/5.jpg">
-<meta property="og:updated_time" content="2018-03-25T06:41:26.750Z">
+<meta property="og:updated_time" content="2018-03-26T05:02:17.944Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="谈谈Js中的原型">
 <meta name="twitter:description" content="原型是作为一个前端开发必需掌握的基础知识，顺便给大家推荐一本书《js高级程序设计》，它对js这门语言的介绍非常详细，这本书不论是对初级前端还是中级前端，都值得反复研读，它可以让你对js这门语言有更深层次的理解。话不多说，下面给大家说说我对原型的理解。 原型在js中，几乎万物皆对象。首先用一个例子来区别一般对象和与作为函数的对象（也是对象）。 var str = new String(&amp;apos;m">
@@ -397,7 +397,7 @@ console.dir(str);
 </ul>
 <h3 id="原型与in操作符"><a href="#原型与in操作符" class="headerlink" title="原型与in操作符"></a>原型与in操作符</h3><p><strong>in</strong>操作符两种使用方式：<br>1.单独在<strong>for-in</strong>循环中使用。<br>2.在通过对象能够访问给定属性时返回true，无论该属性存在于实例中还是原型中。</p>
 <p>第二条使用规则，可以让我们加上hasOwnProperty()方法来确定属性存在于实例中还是原型中（hasOwnProperty()只在属性存在于实例中才返回true）。</p>
-<p>##小结<br>原型是理解js面向对象的基础，至此，原型已介绍完毕。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>原型是理解js面向对象的基础，至此，原型已介绍完毕。</p>
 
       
     </div>
@@ -597,7 +597,7 @@ console.dir(str);
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#原型"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x539F;&#x578B;" class="headerlink" title="&#x539F;&#x578B;"></a>&#x539F;&#x578B;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#原型链"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#&#x539F;&#x578B;&#x94FE;" class="headerlink" title="&#x539F;&#x578B;&#x94FE;"></a>&#x539F;&#x578B;&#x94FE;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原型式继承"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#&#x539F;&#x578B;&#x5F0F;&#x7EE7;&#x627F;" class="headerlink" title="&#x539F;&#x578B;&#x5F0F;&#x7EE7;&#x627F;"></a>&#x539F;&#x578B;&#x5F0F;&#x7EE7;&#x627F;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#属性搜索原则"><span class="nav-number">1.2.1.</span> <span class="nav-text"><a href="#&#x5C5E;&#x6027;&#x641C;&#x7D22;&#x539F;&#x5219;" class="headerlink" title="&#x5C5E;&#x6027;&#x641C;&#x7D22;&#x539F;&#x5219;"></a>&#x5C5E;&#x6027;&#x641C;&#x7D22;&#x539F;&#x5219;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原型与in操作符"><span class="nav-number">1.2.2.</span> <span class="nav-text"><a href="#&#x539F;&#x578B;&#x4E0E;in&#x64CD;&#x4F5C;&#x7B26;" class="headerlink" title="&#x539F;&#x578B;&#x4E0E;in&#x64CD;&#x4F5C;&#x7B26;"></a>&#x539F;&#x578B;&#x4E0E;in&#x64CD;&#x4F5C;&#x7B26;</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#原型"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x539F;&#x578B;" class="headerlink" title="&#x539F;&#x578B;"></a>&#x539F;&#x578B;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#原型链"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#&#x539F;&#x578B;&#x94FE;" class="headerlink" title="&#x539F;&#x578B;&#x94FE;"></a>&#x539F;&#x578B;&#x94FE;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原型式继承"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#&#x539F;&#x578B;&#x5F0F;&#x7EE7;&#x627F;" class="headerlink" title="&#x539F;&#x578B;&#x5F0F;&#x7EE7;&#x627F;"></a>&#x539F;&#x578B;&#x5F0F;&#x7EE7;&#x627F;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#属性搜索原则"><span class="nav-number">1.2.1.</span> <span class="nav-text"><a href="#&#x5C5E;&#x6027;&#x641C;&#x7D22;&#x539F;&#x5219;" class="headerlink" title="&#x5C5E;&#x6027;&#x641C;&#x7D22;&#x539F;&#x5219;"></a>&#x5C5E;&#x6027;&#x641C;&#x7D22;&#x539F;&#x5219;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原型与in操作符"><span class="nav-number">1.2.2.</span> <span class="nav-text"><a href="#&#x539F;&#x578B;&#x4E0E;in&#x64CD;&#x4F5C;&#x7B26;" class="headerlink" title="&#x539F;&#x578B;&#x4E0E;in&#x64CD;&#x4F5C;&#x7B26;"></a>&#x539F;&#x578B;&#x4E0E;in&#x64CD;&#x4F5C;&#x7B26;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">1.3.</span> <span class="nav-text"><a href="#&#x5C0F;&#x7ED3;" class="headerlink" title="&#x5C0F;&#x7ED3;"></a>&#x5C0F;&#x7ED3;</span></a></li></ol></li></ol></div>
             
 
           </div>
