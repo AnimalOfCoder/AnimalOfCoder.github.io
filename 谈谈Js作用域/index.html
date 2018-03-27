@@ -89,10 +89,13 @@
 <meta property="og:site_name" content="CKR技术博客">
 <meta property="og:description" content="趁着周末有时间，继续来与大家分享一下我对js作用域的理解。 作用域域，表示的是一个范围，作用域就是作用范围。简单点就是，作用域说明的是一个变量可以在什么地方被使用，什么地方不能被使用。特别需要注意的是，js没有块级作用域，唯一可以产生作用域的只有函数。例： for(var i=0; i&amp;lt;9; i++){    var num = i; } console.log(i);    // 9 co">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-26T11:54:05.145Z">
+<meta property="og:image" content="https://animalofcoder.github.io/img/20180325/1.jpg">
+<meta property="og:image" content="https://animalofcoder.github.io/img/20180325/2.jpg">
+<meta property="og:updated_time" content="2018-03-27T12:03:25.072Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="谈谈Js作用域">
 <meta name="twitter:description" content="趁着周末有时间，继续来与大家分享一下我对js作用域的理解。 作用域域，表示的是一个范围，作用域就是作用范围。简单点就是，作用域说明的是一个变量可以在什么地方被使用，什么地方不能被使用。特别需要注意的是，js没有块级作用域，唯一可以产生作用域的只有函数。例： for(var i=0; i&amp;lt;9; i++){    var num = i; } console.log(i);    // 9 co">
+<meta name="twitter:image" content="https://animalofcoder.github.io/img/20180325/1.jpg">
 
 
 
@@ -400,7 +403,24 @@ f2(); // 123
 <h1 id="执行环境"><a href="#执行环境" class="headerlink" title="执行环境"></a>执行环境</h1><p>定义了变量或者函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的变量对象（代码无法访问，解析器处理数据时会使用）。</p>
 <p>值得一提的是使用<strong>var</strong>声明的变量会自动被添加到最接近的环境中。在<strong>函数内部</strong>，最接近的环境就是函数的局部环境。如果初始化变量时没有使用<strong>var</strong>声明，该变量会自动被添加到全局环境中。</p>
 <p>每个函数都有自己的执行环境，当执行流进入一个函数时，函数环境就会被推入一个环境栈中，在函数执行之后，栈将其环境弹出，把控制权返回给之前的执行环境。</p>
-<h1 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h1><p>当代码在一个环境中执行时，会创建变量对象的一个作用域链。作用域链用途：保证对执行环境有权访问的所有变量和函数的有序访问。（标识符解析是沿着作用域链一级一级地搜索标识符的过程）</p>
+<h1 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h1><p>Js高程是这么说的：<br><img src="/img/20180325/1.jpg"><br>大致就是：</p>
+<ul>
+<li>只要是函数就会创建一个作用域，而函数内部作用域可以访问函数外部作用域</li>
+<li>函数中可以创建一个函数，所以如果有多个函数嵌套，那么会构成一个函数内指向函数外的链式结构，这就是作用域链。</li>
+</ul>
+<p>例：</p>
+<pre><code>function f1(){
+    function f2(){}
+}
+
+var num = 123;
+
+function f3(){
+    function f4(){}
+}
+</code></pre><p>作用域链：<br><img src="/img/20180325/2.jpg"><br>访问原则：向上一级作用域搜索。f2可以访问f1的作用域，可以访问全局作用域。f3可以访问f4及全局作用域。</p>
+<p>我觉得学习，数形结合是最有效的，图形可以让我们能更透彻地理解文字，通过上图，相信大家能够很好的了解作用域链到底是个啥了。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>掌握好了Js作用域，我们就可以在写代码时避免出现无意中创建了个全局变量、访问变量出错等一些低级的错误。并且能够更好地了解Js这门语言的特性。</p>
 
       
     </div>
@@ -600,7 +620,7 @@ f2(); // 123
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#作用域"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x4F5C;&#x7528;&#x57DF;" class="headerlink" title="&#x4F5C;&#x7528;&#x57DF;"></a>&#x4F5C;&#x7528;&#x57DF;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#词法作用域（js使用的）"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#&#x8BCD;&#x6CD5;&#x4F5C;&#x7528;&#x57DF;&#xFF08;js&#x4F7F;&#x7528;&#x7684;&#xFF09;" class="headerlink" title="&#x8BCD;&#x6CD5;&#x4F5C;&#x7528;&#x57DF;&#xFF08;js&#x4F7F;&#x7528;&#x7684;&#xFF09;"></a>&#x8BCD;&#x6CD5;&#x4F5C;&#x7528;&#x57DF;&#xFF08;js&#x4F7F;&#x7528;&#x7684;&#xFF09;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#执行环境"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x6267;&#x884C;&#x73AF;&#x5883;" class="headerlink" title="&#x6267;&#x884C;&#x73AF;&#x5883;"></a>&#x6267;&#x884C;&#x73AF;&#x5883;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#作用域链"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x4F5C;&#x7528;&#x57DF;&#x94FE;" class="headerlink" title="&#x4F5C;&#x7528;&#x57DF;&#x94FE;"></a>&#x4F5C;&#x7528;&#x57DF;&#x94FE;</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#作用域"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x4F5C;&#x7528;&#x57DF;" class="headerlink" title="&#x4F5C;&#x7528;&#x57DF;"></a>&#x4F5C;&#x7528;&#x57DF;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#词法作用域（js使用的）"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#&#x8BCD;&#x6CD5;&#x4F5C;&#x7528;&#x57DF;&#xFF08;js&#x4F7F;&#x7528;&#x7684;&#xFF09;" class="headerlink" title="&#x8BCD;&#x6CD5;&#x4F5C;&#x7528;&#x57DF;&#xFF08;js&#x4F7F;&#x7528;&#x7684;&#xFF09;"></a>&#x8BCD;&#x6CD5;&#x4F5C;&#x7528;&#x57DF;&#xFF08;js&#x4F7F;&#x7528;&#x7684;&#xFF09;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#执行环境"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x6267;&#x884C;&#x73AF;&#x5883;" class="headerlink" title="&#x6267;&#x884C;&#x73AF;&#x5883;"></a>&#x6267;&#x884C;&#x73AF;&#x5883;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#作用域链"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x4F5C;&#x7528;&#x57DF;&#x94FE;" class="headerlink" title="&#x4F5C;&#x7528;&#x57DF;&#x94FE;"></a>&#x4F5C;&#x7528;&#x57DF;&#x94FE;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</span></a></li></ol></div>
             
 
           </div>

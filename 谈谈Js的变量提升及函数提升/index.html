@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="CKR技术博客">
 <meta property="og:description" content="昨天和大家介绍了Js中的作用域及与其相关的概念，由于这些知识都是相互联系的，所以今天咱紧接着说说Js中的提升。 变量提升、函数提升大家都知道Js是解释型语言，但是并不是真正的在运行时从上往下逐句解析执行。Js引擎在对Js代码进行解释执行前，会对Js代码进行预解析，在预解析阶段，会将以关键字var 和 function 开头的语句块提前进行处理，即：将变量或函数的声明提前。 例： // 函数提升 f">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-26T13:53:26.676Z">
+<meta property="og:updated_time" content="2018-03-27T11:11:43.585Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="谈谈Js的变量提升及函数提升">
 <meta name="twitter:description" content="昨天和大家介绍了Js中的作用域及与其相关的概念，由于这些知识都是相互联系的，所以今天咱紧接着说说Js中的提升。 变量提升、函数提升大家都知道Js是解释型语言，但是并不是真正的在运行时从上往下逐句解析执行。Js引擎在对Js代码进行解释执行前，会对Js代码进行预解析，在预解析阶段，会将以关键字var 和 function 开头的语句块提前进行处理，即：将变量或函数的声明提前。 例： // 函数提升 f">
@@ -498,10 +498,28 @@ Foo.getName(); // 2
 getName(); // 4
 Foo().getName(); // 1
 getName(); // 1
-new Foo.getName(); // 2 
-new Foo().getName(); // 3
-new new Foo().getName(); // 3
-</code></pre><p>至此，变量提升和函数提升想必大家都有了一定了解了吧。</p>
+</code></pre><p>解析：<br>以上代码等价于：</p>
+<pre><code>function Foo() {
+   getName = function(){ alert(1);}
+   return this;
+}
+
+var getName;
+
+function getName(){ alert(5);}
+
+Foo.getName = function(){ alert(2);}
+
+Foo.prototype.getName = function(){ alert(3);}
+
+getName = function(){ alert(4);}
+
+Foo.getName(); // 2
+getName(); // 4
+Foo().getName(); // 1
+getName(); // 1
+</code></pre><p>前两个比较简单，我们只说后两个。<br>1.Foo().getName(); 首先，执行Foo()，它会在其内部寻找getName的声明，未找到就到全局中寻找，发现全局中存在var getName; 且getName = function(){ alert(4);} 所以在函数内继续执行getName = function(){ alert(1);}，全局变量名getName被覆盖。最后返回window。所以等价于 window.getName() 等价于 getName()。<br>2.所以经过Foo().getName();再调用getName();时，还是1。</p>
+<p>相信经过几个例子的分析，变量提升和函数提升想必大家都有了一定了解了吧。</p>
 
       
     </div>
