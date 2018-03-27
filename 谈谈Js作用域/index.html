@@ -91,7 +91,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180325/1.jpg">
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180325/2.jpg">
-<meta property="og:updated_time" content="2018-03-27T12:07:43.116Z">
+<meta property="og:updated_time" content="2018-03-27T12:19:28.472Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="谈谈Js作用域">
 <meta name="twitter:description" content="趁着周末有时间，继续来与大家分享一下我对js作用域的理解。 作用域域，表示的是一个范围，作用域就是作用范围。简单点就是，作用域说明的是一个变量可以在什么地方被使用，什么地方不能被使用。特别需要注意的是，js没有块级作用域，唯一可以产生作用域的只有函数。例： for(var i=0; i&amp;lt;9; i++){    var num = i; } console.log(i);    // 9 co">
@@ -420,7 +420,7 @@ function f3(){
 }
 </code></pre><p>作用域链：<br><img src="/img/20180325/2.jpg"><br>访问原则：首先在局部环境中搜索是否存在该变量，不存在则向上一级作用域搜索，直到全局作用域中都未找到，则报错。f2可以访问f1的作用域，可以访问全局作用域。f3可以访问f4及全局作用域。</p>
 <p>我觉得学习，数形结合是最有效的，图形可以让我们能更透彻地理解文字，通过上图，相信大家能够很好的了解作用域链到底是个啥了。</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>掌握好了Js作用域，我们就可以在写代码时避免出现无意中创建了个全局变量、访问变量出错等一些低级的错误。并且能够更好地了解Js这门语言的特性。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>掌握好了Js作用域，我们就可以在写代码时避免出现无意中创建了个全局变量、访问变量出错等一些低级的错误。同时，作用域链这块东西，其实就是闭包的原理，关于闭包，我会专门写一篇博客来详细讲解，敬请关注！</p>
 
       
     </div>
