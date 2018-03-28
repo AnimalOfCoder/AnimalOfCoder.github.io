@@ -90,8 +90,9 @@
 <meta property="og:description" content="趁着周末有时间，继续来与大家分享一下我对js作用域的理解。 作用域域，表示的是一个范围，作用域就是作用范围。简单点就是，作用域说明的是一个变量可以在什么地方被使用，什么地方不能被使用。特别需要注意的是，js没有块级作用域，唯一可以产生作用域的只有函数。例： for(var i=0; i&amp;lt;9; i++){    var num = i; } console.log(i);    // 9 co">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180325/1.jpg">
+<meta property="og:image" content="https://animalofcoder.github.io/img/20180325/3.jpg">
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180325/2.jpg">
-<meta property="og:updated_time" content="2018-03-27T12:19:28.472Z">
+<meta property="og:updated_time" content="2018-03-28T07:33:54.382Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="谈谈Js作用域">
 <meta name="twitter:description" content="趁着周末有时间，继续来与大家分享一下我对js作用域的理解。 作用域域，表示的是一个范围，作用域就是作用范围。简单点就是，作用域说明的是一个变量可以在什么地方被使用，什么地方不能被使用。特别需要注意的是，js没有块级作用域，唯一可以产生作用域的只有函数。例： for(var i=0; i&amp;lt;9; i++){    var num = i; } console.log(i);    // 9 co">
@@ -400,7 +401,7 @@ f2(); // 123
 <li>动态作用域是在<strong>运行时</strong>确定的，关注点是<strong>函数在何处调用</strong>。</li>
 </ul>
 <p>接下来介绍的就是执行环境，介绍它是为了引出作用域链这个概念。</p>
-<h1 id="执行环境"><a href="#执行环境" class="headerlink" title="执行环境"></a>执行环境</h1><p>定义了变量或者函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的变量对象（代码无法访问，解析器处理数据时会使用）。</p>
+<h1 id="执行环境"><a href="#执行环境" class="headerlink" title="执行环境"></a>执行环境</h1><p>定义了变量或者函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的<strong>变量对象</strong>（用来存储该执行环境的变量的。代码无法访问，解析器处理数据时会使用）。</p>
 <p>值得一提的是使用<strong>var</strong>声明的变量会自动被添加到最接近的环境中。在<strong>函数内部</strong>，最接近的环境就是函数的局部环境。如果初始化变量时没有使用<strong>var</strong>声明，该变量会自动被添加到全局环境中。</p>
 <p>每个函数都有自己的执行环境，当执行流进入一个函数时，函数环境就会被推入一个环境栈中，在函数执行之后，栈将其环境弹出，把控制权返回给之前的执行环境。</p>
 <h1 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h1><p>Js高程是这么说的：<br><img src="/img/20180325/1.jpg"><br>大致就是：</p>
@@ -408,7 +409,9 @@ f2(); // 123
 <li>只要是函数就会创建一个作用域，而函数内部作用域可以访问函数外部作用域</li>
 <li>函数中可以创建一个函数，所以如果有多个函数嵌套，那么会构成一个函数内指向函数外的链式结构，这就是作用域链。</li>
 </ul>
-<p>例：</p>
+<p>高程中更为详细的描述是在闭包那一章节：</p>
+<p><img src="/img/20180325/3.jpg"></p>
+<p>举个例子：</p>
 <pre><code>function f1(){
     function f2(){}
 }
@@ -418,8 +421,7 @@ var num = 123;
 function f3(){
     function f4(){}
 }
-</code></pre><p>作用域链：<br><img src="/img/20180325/2.jpg"><br>访问原则：首先在局部环境中搜索是否存在该变量，不存在则向上一级作用域搜索，直到全局作用域中都未找到，则报错。f2可以访问f1的作用域，可以访问全局作用域。f3可以访问f4及全局作用域。</p>
-<p>我觉得学习，数形结合是最有效的，图形可以让我们能更透彻地理解文字，通过上图，相信大家能够很好的了解作用域链到底是个啥了。</p>
+</code></pre><p>对应作用域链（简洁版）：<br><img src="/img/20180325/2.jpg"><br>访问原则：首先在局部环境中搜索是否存在该变量，不存在则向上一级作用域搜索，直到全局作用域中都未找到，则报错。f2可以访问f1的作用域，可以访问全局作用域。f3可以访问f4及全局作用域。</p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>掌握好了Js作用域，我们就可以在写代码时避免出现无意中创建了个全局变量、访问变量出错等一些低级的错误。同时，作用域链这块东西，其实就是闭包的原理，关于闭包，我会专门写一篇博客来详细讲解，敬请关注！</p>
 
       
