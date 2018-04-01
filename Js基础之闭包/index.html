@@ -90,7 +90,7 @@
 <meta property="og:description" content="概念之前在作用域那篇博客中说作用域链时提到一个叫闭包的概念，在MDN中解释是：闭包是函数和声明该函数的词法环境的组合，而Js高程里的解释是：有权访问另一个函数作用域中的变量的函数。其实两个解释都是同一个意思，后者可能更好理解。 闭包要解决什么问题？1.局部变量无法长久保存（一般来说，当函数执行完毕后，局部变量会被销毁。闭包除外），而全局变量可能造成变量污染，所以闭包这种机制可以长久的保存变量，又不">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180329/1.jpg">
-<meta property="og:updated_time" content="2018-03-29T14:02:25.497Z">
+<meta property="og:updated_time" content="2018-04-01T04:41:13.705Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Js基础之闭包">
 <meta name="twitter:description" content="概念之前在作用域那篇博客中说作用域链时提到一个叫闭包的概念，在MDN中解释是：闭包是函数和声明该函数的词法环境的组合，而Js高程里的解释是：有权访问另一个函数作用域中的变量的函数。其实两个解释都是同一个意思，后者可能更好理解。 闭包要解决什么问题？1.局部变量无法长久保存（一般来说，当函数执行完毕后，局部变量会被销毁。闭包除外），而全局变量可能造成变量污染，所以闭包这种机制可以长久的保存变量，又不">
@@ -370,7 +370,31 @@
         <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>之前在作用域那篇博客中说作用域链时提到一个叫闭包的概念，在<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Closures" target="_blank" rel="noopener">MDN</a>中解释是：闭包是函数和声明该函数的词法环境的组合，而Js高程里的解释是：有权访问另一个函数作用域中的变量的<strong>函数</strong>。其实两个解释都是同一个意思，后者可能更好理解。</p>
 <p>闭包要解决什么问题？<br>1.局部变量无法长久保存（一般来说，当函数执行完毕后，局部变量会被销毁。闭包除外），而全局变量可能造成变量污染，所以闭包这种机制可以长久的保存变量，又不会造成全局污染。<br>2.局部变量无法共享，闭包可以间接访问。</p>
 <p>然而也带来了一些问题，闭包引用的作用域不会被垃圾回收处理，因此不合理使用会消耗内存。</p>
-<h1 id="举例分析"><a href="#举例分析" class="headerlink" title="举例分析"></a>举例分析</h1><p>这是前段时间一个朋友参加招聘，给我发的一题校招题。这段代码执行会在界面显示0-9共计10个button，但是点击每个button后alert的都是”You are on Cloud -1”。</p>
+<h1 id="举例分析"><a href="#举例分析" class="headerlink" title="举例分析"></a>举例分析</h1><p>首先举一个简单的例子，若我们想要设置或者获取一个函数内部的变量值，应该怎么做？</p>
+<pre><code>function foo () {
+   var name = &quot;张三&quot;;
+   var age = &quot;18&quot;;
+   return {
+      getName: function() {
+        return name;
+      },
+      setName: function(value) {
+        name = value;
+      },
+      getAge: function() {
+        return age;
+      },
+      setAge: function(value) {
+        age = value;
+      }       
+   }
+}
+
+var person = foo();
+console.log(person.getName()); // 张三
+</code></pre><p>相当于foo通过返回一个key是函数名，value是函数的对象，来对外提供设置、获取foo局部变量的方法。而这一切的实现，依赖于foo中的四个闭包。大家是否发现，这个方法实现了修改、查询，跟jquery的 .data()方法有相似之处，data功能多了删除、增加，其实现要相对复杂。大家有兴趣可以参考<a href="http://nuysoft.iteye.com/blog/1195313" target="_blank" rel="noopener">JQuery数据缓存源码解析</a>、<a href="https://segmentfault.com/a/1190000008433645" target="_blank" rel="noopener">jQuery 源码系列（八）data 缓存机制</a></p>
+<p>下面再来看看稍微复杂一点的例子。</p>
+<p>这是前段时间一个朋友参加招聘，给我发的一题校招题。这段代码执行会在界面显示0-9共计10个button，但是点击每个button后alert的都是”You are on Cloud -1”。</p>
 <p><img src="/img/20180329/1.jpg"></p>
 <p>首先，我们可以看到最外层是一个<strong>立即执行函数</strong>（IIFE），里面的循环跑了10次后，我们点击button后，click触发的回调函数会在它的作用域中寻找<strong>i变量</strong>，而<strong>i变量</strong>并不在回调函数的变量对象中，所以它会沿着作用域链去搜索，回调函数的上级作用域就是IIFE的作用域，在该作用域中找到了i这个变量，此时i的值为-1（i是IIFE下变量，最后一个值将之前的0、1、2…9覆盖），所以点击每个button都会alert -1。</p>
 <p>为何IIFE执行完毕后，其作用域中的<strong>i变量</strong>不销毁呢？<br>这是由于i被回调函数引用着，必须等到这些回调函数执行完毕后才会销毁。</p>
