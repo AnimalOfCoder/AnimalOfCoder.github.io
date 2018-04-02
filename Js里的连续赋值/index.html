@@ -89,10 +89,15 @@
 <meta property="og:site_name" content="CKR技术博客">
 <meta property="og:description" content="今天翻JQuery源码的时候，发现了一个很有意思的东西。 window.jQuery = window.$ = jQuery; 我还是第一次见这种连续赋值的代码。遂去论坛查了挺多资料，发现很多说法缺少一些说服力，或者在一些关键环节就一笔带过了。不过千万不要在JS中使用连等赋值操作的作者逻辑很严谨，下的结论让人信服。我在他的论证过程中，再加上一点书本查到的资料补充一下论证，谈谈自己的见解。班门弄斧，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-01T14:40:29.178Z">
+<meta property="og:image" content="https://animalofcoder.github.io/img/20180401/1.jpg">
+<meta property="og:image" content="https://animalofcoder.github.io/img/20180401/2.jpg">
+<meta property="og:image" content="https://animalofcoder.github.io/img/20180401/3.jpg">
+<meta property="og:image" content="https://animalofcoder.github.io/img/20180401/4.jpg">
+<meta property="og:updated_time" content="2018-04-02T11:48:32.691Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Js里的连续赋值">
 <meta name="twitter:description" content="今天翻JQuery源码的时候，发现了一个很有意思的东西。 window.jQuery = window.$ = jQuery; 我还是第一次见这种连续赋值的代码。遂去论坛查了挺多资料，发现很多说法缺少一些说服力，或者在一些关键环节就一笔带过了。不过千万不要在JS中使用连等赋值操作的作者逻辑很严谨，下的结论让人信服。我在他的论证过程中，再加上一点书本查到的资料补充一下论证，谈谈自己的见解。班门弄斧，">
+<meta name="twitter:image" content="https://animalofcoder.github.io/img/20180401/1.jpg">
 
 
 
@@ -379,6 +384,19 @@ console.log(b); // {n:1, x:{n:2}}
 <li>B = C; A = C; </li>
 <li>B = C; A = B;</li>
 </ol>
+<p>若两个变量同时指向一个对象，那么对这个对象的修改是同步的。<br>我们可以使用ES5中getter特性来测试在赋值的时候，C被读取了几次，从而可以判断哪个猜想是正确的。</p>
+<p><img src="/img/20180401/1.jpg"></p>
+<p>我们可以看到，说明c只被调用了一次，所以可以排除<strong>猜想1</strong>。<br>得出结论：连续赋值是<strong>从右至左永远只取等号右边的表达式结果赋值到等号左侧</strong>。</p>
+<p>我们继续分析，那么这样的话，我们拆开写的效果是否一样呢？</p>
+<p><img src="/img/20180401/2.jpg"></p>
+<p>由此可以看出，并不能拆开写。</p>
+<p>那么 a.x = a = {n: 2}; 这段代码是如何执行的呢，请看《js权威指南》里的一段文字：</p>
+<p><img src="/img/20180401/3.jpg"></p>
+<p>这话的意思是: js会先从左至右计算表达式的值，最后再从右至左进行赋值操作。</p>
+<p>所以，a.x = a = {n: 2}; 首先会计算a.x，此时a仍然和b指向同一个对象{n: 1, x: undefined}，接着计算a，然后开始赋值操作， a = {n: 2}; 然后 a.x = a;相当于 b.x = a;所以可以看出旧的a.x和新的a都会指向{n: 2}，证明它俩是全等的。</p>
+<p>测试：</p>
+<p><img src="/img/20180401/4.jpg"></p>
+<p>结果正确。</p>
 
       
     </div>
