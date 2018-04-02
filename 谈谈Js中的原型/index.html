@@ -95,7 +95,7 @@
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180324/4.jpg">
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180324/6.jpg">
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180324/5.jpg">
-<meta property="og:updated_time" content="2018-04-02T13:34:36.522Z">
+<meta property="og:updated_time" content="2018-04-02T13:38:54.002Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="谈谈Js中的原型">
 <meta name="twitter:description" content="原型是作为一个前端开发必需掌握的基础知识，顺便给大家推荐一本书《js高级程序设计》，它对js这门语言的介绍非常详细，这本书不论是对初级前端还是中级前端，都值得反复研读，它可以让你对js这门语言有更深层次的理解。话不多说，下面给大家说说我对原型的理解。 原型在js中，几乎万物皆对象。首先用一个例子来区别一般对象和与作为函数的对象（也是对象）。 var str = new String(&amp;apos;m">
@@ -377,7 +377,7 @@
 <pre><code>var str = new String(&apos;mario&apos;);
 console.dir(str);
 </code></pre><p><img src="/img/20180324/1.jpg"></p>
-<p>一般对象继承__proto__的是对象（str继承的是String对象），而函数的对象继承__proto__的是函数(String()继承的是一个特殊的匿名函数。虽然函数也是对象)，但只有函数才有原型prototype属性，供它实例的对象继承，也就是说str.__proto__ === String.prototype（其中String是原生构造函数）。<br>先给个结论让大家带着疑问往下看。<br>上图中：字符串对象的长度是5，初始值是“mario”，继承于String对象；这个String对象包含了我们熟知的大部分方法和属性如：<br>charAt(),charCodeAt()……</p>
+<p>一般对象继承__proto__的是对象（str继承的是String对象），而函数的对象继承__proto__的是函数(String()继承的是一个特殊的匿名函数。虽然函数也是对象)，但只有函数才有原型prototype属性，供它实例的对象继承，也就是说str.__proto__ === String.prototype（其中String是构造函数）。<br>先给个结论让大家带着疑问往下看。<br>上图中：字符串对象的长度是5，初始值是“mario”，继承于String对象；这个String对象包含了我们熟知的大部分方法和属性如：<br>charAt(),charCodeAt()……</p>
 <p>再看String对象的属性和方法也包含一个constructor和__proto__属性，其中__proto__又指向Object对象，constructor指向的是 构造函数function String(){};<br><img src="/img/20180324/2.jpg"></p>
 <p>咱接着上边继续往下看，__proto__指向的Object对象中没有__proto__属性，说明这个Object对象已经是继承的终点，所有的对象最终都会继承于它。<br><img src="/img/20180324/3.jpg"></p>
 <p>而 函数String() 的__proto__指向的是 function(){}（一开始提到的一个特殊的匿名函数，出现了！）<br><img src="/img/20180324/4.jpg"><br>我们看到匿名函数，创建它的构造函数是fuction Function(){};不要小看这个构造函数，它是特殊的匿名函数function(){}以自己为原型和继承自己的属性创造的（就像女娲按照自己的样子和能力，创造了第一个人类，其他的人类的原型都是这个人，这个人我们简称始祖吧，只有简单的属性和方法）</p>
