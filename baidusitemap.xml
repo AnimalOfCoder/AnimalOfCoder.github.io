@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>https://animalofcoder.github.io/%E8%B0%88%E8%B0%88Js%E4%B8%AD%E7%9A%84%E5%8E%9F%E5%9E%8B/</loc>
+    <lastmod>2018-04-02T13:34:36.522Z</lastmod>
+    <data>
+        <display>
+        <title>谈谈Js中的原型</title>
+        <pubTime>2018-03-24T03:36:08.000Z</pubTime>
+        
+        <tag>Js基础</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端技术" url="https://animalofcoder.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://animalofcoder.github.io/Js%E9%87%8C%E7%9A%84%E8%BF%9E%E7%BB%AD%E8%B5%8B%E5%80%BC/</loc>
     <lastmod>2018-04-02T11:48:32.691Z</lastmod>
     <data>
@@ -91,26 +111,6 @@
         <display>
         <title>谈谈Js的变量提升及函数提升</title>
         <pubTime>2018-03-26T11:30:11.000Z</pubTime>
-        
-        <tag>Js基础</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端技术" url="https://animalofcoder.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://animalofcoder.github.io/%E8%B0%88%E8%B0%88Js%E4%B8%AD%E7%9A%84%E5%8E%9F%E5%9E%8B/</loc>
-    <lastmod>2018-03-26T11:37:15.672Z</lastmod>
-    <data>
-        <display>
-        <title>谈谈Js中的原型</title>
-        <pubTime>2018-03-24T03:36:08.000Z</pubTime>
         
         <tag>Js基础</tag>
          
