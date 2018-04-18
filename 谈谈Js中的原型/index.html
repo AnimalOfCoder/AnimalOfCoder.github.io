@@ -93,9 +93,10 @@
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180324/2.jpg">
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180324/3.jpg">
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180324/4.jpg">
+<meta property="og:image" content="https://animalofcoder.github.io/img/20180324/7.png">
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180324/6.jpg">
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180324/5.jpg">
-<meta property="og:updated_time" content="2018-04-02T13:38:54.002Z">
+<meta property="og:updated_time" content="2018-04-18T04:39:08.963Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="谈谈Js中的原型">
 <meta name="twitter:description" content="原型是作为一个前端开发必需掌握的基础知识，顺便给大家推荐一本书《js高级程序设计》，它对js这门语言的介绍非常详细，这本书不论是对初级前端还是中级前端，都值得反复研读，它可以让你对js这门语言有更深层次的理解。话不多说，下面给大家说说我对原型的理解。 原型在js中，几乎万物皆对象。首先用一个例子来区别一般对象和与作为函数的对象（也是对象）。 var str = new String(&amp;apos;m">
@@ -383,8 +384,10 @@ console.dir(str);
 <p>而 函数String() 的__proto__指向的是 function(){}（一开始提到的一个特殊的匿名函数，出现了！）<br><img src="/img/20180324/4.jpg"><br>我们看到匿名函数，创建它的构造函数是fuction Function(){};不要小看这个构造函数，它是特殊的匿名函数function(){}以自己为原型和继承自己的属性创造的（就像女娲按照自己的样子和能力，创造了第一个人类，其他的人类的原型都是这个人，这个人我们简称始祖吧，只有简单的属性和方法）</p>
 <p>所有的<strong>函数</strong>都继承于这个特殊匿名函数，都有个原型，供它的实例对象继承，而这个原型又继承于终极的Object对象。</p>
 <ul>
-<li>结论：<br>1.JS在创建对象（不论是普通对象还是函数对象）的时候，都有一个叫做__proto__ 的内置属性，用于指向创建它的构造函数的原型对象。而每个函数对象都有一个prototype 属性（函数对象特有的属性），这个属性指向函数的原型对象。<br>2.JS中对象继承__proto__的是对象，函数继承__proto__的是函数(函数也是对象)，但是只有函数才有原型prototype属性供它实例的对象继承。</li>
+<li>结论：</li>
 </ul>
+<p><img src="/img/20180324/7.png"></p>
+<p>1.JS在创建对象（不论是普通对象还是函数对象）的时候，都有一个叫做__proto__ 的内置属性，用于指向创建它的构造函数的原型对象。而每个函数对象都有一个prototype 属性（函数对象特有的属性），这个属性指向函数的原型对象。<br>2.JS中对象继承__proto__的是对象，函数继承__proto__的是函数(函数也是对象)，但是只有函数才有原型prototype属性供它实例的对象继承。</p>
 <p>这就是为什么str.__proto__ === String.prototype的原因。（普通对象可以通过__proto__访问原型对象，而构造函数创建的<strong>对象</strong>通过__proto__访问原型对象。函数通过prototype访问原型对象）</p>
 <h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><p>这是由原型衍生的一个概念。简单来说，在js中，凡是对象就有原型，原型又是对象，因此凡是定义的一个对象，那么就可以找到它的原型，原型还有原型，那么如此下去就构成了一个对象的序列，称该结构为原型链。下图为一个完整原型链。<br><img src="/img/20180324/6.jpg"></p>
 <h2 id="原型式继承"><a href="#原型式继承" class="headerlink" title="原型式继承"></a>原型式继承</h2><p>每一个构造函数都有prototype属性，通过构造函数创建出来的对象都继承自该原型属性。所以可以通过更改构造函数的原型属性来实现继承。</p>
