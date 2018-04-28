@@ -92,7 +92,7 @@
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180427/1.jpg">
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180427/2.jpg">
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180427/3.jpg">
-<meta property="og:updated_time" content="2018-04-27T08:18:09.696Z">
+<meta property="og:updated_time" content="2018-04-28T08:45:09.074Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode算法练习之数组篇">
 <meta name="twitter:description" content="闲聊（可以略过）算法一直以来是我比较劣势的技能，在上大学接触过，然后就是考研的时候埋头啃过相关书籍，之后基本没怎么碰过了。但是对于大厂来说，算法是必备的基础技能，近段时间比较火的一个app抖音，它的公司-北京字节跳动科技有限公司，是一家纯靠算法起家的公司，我使用过抖音，在我接触过使用抖音的人的反馈就是：内容很有趣。这背后必然是通过算法处理用户数据，分析用户行为然后智能推荐，至少用户的反馈证明这家公">
@@ -437,6 +437,34 @@ var rotate = function(nums, k) {
 
 };
 </code></pre><p>完成日期：2018-04-27</p>
+<p>分析二：先判断k与数组长度关系,大于等于数组长度时稍微复杂一些,所以先讨论简单的<strong>k &lt; 数组长度</strong>的情况。</p>
+<ol>
+<li><p>k &lt; 数组长度<br>1.1 计算移动完成后，数组末位索引<br>1.2 使用splice从0开始到末位（包含末位）切割数组，并将切割得到的元素插入数组。</p>
+</li>
+<li><p>k &gt; 数组长度<br>2.1 k 如果是数组长度的整数倍，则无需移动数组。<br>2.2 k 如果不是数组长度的整数倍，移动次数为<strong>k/数组长度的余数</strong>即可。使用splice从0开始到末位（包含末位）切割数组，并将切割得到的元素插入数组。</p>
+</li>
+</ol>
+<p>代码：</p>
+<pre><code>/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+var rotate = function(nums, k) {
+        var movedLastIndex
+        if (k &lt; nums.length) {
+            movedLastIndex = nums.length - k; // 此处为方便，故省略 - 1
+        } else if (k &gt;= nums.length &amp;&amp; k % nums.length == 0) {
+            // 不变
+            return;
+        } else if (k &gt;= nums.length &amp;&amp; k % nums.length != 0) {
+            k = k % nums.length;
+            movedLastIndex = nums.length - k;
+        } 
+        nums.push.apply(nums,nums.splice(0, movedLastIndex));
+
+};
+</code></pre><p>完成日期：2018-04-28</p>
 
       
     </div>
