@@ -93,7 +93,8 @@
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180427/2.jpg">
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180427/3.jpg">
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180427/4.jpg">
-<meta property="og:updated_time" content="2018-05-01T07:53:31.878Z">
+<meta property="og:image" content="https://animalofcoder.github.io/img/20180427/5.jpg">
+<meta property="og:updated_time" content="2018-05-02T12:42:25.062Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode算法练习之数组篇">
 <meta name="twitter:description" content="闲聊（可以略过）算法一直以来是我比较劣势的技能，在上大学接触过，然后就是考研的时候埋头啃过相关书籍，之后基本没怎么碰过了。但是对于大厂来说，算法是必备的基础技能，近段时间比较火的一个app抖音，它的公司-北京字节跳动科技有限公司，是一家纯靠算法起家的公司，我使用过抖音，在我接触过使用抖音的人的反馈就是：内容很有趣。这背后必然是通过算法处理用户数据，分析用户行为然后智能推荐，至少用户的反馈证明这家公">
@@ -384,6 +385,9 @@
  * @return {number}
  */
 var removeDuplicates = function(nums) {
+        if (0 == nums.length) {
+            return 0;
+        }
         // 创建一个指针保存当前有效长度，初始值为1（至少1个）
         var index = 1;
         // 遍历数组
@@ -401,8 +405,24 @@ var removeDuplicates = function(nums) {
         // 返回有效长度
         return index;
 };
-</code></pre><p>执行时间：156ms</p>
+</code></pre><p>执行时间：104ms</p>
 <p>完成日期：2018-04-26</p>
+<h2 id="leetcode优良案例"><a href="#leetcode优良案例" class="headerlink" title="leetcode优良案例"></a>leetcode优良案例</h2><pre><code>/**
+* @param {number[]} nums
+* @return {number}
+*/
+var removeDuplicates = function(nums) {
+    if(nums.length==0)return 0;
+    var i=0;
+    for(var j=1;j&lt;nums.length;j++){
+        if(nums[j]!==nums[i]){
+            i++;
+            nums[i]=nums[j];
+        }
+    }
+    return i+1;
+};
+</code></pre><p>执行时间：72ms</p>
 <h1 id="买卖股票的最佳时II"><a href="#买卖股票的最佳时II" class="headerlink" title="买卖股票的最佳时II"></a>买卖股票的最佳时II</h1><p><img src="/img/20180427/2.jpg"></p>
 <p>分析：第二个例子其实有点误导性，我们只要知道要获取最大利润，那么肯定是有利润就卖，所以只要后一天比前一天价格高，就计算收益。例如，[1,5,4,9]<br>利润最大方式：5-1 + 9-4 = 9。<br>其他方式：4-1 + 9-5 = 7;<br>    9-1 = 8;</p>
 <p>代码：</p>
@@ -425,6 +445,25 @@ var maxProfit = function(prices) {
 };
 </code></pre><p>执行时间：76ms</p>
 <p>完成日期：2018-04-27</p>
+<h2 id="leetcode优良案例-1"><a href="#leetcode优良案例-1" class="headerlink" title="leetcode优良案例"></a>leetcode优良案例</h2><pre><code>/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+
+var maxProfit = function (prices) {
+        var profit=0,
+        len=prices.length;
+
+        for(let i=0;i&lt;len-1;++i){
+        let now=prices[i],
+            next=prices[i+1];
+        if(next&gt;now){
+                profit+=next-now;
+        }
+    }
+        return profit;
+};
+</code></pre><p>执行时间：64ms</p>
 <h1 id="旋转数组"><a href="#旋转数组" class="headerlink" title="旋转数组"></a>旋转数组</h1><p><img src="/img/20180427/3.jpg"></p>
 <p>分析一：最笨的办法，循环移动，每次将数组最后一个元素先保存到一个中间变量，所有元素依次向后移动一位，移动完k次后，将中间遍历的值赋到数组第一个元素。</p>
 <p>代码：</p>
@@ -465,7 +504,7 @@ var rotate = function(nums, k) {
  * @return {void} Do not return anything, modify nums in-place instead.
  */
 var rotate = function(nums, k) {
-        var movedLastIndex
+        var movedLastIndex;
         if (k &lt; nums.length) {
             movedLastIndex = nums.length - k; // 此处为方便，故省略 - 1
         } else if (k &gt;= nums.length &amp;&amp; k % nums.length == 0) {
@@ -480,6 +519,16 @@ var rotate = function(nums, k) {
 };
 </code></pre><p>执行用时：96ms</p>
 <p>完成日期：2018-04-28</p>
+<h2 id="leetcode优良案例-2"><a href="#leetcode优良案例-2" class="headerlink" title="leetcode优良案例"></a>leetcode优良案例</h2><pre><code>/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+var rotate = function(nums, k) {
+        nums.unshift(...nums.splice(-k % nums.length));
+};
+</code></pre><p>执行用时：68ms</p>
+<p>解析：移动次数/数组长度的<strong>余数</strong>就是向右移动次数的最小值，因为<strong>unshift</strong>方法可以接受多个参数，<strong>splice</strong>方法返回的是一个数组，通过变量解构，对应传到<strong>unshift</strong>方法，从而实现旋转。</p>
 <h1 id="存在重复"><a href="#存在重复" class="headerlink" title="存在重复"></a>存在重复</h1><p>题目：给定一个整数数组，判断是否存在重复元素。如果任何值在数组中出现至少两次，函数应该返回 true。如果每个元素都不相同，则返回 false。</p>
 <p>分析：ES6中引入了新的数据结构Set，类似数组，但是成员没有重复值，所以我们只需要将传入的数组传入Set中，对比Set的size和原数组的length是否一致就能判断数组是否存在重复值</p>
 <p>代码：</p>
@@ -488,8 +537,8 @@ var rotate = function(nums, k) {
  * @return {boolean}
  */
 var containsDuplicate = function(nums) {
-        const oldLen = nums.length;
-        const setArr = new Set(nums);
+        let oldLen = nums.length;
+        let setArr = new Set(nums);
         if (oldLen === setArr.size) {
             return false;
         } else {
@@ -498,8 +547,25 @@ var containsDuplicate = function(nums) {
 };
 </code></pre><p>执行时间：108ms</p>
 <p>完成日期：2018-05-01</p>
-<p>#只出现一次的数字</p>
-<p><img src="/img/20180427/4.jpg"></p>
+<h2 id="leetcode优良案例-3"><a href="#leetcode优良案例-3" class="headerlink" title="leetcode优良案例"></a>leetcode优良案例</h2><pre><code>/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+var containsDuplicate = function(nums) {
+        let length = nums.length? nums.length : 0
+        let set = new Set()
+        nums.forEach((el) =&gt; {
+            set.add(el)
+        })
+        if (set.size === length) {
+            return false
+        } else {
+            return true
+        }
+};
+</code></pre><p>执行时间：76ms</p>
+<p>解析：显然，直接将数组以参数形式传入构造方法消耗的时间 &gt; 通过遍历数组向Set集合添加元素的时间。</p>
+<h1 id="只出现一次的数字"><a href="#只出现一次的数字" class="headerlink" title="只出现一次的数字"></a>只出现一次的数字</h1><p><img src="/img/20180427/4.jpg"></p>
 <p>分析一：先排序，数组会变成这些情况：[1,22,33,44]，[11,22,3,44]，[11,22,33,4]，然后遍历数组：</p>
 <ul>
 <li>若为首个，与后一个元素不同</li>
@@ -536,12 +602,100 @@ var singleNumber = function(nums) {
 <p>分析二：由于执行用时很慢，有强迫症的我便重新思考了一下其他的方法，执行时间长的很大原因是在排序上。是否不用排序能够实现呢。去查了一下，发现一个很巧妙的办法，就是用<strong>位运算</strong>中的<strong>按位亦或</strong>，一个整数和它本身异或之后得到值是0，0与其他整数异或得到的是这个整数本身，即：1 ^ 1 = 0， 1 ^ 0 = 1，2 ^ 0 = 2。</p>
 <p>代码：</p>
 <pre><code>/**
-</code></pre><ul>
-<li>@param {number[]} nums</li>
-<li>@return {number}<br>*/<br>var singleNumber = function(nums) {<br>var result = nums[0];<br>for (var i = 1; i &lt; nums.length; i++) {<br>result ^= nums[i];<br>}<br>return result;<br>};</li>
-</ul>
-<p>执行用时： 72ms</p>
+* @param {number[]} nums
+* @return {number}
+*/
+var singleNumber = function(nums) {
+     var result = nums[0];
+     for (var i = 1; i &lt; nums.length; i++) {
+          result ^= nums[i];
+     }
+     return result;
+};
+</code></pre><p>执行用时： 72ms</p>
 <p>完成日期：2018-05-01</p>
+<h2 id="leetcode优良案例-4"><a href="#leetcode优良案例-4" class="headerlink" title="leetcode优良案例"></a>leetcode优良案例</h2><pre><code>/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var singleNumber = function(nums) {
+      let result = 0;
+      nums.forEach(el =&gt; (result ^= el));
+      return result;
+};
+</code></pre><p>执行用时： 56ms</p>
+<h1 id="两个数组的交集II"><a href="#两个数组的交集II" class="headerlink" title="两个数组的交集II"></a>两个数组的交集II</h1><p><img src="/img/20180427/5.jpg"></p>
+<p>分析一：先来最简单的，要找交集，分别遍历两个数组，进行对比，相同的即从数组中取出放入另一个数组即可。</p>
+<p>代码：</p>
+<pre><code>/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ */
+var intersect = function(nums1, nums2) {
+
+        var result = [];
+
+        for (var i = 0; i &lt; nums1.length; i++) {
+               for (var j = 0; j &lt; nums2.length; j++) {
+                    if (nums1[i] == nums2[j]) {
+                // 放入结果数组
+                        result.push(nums2[j]);
+                // 从原数组中移除
+                        nums2.splice(j,1);
+                        break;
+                    }
+               } 
+        }
+        return result;
+};
+</code></pre><p>执行用时：96ms</p>
+<p>分析二：很明显，这种办法消耗的时间比较长，时间复杂度O(n^2)。所以换一种思路，先遍历数组2，利用includes判断数组1中是否包含数组2的值，若包含，先将值添加到新数组中，然后把数组1中对应的值删除。</p>
+<p>代码：</p>
+<pre><code>/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ */
+var intersect = function(nums1, nums2) {
+        /*
+          遍历其中一个数组，并判断另一个数组中是否包含该数组的某元素
+        */
+        var result = [];
+
+        for (var i = 0; i &lt; nums2.length; i++) {
+                if (nums1.includes(nums2[i])) {
+                    result.push(nums2[i]);
+                    nums1.splice(nums1.indexOf(nums2[i]),1);
+
+                }
+        }
+        return result;
+};
+</code></pre><p>执行用时：84ms</p>
+<p>完成日期：2018-05-02</p>
+<h2 id="leetcode优良案例-5"><a href="#leetcode优良案例-5" class="headerlink" title="leetcode优良案例"></a>leetcode优良案例</h2><pre><code>/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ */
+var intersect = function(nums1, nums2) {
+        const map={};
+        const res=[];
+        nums1.forEach(function (v) {
+            map[v]?map[v]++:map[v]=1;
+        });
+
+        nums2.forEach(function (v) {
+            if(map[v]){
+                    res.push(v);
+                    map[v]--;
+            }
+        });
+        return res;
+};
+</code></pre><p>执行用时：56ms</p>
+<p>分析：通过forEach遍历数组1并将数组1的元素作为map对象的key，而map对象的value其实是一个计数器，代表该元素存在的个数，存放到对象map中。接着遍历数组2，通过map[key]获取元素个数（其中key是数组2的元素）的方式，判断数组2的元素是否存在，存在则放入结果数组，并将计数器减1。</p>
 
       
     </div>
@@ -737,7 +891,7 @@ var singleNumber = function(nums) {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#闲聊（可以略过）"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x95F2;&#x804A;&#xFF08;&#x53EF;&#x4EE5;&#x7565;&#x8FC7;&#xFF09;" class="headerlink" title="&#x95F2;&#x804A;&#xFF08;&#x53EF;&#x4EE5;&#x7565;&#x8FC7;&#xFF09;"></a>&#x95F2;&#x804A;&#xFF08;&#x53EF;&#x4EE5;&#x7565;&#x8FC7;&#xFF09;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x53C2;&#x8003;" class="headerlink" title="&#x53C2;&#x8003;"></a>&#x53C2;&#x8003;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#删除排序数组中的重复项"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x5220;&#x9664;&#x6392;&#x5E8F;&#x6570;&#x7EC4;&#x4E2D;&#x7684;&#x91CD;&#x590D;&#x9879;" class="headerlink" title="&#x5220;&#x9664;&#x6392;&#x5E8F;&#x6570;&#x7EC4;&#x4E2D;&#x7684;&#x91CD;&#x590D;&#x9879;"></a>&#x5220;&#x9664;&#x6392;&#x5E8F;&#x6570;&#x7EC4;&#x4E2D;&#x7684;&#x91CD;&#x590D;&#x9879;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#买卖股票的最佳时II"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x4E70;&#x5356;&#x80A1;&#x7968;&#x7684;&#x6700;&#x4F73;&#x65F6;II" class="headerlink" title="&#x4E70;&#x5356;&#x80A1;&#x7968;&#x7684;&#x6700;&#x4F73;&#x65F6;II"></a>&#x4E70;&#x5356;&#x80A1;&#x7968;&#x7684;&#x6700;&#x4F73;&#x65F6;II</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#旋转数组"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x65CB;&#x8F6C;&#x6570;&#x7EC4;" class="headerlink" title="&#x65CB;&#x8F6C;&#x6570;&#x7EC4;"></a>&#x65CB;&#x8F6C;&#x6570;&#x7EC4;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#存在重复"><span class="nav-number">6.</span> <span class="nav-text"><a href="#&#x5B58;&#x5728;&#x91CD;&#x590D;" class="headerlink" title="&#x5B58;&#x5728;&#x91CD;&#x590D;"></a>&#x5B58;&#x5728;&#x91CD;&#x590D;</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#闲聊（可以略过）"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x95F2;&#x804A;&#xFF08;&#x53EF;&#x4EE5;&#x7565;&#x8FC7;&#xFF09;" class="headerlink" title="&#x95F2;&#x804A;&#xFF08;&#x53EF;&#x4EE5;&#x7565;&#x8FC7;&#xFF09;"></a>&#x95F2;&#x804A;&#xFF08;&#x53EF;&#x4EE5;&#x7565;&#x8FC7;&#xFF09;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x53C2;&#x8003;" class="headerlink" title="&#x53C2;&#x8003;"></a>&#x53C2;&#x8003;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#删除排序数组中的重复项"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x5220;&#x9664;&#x6392;&#x5E8F;&#x6570;&#x7EC4;&#x4E2D;&#x7684;&#x91CD;&#x590D;&#x9879;" class="headerlink" title="&#x5220;&#x9664;&#x6392;&#x5E8F;&#x6570;&#x7EC4;&#x4E2D;&#x7684;&#x91CD;&#x590D;&#x9879;"></a>&#x5220;&#x9664;&#x6392;&#x5E8F;&#x6570;&#x7EC4;&#x4E2D;&#x7684;&#x91CD;&#x590D;&#x9879;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode优良案例"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;" class="headerlink" title="leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;"></a>leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#买卖股票的最佳时II"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x4E70;&#x5356;&#x80A1;&#x7968;&#x7684;&#x6700;&#x4F73;&#x65F6;II" class="headerlink" title="&#x4E70;&#x5356;&#x80A1;&#x7968;&#x7684;&#x6700;&#x4F73;&#x65F6;II"></a>&#x4E70;&#x5356;&#x80A1;&#x7968;&#x7684;&#x6700;&#x4F73;&#x65F6;II</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode优良案例-1"><span class="nav-number">4.1.</span> <span class="nav-text"><a href="#leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;-1" class="headerlink" title="leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;"></a>leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#旋转数组"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x65CB;&#x8F6C;&#x6570;&#x7EC4;" class="headerlink" title="&#x65CB;&#x8F6C;&#x6570;&#x7EC4;"></a>&#x65CB;&#x8F6C;&#x6570;&#x7EC4;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode优良案例-2"><span class="nav-number">5.1.</span> <span class="nav-text"><a href="#leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;-2" class="headerlink" title="leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;"></a>leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#存在重复"><span class="nav-number">6.</span> <span class="nav-text"><a href="#&#x5B58;&#x5728;&#x91CD;&#x590D;" class="headerlink" title="&#x5B58;&#x5728;&#x91CD;&#x590D;"></a>&#x5B58;&#x5728;&#x91CD;&#x590D;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode优良案例-3"><span class="nav-number">6.1.</span> <span class="nav-text"><a href="#leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;-3" class="headerlink" title="leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;"></a>leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#只出现一次的数字"><span class="nav-number">7.</span> <span class="nav-text"><a href="#&#x53EA;&#x51FA;&#x73B0;&#x4E00;&#x6B21;&#x7684;&#x6570;&#x5B57;" class="headerlink" title="&#x53EA;&#x51FA;&#x73B0;&#x4E00;&#x6B21;&#x7684;&#x6570;&#x5B57;"></a>&#x53EA;&#x51FA;&#x73B0;&#x4E00;&#x6B21;&#x7684;&#x6570;&#x5B57;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode优良案例-4"><span class="nav-number">7.1.</span> <span class="nav-text"><a href="#leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;-4" class="headerlink" title="leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;"></a>leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#两个数组的交集II"><span class="nav-number">8.</span> <span class="nav-text"><a href="#&#x4E24;&#x4E2A;&#x6570;&#x7EC4;&#x7684;&#x4EA4;&#x96C6;II" class="headerlink" title="&#x4E24;&#x4E2A;&#x6570;&#x7EC4;&#x7684;&#x4EA4;&#x96C6;II"></a>&#x4E24;&#x4E2A;&#x6570;&#x7EC4;&#x7684;&#x4EA4;&#x96C6;II</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode优良案例-5"><span class="nav-number">8.1.</span> <span class="nav-text"><a href="#leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;-5" class="headerlink" title="leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;"></a>leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;</span></a></li></ol></li></ol></div>
             
 
           </div>
