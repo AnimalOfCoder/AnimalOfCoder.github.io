@@ -96,7 +96,9 @@
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180427/5.jpg">
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180427/6.jpg">
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180427/7.jpg">
-<meta property="og:updated_time" content="2018-05-06T08:41:47.585Z">
+<meta property="og:image" content="https://animalofcoder.github.io/img/20180427/8.jpg">
+<meta property="og:image" content="https://animalofcoder.github.io/img/20180427/9.jpg">
+<meta property="og:updated_time" content="2018-05-07T13:08:11.712Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode算法练习之数组篇">
 <meta name="twitter:description" content="闲聊（可以略过）算法一直以来是我比较劣势的技能，在上大学接触过，然后就是考研的时候埋头啃过相关书籍，之后基本没怎么碰过了。但是对于大厂来说，算法是必备的基础技能，近段时间比较火的一个app抖音，它的公司-北京字节跳动科技有限公司，是一家纯靠算法起家的公司，我使用过抖音，在我接触过使用抖音的人的反馈就是：内容很有趣。这背后必然是通过算法处理用户数据，分析用户行为然后智能推荐，至少用户的反馈证明这家公">
@@ -861,6 +863,112 @@ var twoSum = function(nums, target) {
 };
 </code></pre><p>执行用时：52ms</p>
 <p>分析：此处思路通分析三类似，只不过用的检索方法是hasOwnProperty，这个方法可以用来检测一个对象是否含有特定的自身属性，该方法会忽略掉那些从原型链上继承到的属性。我比较费解的是，我测试过，直接访问属性是要比hasOwnProperty快的，查了很多相关资料，也没找到结果。所以去论坛找大神求助了，得到解答后再进行补充。</p>
+<h1 id="有效的数独"><a href="#有效的数独" class="headerlink" title="有效的数独"></a>有效的数独</h1><p><img src="/img/20180427/8.jpg"></p>
+<p>分析：这是我觉得稍微有点难的算法，写出来的感觉就像做数学题，其实就是找规律。首先，根据题目要求，提了三个条件，行和列都好计算，我们使用双重for循环来解决，行：board[i][j], 列：board[j][i]。而九宫格稍难，我们可将外层循环作为九宫格序号，内层循环作为格点序号，难点在于表示第i个九宫格第j个格点的坐标。</p>
+<p><strong>行号</strong>规律：<br>第0个九宫格：000111222; 第1个九宫格：000111222; 第2个九宫格：000111222;<br>第3个九宫格：333444555; 第4个九宫格：333444555; 第5个九宫格：333444555;<br>第6个九宫格：666777888; 第7个九宫格：666777888; 第8个九宫格：666777888;</p>
+<p><strong>每3个</strong>九宫格<strong>行号增3</strong>；对于1个九宫格，<strong>每3个格点</strong>行号增1。</p>
+<p>所以第i个九宫格第j个格点的<strong>行号</strong>为：parseInt(i/3) * 3 + parseInt(j/3)<br>parseInt(i/3) * 3 对应 每3个九宫格增加3，不足三个算0个（向下取整）<br>parseInt(j/3) 对应 每3个格点加1，不足三个算0个（向下取整）</p>
+<p><strong>列号</strong>规律：<br>第0个九宫格：012012012; 第1个九宫格：345345345; 第2个九宫格：678678678;<br>第3个九宫格：012012012; 第4个九宫格：345345345; 第5个九宫格：678678678;<br>第6个九宫格：012012012; 第7个九宫格：345345345; 第8个九宫格：678678678;</p>
+<p>对于下一个九宫格列号增3，循环周期为3；对于1个九宫格，每下一个格点列号增1，周期也为3。</p>
+<p>所以第i个九宫格第j个格点的<strong>列号</strong>为：(i % 3) * 3 + (j % 3) * 1<br>(i % 3) * 3 = 0，3，6，(j % 3) * 1 = 0，1，2（数组下标从0开始）</p>
+<p>代码：</p>
+<pre><code>/**
+ * @param {character[][]} board
+ * @return {boolean}
+ */
+var isValidSudoku = function(board) {
+    /*
+      ES6新增数据结构Set，类似于数组，但是成员的值都是唯一的，没有重复的值。
+      它的一些api在此处符合使用场景。
+      我们可以这样表示 行：board[i][j], 列：board[j][i]
+    */
+    let rolSet = new Set(); // 行
+    let colSet = new Set(); // 列
+    let boardSet = new Set(); // 块
+
+    for (let i = 0; i &lt; 9; i++) {
+
+        rolSet.clear();
+        colSet.clear();
+        boardSet.clear();
+
+        for (let j = 0; j &lt; 9; j++) {
+
+            if (&quot;.&quot; != board[i][j]) {
+                // 如果行中包含相同元素
+                if (rolSet.has(board[i][j])) {
+                    return false
+                } else {
+                   rolSet.add(board[i][j]); 
+                }
+            }
+
+            if (&quot;.&quot; != board[j][i]) {
+                // 如果列中包含相同元素
+                if (colSet.has(board[j][i])) {
+                    return false
+                } else {
+                   colSet.add(board[j][i]); 
+                } 
+            }
+
+            // 行号+偏移量  
+            var RowIndex = 3 * parseInt(i / 3) + parseInt(j / 3);  
+            // 列号+偏移量  
+            var ColIndex = 3 * (i % 3) + j % 3;
+
+            if (&quot;.&quot; != board[RowIndex][ColIndex]) {
+                if (boardSet.has(board[RowIndex][ColIndex])) {
+                    return false
+                } else {
+                    boardSet.add(board[RowIndex][ColIndex]);
+                }
+
+            }
+
+        }
+    }
+    return true;
+
+};
+</code></pre><p>执行用时：124ms</p>
+<p>完成日期：2018-05-07</p>
+<h2 id="leetcode优良案例-9"><a href="#leetcode优良案例-9" class="headerlink" title="leetcode优良案例"></a>leetcode优良案例</h2><pre><code>/**
+ * @param {character[][]} board
+ * @return {boolean}
+ */
+var isValidSudoku = function(board) {
+  var a = new Array(9),
+      b = new Array(9),
+      c = new Array(9);
+
+  for (var k = 0; k &lt; 9; k++) {
+      a[k] = new Array(9);
+      b[k] = new Array(9);
+      c[k] = new Array(9);
+  }
+
+  for (var i = 0; i &lt; 9; i++) {
+    for (var j = 0; j &lt; 9; j++) {
+      var temp = board[i][j];
+      if (temp === &quot;.&quot;) {
+        continue;
+      }
+      if (a[i][temp - 1] || b[temp - 1][j] || c[Math.floor(i / 3) * 3 + Math.floor(j / 3)][temp - 1]) {
+        return false;
+      }
+      a[i][temp - 1] = b[temp - 1][j] = c[Math.floor(i / 3) * 3 + Math.floor(j / 3)][temp - 1] = true;
+    }
+  }
+  return true;
+};
+</code></pre><p>执行用时：76ms</p>
+<p>分析：查了相关资料，该案例使用的是<strong>位图法</strong>，我们根据题目不难发现，在数独中可能出现的数字范围是1-9，所以它可以对应<strong>数组下标</strong>0-8，因此可以通过数组下标来存储元素。因此，一开始便创建了三个数组分别对应行、列、九宫格，数组结构如下：</p>
+<p><img src="/img/20180427/9.jpg"></p>
+<p>可以看到，每个数组有9个元素，每个元素是一个长度为9的空数组。a代表行，b代表列，c代表九宫格。接着双重循环，将board中的值存储于数组下标，并将值置为true。例： </p>
+<p>a[0][n]表示board第一行所有元素（除.外），board第一行所有元素的值（除.外）为 n+1 (0 &lt; n &lt; 9)。a[0][n] = true 则表示 board 第一行的值中已存在重复的 n；</p>
+<p>b数组同理。</p>
+<p>c，之前我们提到过 Math.floor(i / 3) * 3 + Math.floor(j / 3) 表示第i个九宫格的第j个元素格点的行号，第0个九宫格行号：000 111 222 共9个，所以c[0][n1]，c[0][n2]，c[0][n3]，c[1][m1]，c[1][m2]，c[1][m3]，c[2][p1]，c[2][p2]，c[2][p3]，代表第0个九宫格的元素。</p>
 
       
     </div>
@@ -1060,7 +1168,7 @@ var twoSum = function(nums, target) {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#闲聊（可以略过）"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x95F2;&#x804A;&#xFF08;&#x53EF;&#x4EE5;&#x7565;&#x8FC7;&#xFF09;" class="headerlink" title="&#x95F2;&#x804A;&#xFF08;&#x53EF;&#x4EE5;&#x7565;&#x8FC7;&#xFF09;"></a>&#x95F2;&#x804A;&#xFF08;&#x53EF;&#x4EE5;&#x7565;&#x8FC7;&#xFF09;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x53C2;&#x8003;" class="headerlink" title="&#x53C2;&#x8003;"></a>&#x53C2;&#x8003;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#删除排序数组中的重复项"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x5220;&#x9664;&#x6392;&#x5E8F;&#x6570;&#x7EC4;&#x4E2D;&#x7684;&#x91CD;&#x590D;&#x9879;" class="headerlink" title="&#x5220;&#x9664;&#x6392;&#x5E8F;&#x6570;&#x7EC4;&#x4E2D;&#x7684;&#x91CD;&#x590D;&#x9879;"></a>&#x5220;&#x9664;&#x6392;&#x5E8F;&#x6570;&#x7EC4;&#x4E2D;&#x7684;&#x91CD;&#x590D;&#x9879;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode优良案例"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;" class="headerlink" title="leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;"></a>leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#买卖股票的最佳时II"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x4E70;&#x5356;&#x80A1;&#x7968;&#x7684;&#x6700;&#x4F73;&#x65F6;II" class="headerlink" title="&#x4E70;&#x5356;&#x80A1;&#x7968;&#x7684;&#x6700;&#x4F73;&#x65F6;II"></a>&#x4E70;&#x5356;&#x80A1;&#x7968;&#x7684;&#x6700;&#x4F73;&#x65F6;II</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode优良案例-1"><span class="nav-number">4.1.</span> <span class="nav-text"><a href="#leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;-1" class="headerlink" title="leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;"></a>leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#旋转数组"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x65CB;&#x8F6C;&#x6570;&#x7EC4;" class="headerlink" title="&#x65CB;&#x8F6C;&#x6570;&#x7EC4;"></a>&#x65CB;&#x8F6C;&#x6570;&#x7EC4;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode优良案例-2"><span class="nav-number">5.1.</span> <span class="nav-text"><a href="#leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;-2" class="headerlink" title="leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;"></a>leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#存在重复"><span class="nav-number">6.</span> <span class="nav-text"><a href="#&#x5B58;&#x5728;&#x91CD;&#x590D;" class="headerlink" title="&#x5B58;&#x5728;&#x91CD;&#x590D;"></a>&#x5B58;&#x5728;&#x91CD;&#x590D;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode优良案例-3"><span class="nav-number">6.1.</span> <span class="nav-text"><a href="#leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;-3" class="headerlink" title="leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;"></a>leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#只出现一次的数字"><span class="nav-number">7.</span> <span class="nav-text"><a href="#&#x53EA;&#x51FA;&#x73B0;&#x4E00;&#x6B21;&#x7684;&#x6570;&#x5B57;" class="headerlink" title="&#x53EA;&#x51FA;&#x73B0;&#x4E00;&#x6B21;&#x7684;&#x6570;&#x5B57;"></a>&#x53EA;&#x51FA;&#x73B0;&#x4E00;&#x6B21;&#x7684;&#x6570;&#x5B57;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode优良案例-4"><span class="nav-number">7.1.</span> <span class="nav-text"><a href="#leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;-4" class="headerlink" title="leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;"></a>leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#两个数组的交集II"><span class="nav-number">8.</span> <span class="nav-text"><a href="#&#x4E24;&#x4E2A;&#x6570;&#x7EC4;&#x7684;&#x4EA4;&#x96C6;II" class="headerlink" title="&#x4E24;&#x4E2A;&#x6570;&#x7EC4;&#x7684;&#x4EA4;&#x96C6;II"></a>&#x4E24;&#x4E2A;&#x6570;&#x7EC4;&#x7684;&#x4EA4;&#x96C6;II</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode优良案例-5"><span class="nav-number">8.1.</span> <span class="nav-text"><a href="#leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;-5" class="headerlink" title="leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;"></a>leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#加一"><span class="nav-number">9.</span> <span class="nav-text"><a href="#&#x52A0;&#x4E00;" class="headerlink" title="&#x52A0;&#x4E00;"></a>&#x52A0;&#x4E00;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode优良案例-6"><span class="nav-number">9.1.</span> <span class="nav-text"><a href="#leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;-6" class="headerlink" title="leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;"></a>leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#移动零"><span class="nav-number">10.</span> <span class="nav-text"><a href="#&#x79FB;&#x52A8;&#x96F6;" class="headerlink" title="&#x79FB;&#x52A8;&#x96F6;"></a>&#x79FB;&#x52A8;&#x96F6;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode优良案例-7"><span class="nav-number">10.1.</span> <span class="nav-text"><a href="#leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;-7" class="headerlink" title="leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;"></a>leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#两数之和"><span class="nav-number">11.</span> <span class="nav-text"><a href="#&#x4E24;&#x6570;&#x4E4B;&#x548C;" class="headerlink" title="&#x4E24;&#x6570;&#x4E4B;&#x548C;"></a>&#x4E24;&#x6570;&#x4E4B;&#x548C;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode优良案例-8"><span class="nav-number">11.1.</span> <span class="nav-text"><a href="#leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;-8" class="headerlink" title="leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;"></a>leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#闲聊（可以略过）"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x95F2;&#x804A;&#xFF08;&#x53EF;&#x4EE5;&#x7565;&#x8FC7;&#xFF09;" class="headerlink" title="&#x95F2;&#x804A;&#xFF08;&#x53EF;&#x4EE5;&#x7565;&#x8FC7;&#xFF09;"></a>&#x95F2;&#x804A;&#xFF08;&#x53EF;&#x4EE5;&#x7565;&#x8FC7;&#xFF09;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x53C2;&#x8003;" class="headerlink" title="&#x53C2;&#x8003;"></a>&#x53C2;&#x8003;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#删除排序数组中的重复项"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x5220;&#x9664;&#x6392;&#x5E8F;&#x6570;&#x7EC4;&#x4E2D;&#x7684;&#x91CD;&#x590D;&#x9879;" class="headerlink" title="&#x5220;&#x9664;&#x6392;&#x5E8F;&#x6570;&#x7EC4;&#x4E2D;&#x7684;&#x91CD;&#x590D;&#x9879;"></a>&#x5220;&#x9664;&#x6392;&#x5E8F;&#x6570;&#x7EC4;&#x4E2D;&#x7684;&#x91CD;&#x590D;&#x9879;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode优良案例"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;" class="headerlink" title="leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;"></a>leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#买卖股票的最佳时II"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x4E70;&#x5356;&#x80A1;&#x7968;&#x7684;&#x6700;&#x4F73;&#x65F6;II" class="headerlink" title="&#x4E70;&#x5356;&#x80A1;&#x7968;&#x7684;&#x6700;&#x4F73;&#x65F6;II"></a>&#x4E70;&#x5356;&#x80A1;&#x7968;&#x7684;&#x6700;&#x4F73;&#x65F6;II</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode优良案例-1"><span class="nav-number">4.1.</span> <span class="nav-text"><a href="#leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;-1" class="headerlink" title="leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;"></a>leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#旋转数组"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x65CB;&#x8F6C;&#x6570;&#x7EC4;" class="headerlink" title="&#x65CB;&#x8F6C;&#x6570;&#x7EC4;"></a>&#x65CB;&#x8F6C;&#x6570;&#x7EC4;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode优良案例-2"><span class="nav-number">5.1.</span> <span class="nav-text"><a href="#leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;-2" class="headerlink" title="leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;"></a>leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#存在重复"><span class="nav-number">6.</span> <span class="nav-text"><a href="#&#x5B58;&#x5728;&#x91CD;&#x590D;" class="headerlink" title="&#x5B58;&#x5728;&#x91CD;&#x590D;"></a>&#x5B58;&#x5728;&#x91CD;&#x590D;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode优良案例-3"><span class="nav-number">6.1.</span> <span class="nav-text"><a href="#leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;-3" class="headerlink" title="leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;"></a>leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#只出现一次的数字"><span class="nav-number">7.</span> <span class="nav-text"><a href="#&#x53EA;&#x51FA;&#x73B0;&#x4E00;&#x6B21;&#x7684;&#x6570;&#x5B57;" class="headerlink" title="&#x53EA;&#x51FA;&#x73B0;&#x4E00;&#x6B21;&#x7684;&#x6570;&#x5B57;"></a>&#x53EA;&#x51FA;&#x73B0;&#x4E00;&#x6B21;&#x7684;&#x6570;&#x5B57;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode优良案例-4"><span class="nav-number">7.1.</span> <span class="nav-text"><a href="#leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;-4" class="headerlink" title="leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;"></a>leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#两个数组的交集II"><span class="nav-number">8.</span> <span class="nav-text"><a href="#&#x4E24;&#x4E2A;&#x6570;&#x7EC4;&#x7684;&#x4EA4;&#x96C6;II" class="headerlink" title="&#x4E24;&#x4E2A;&#x6570;&#x7EC4;&#x7684;&#x4EA4;&#x96C6;II"></a>&#x4E24;&#x4E2A;&#x6570;&#x7EC4;&#x7684;&#x4EA4;&#x96C6;II</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode优良案例-5"><span class="nav-number">8.1.</span> <span class="nav-text"><a href="#leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;-5" class="headerlink" title="leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;"></a>leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#加一"><span class="nav-number">9.</span> <span class="nav-text"><a href="#&#x52A0;&#x4E00;" class="headerlink" title="&#x52A0;&#x4E00;"></a>&#x52A0;&#x4E00;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode优良案例-6"><span class="nav-number">9.1.</span> <span class="nav-text"><a href="#leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;-6" class="headerlink" title="leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;"></a>leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#移动零"><span class="nav-number">10.</span> <span class="nav-text"><a href="#&#x79FB;&#x52A8;&#x96F6;" class="headerlink" title="&#x79FB;&#x52A8;&#x96F6;"></a>&#x79FB;&#x52A8;&#x96F6;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode优良案例-7"><span class="nav-number">10.1.</span> <span class="nav-text"><a href="#leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;-7" class="headerlink" title="leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;"></a>leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#两数之和"><span class="nav-number">11.</span> <span class="nav-text"><a href="#&#x4E24;&#x6570;&#x4E4B;&#x548C;" class="headerlink" title="&#x4E24;&#x6570;&#x4E4B;&#x548C;"></a>&#x4E24;&#x6570;&#x4E4B;&#x548C;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode优良案例-8"><span class="nav-number">11.1.</span> <span class="nav-text"><a href="#leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;-8" class="headerlink" title="leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;"></a>leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#有效的数独"><span class="nav-number">12.</span> <span class="nav-text"><a href="#&#x6709;&#x6548;&#x7684;&#x6570;&#x72EC;" class="headerlink" title="&#x6709;&#x6548;&#x7684;&#x6570;&#x72EC;"></a>&#x6709;&#x6548;&#x7684;&#x6570;&#x72EC;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode优良案例-9"><span class="nav-number">12.1.</span> <span class="nav-text"><a href="#leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;-9" class="headerlink" title="leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;"></a>leetcode&#x4F18;&#x826F;&#x6848;&#x4F8B;</span></a></li></ol></li></ol></div>
             
 
           </div>
