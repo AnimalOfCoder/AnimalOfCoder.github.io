@@ -90,7 +90,7 @@
 <meta property="og:description" content="反转字符串题目：请编写一个函数，其功能是将输入的字符串反转过来。示例： 输入：s = &amp;quot;hello&amp;quot; 返回：&amp;quot;olleh&amp;quot; 分析：js字符串可以通过调用split转换成数组，然后通过调用数组reverse方法反转，最后再调用join将字符串转换成数组。 代码： /**  * @param {string} s  * @return {string}  */">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180508/1.jpg">
-<meta property="og:updated_time" content="2018-05-08T13:01:58.946Z">
+<meta property="og:updated_time" content="2018-05-10T05:27:48.875Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode初级练习之字符串篇">
 <meta name="twitter:description" content="反转字符串题目：请编写一个函数，其功能是将输入的字符串反转过来。示例： 输入：s = &amp;quot;hello&amp;quot; 返回：&amp;quot;olleh&amp;quot; 分析：js字符串可以通过调用split转换成数组，然后通过调用数组reverse方法反转，最后再调用join将字符串转换成数组。 代码： /**  * @param {string} s  * @return {string}  */">
@@ -432,6 +432,7 @@ var reverse = function(x) {
     return symbol?res:-res;
 };
 </code></pre><p>执行时间：72ms</p>
+<p>分析：对数字模十取余可得到它的最低位。每次将结果的十倍与x最低位相加。</p>
 
       
     </div>
