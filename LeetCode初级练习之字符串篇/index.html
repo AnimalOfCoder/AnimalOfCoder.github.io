@@ -91,7 +91,9 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180508/1.jpg">
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180508/2.jpg">
-<meta property="og:updated_time" content="2018-05-10T08:05:54.111Z">
+<meta property="og:image" content="https://animalofcoder.github.io/img/20180508/3.jpg">
+<meta property="og:image" content="https://animalofcoder.github.io/img/20180508/4.jpg">
+<meta property="og:updated_time" content="2018-05-12T04:51:42.942Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode初级练习之字符串篇">
 <meta name="twitter:description" content="反转字符串题目：请编写一个函数，其功能是将输入的字符串反转过来。示例： 输入：s = &amp;quot;hello&amp;quot; 返回：&amp;quot;olleh&amp;quot; 分析：js字符串可以通过调用split转换成数组，然后通过调用数组reverse方法反转，最后再调用join将字符串转换成数组。 代码： /**  * @param {string} s  * @return {string}  */">
@@ -486,7 +488,168 @@ var firstUniqChar = function(s) {
 <li>searchvalue：必需。规定需检索的字符串值。</li>
 <li>start：可选的整数参数。规定在字符串中开始检索的位置。它的合法取值是 0 到 string Object.length - 1。如省略该参数，则将从字符串的首字符开始检索。</li>
 </ul>
+<h1 id="有效的字母异位"><a href="#有效的字母异位" class="headerlink" title="有效的字母异位"></a>有效的字母异位</h1><p><img src="/img/20180508/3.jpg"></p>
+<p>分析：比较简洁的思路是直接遍历两个字符串，统计字符串中字符出现的次数，然后对比每个字符出现的次数是否一致即可。（此法对于<strong>字符串包含unicode字符</strong>同样适用）</p>
+<p>代码：</p>
+<pre><code>/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var isAnagram = function(s, t) {
+    if (s.length == t.length) {
+        let objS = {};
+        let objT = {};
+        // 统计每个字符出现次数
+        for (let i = 0; i &lt; t.length; i++) {
+            if (objT.hasOwnProperty(t[i])) {
+                objT[t[i]]++;
+            } else {
+                objT[t[i]] = 0;
+            }
 
+            if (objS.hasOwnProperty(s[i])) {
+                objS[s[i]]++;
+            } else {
+                objS[s[i]] = 0;
+            }
+        }
+
+        for (var key in objS) {
+            if (objS[key] != objT[key]) {
+                return false;
+            }
+        }
+        return true;
+
+
+
+    } else {
+        return false;
+    }
+
+};
+</code></pre><p>执行时间：128ms</p>
+<p>完成日期：2018-05-11</p>
+<h2 id="leetcode案例-3"><a href="#leetcode案例-3" class="headerlink" title="leetcode案例"></a>leetcode案例</h2><pre><code>/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+
+var isAnagram = function (s, t) {
+    var len = s.length;
+    const map = {
+    a: 0, b: 0, c: 0, d: 0, e: 0, f: 0, g: 0, h: 0, i: 0, j: 0, k: 0, l: 0, m: 0, n: 0, o: 0, p: 0, q: 0, r: 0, s: 0, t: 0, u: 0, v: 0, w: 0, x: 0, y: 0, z: 0
+};
+    if (len !== t.length) {
+        return false;
+    }
+    for (let i = 0; i &lt; len; i++) {
+        map[s[i]]++;
+        map[t[i]]--;
+    }
+    for (let k in map) {
+        if (map[k] !== 0) {
+            return false;
+        }
+    }
+
+    return true;
+};
+</code></pre><p>执行时间：68ms</p>
+<p>分析：此处用的也是计数法，不同的是操作的是同一个对象。同字符次数相抵消，只要最后map中每个字符的个数与声明时保持一致即为true。不过此方法不适用于<strong>字符串包含unicode字符</strong>的情况。</p>
+<h1 id="验证回文字符串"><a href="#验证回文字符串" class="headerlink" title="验证回文字符串"></a>验证回文字符串</h1><p><img src="/img/20180508/4.jpg"></p>
+<p>分析一：<strong>回字符串</strong>是一个正读和反读都一样的字符串，比如<strong>level</strong>或者<strong>noon</strong>等等。不知道我对题目的理解有偏差还是题目有些问题，题中特意点明：将空字符串定义为有效的回文串。 我理解为空字符串也会考虑在内，但是显然与<strong>示例1</strong>相悖。所以我们此处只考虑字符串中的数字和字母即可。<br>首先，我们将字符串转换成小写，然后通过正则表达式过滤，只保留数字和字母。接着利用split、reverse、join方法把字符串翻转，最后对比翻转后的字符串即可。</p>
+<p>代码：</p>
+<pre><code>/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var isPalindrome = function(s) {
+    //var newS = s.toLowerCase().replace(/[^a-z0-9 ]/g,&apos;&apos;); // 若空格视为回文一部分时使用。
+    var newS = s.toLowerCase().replace(/[^a-z0-9]/g,&apos;&apos;).split(&quot;&quot;).reverse().join(&quot;&quot;);
+    if (newS === s.toLowerCase().replace(/[^a-z0-9]/g,&apos;&apos;)) {
+        return true;
+    } else {
+        return false;
+    }
+
+};
+</code></pre><p>执行时间：112ms</p>
+<p>分析二：使用match方法，对匹配到的字符会以数组形式返回。</p>
+<p>代码：</p>
+<pre><code>/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var isPalindrome = function(s) {
+    // 将字符串转换小写，并用正则只保留字母、数字和空格
+    //s = s.toLowerCase().match(/[a-z0-9 ]/g,&apos;&apos;);
+    var newS = s.toLowerCase().match(/[a-z0-9]/g);
+    if (newS) {
+        if (newS.reverse().join(&quot;&quot;) === s.toLowerCase().match(/[a-z0-9]/g).join(&quot;&quot;)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    return true;
+
+
+};
+</code></pre><p>执行时间：156ms</p>
+<p>完成日期：2018-05-12</p>
+<h2 id="leetcode案例-4"><a href="#leetcode案例-4" class="headerlink" title="leetcode案例"></a>leetcode案例</h2><p>案例一：</p>
+<pre><code>/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var isPalindrome = function(s) {
+    s = s.toLowerCase().replace(/\W|\s+/g,&quot;&quot;);
+    console.log(s);
+    for (var i = 0; i &lt; Math.ceil(s.length/2); i++) {
+      if (s[i] != s[s.length-i-1]) {
+        return false;
+      }
+    }
+    return true;
+};
+</code></pre><p>执行时间：72ms</p>
+<p>分析：根据回文的定义，我们可知：</p>
+<pre><code>第1个元素 = 第n个元素
+第2个元素 = 第n-1个元素
+第3个元素 = 第n-2个元素
+第4个元素 = 第n-3个元素
+......
+</code></pre><p>所以n个元素比较的次数：n/2 (若为回文，2必定整除n)。<br>显然，以上若有一个是不相等，必定不是回文，所以此算法比之前两个算法少了一些不必要的计算。</p>
+<p>正则表达式：</p>
+<pre><code>\W 元字符用于查找非单词字符。单词字符包括：a-z、A-Z、0-9，以及下划线。
+\s 元字符用于查找空白字符
+</code></pre><p>案例二：</p>
+<pre><code>var isPalindrome = function (s) {
+    s = s.replace(/[^\w]/g, &quot;&quot;)
+    if (s.length == 0) return true
+
+    var start = 0, end = s.length - 1
+    while (start &lt; end) {
+        if (!s[start] || !s[end]) {
+            return false
+        }
+        if (s[start].toLowerCase() != s[end].toLowerCase()) {
+            return false
+        }
+        start++
+        end--
+    }
+    return true
+};
+</code></pre><p>执行时间：68ms</p>
+<p>分析：此案例的思想同上。</p>
+<p>正则表达式：</p>
+<pre><code>\w 元字符用于查找单词字符。
+单词字符包括：a-z、A-Z、0-9，以及下划线, 包含 _ (下划线) 字符。
+</code></pre>
       
     </div>
     
@@ -681,7 +844,7 @@ var firstUniqChar = function(s) {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#反转字符串"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x53CD;&#x8F6C;&#x5B57;&#x7B26;&#x4E32;" class="headerlink" title="&#x53CD;&#x8F6C;&#x5B57;&#x7B26;&#x4E32;"></a>&#x53CD;&#x8F6C;&#x5B57;&#x7B26;&#x4E32;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode案例"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#leetcode&#x6848;&#x4F8B;" class="headerlink" title="leetcode&#x6848;&#x4F8B;"></a>leetcode&#x6848;&#x4F8B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#颠倒整数"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x98A0;&#x5012;&#x6574;&#x6570;" class="headerlink" title="&#x98A0;&#x5012;&#x6574;&#x6570;"></a>&#x98A0;&#x5012;&#x6574;&#x6570;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode案例-1"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#leetcode&#x6848;&#x4F8B;-1" class="headerlink" title="leetcode&#x6848;&#x4F8B;"></a>leetcode&#x6848;&#x4F8B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字符串中的第一个唯一字符"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x552F;&#x4E00;&#x5B57;&#x7B26;" class="headerlink" title="&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x552F;&#x4E00;&#x5B57;&#x7B26;"></a>&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x552F;&#x4E00;&#x5B57;&#x7B26;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode案例-2"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#leetcode&#x6848;&#x4F8B;-2" class="headerlink" title="leetcode&#x6848;&#x4F8B;"></a>leetcode&#x6848;&#x4F8B;</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#反转字符串"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x53CD;&#x8F6C;&#x5B57;&#x7B26;&#x4E32;" class="headerlink" title="&#x53CD;&#x8F6C;&#x5B57;&#x7B26;&#x4E32;"></a>&#x53CD;&#x8F6C;&#x5B57;&#x7B26;&#x4E32;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode案例"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#leetcode&#x6848;&#x4F8B;" class="headerlink" title="leetcode&#x6848;&#x4F8B;"></a>leetcode&#x6848;&#x4F8B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#颠倒整数"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x98A0;&#x5012;&#x6574;&#x6570;" class="headerlink" title="&#x98A0;&#x5012;&#x6574;&#x6570;"></a>&#x98A0;&#x5012;&#x6574;&#x6570;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode案例-1"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#leetcode&#x6848;&#x4F8B;-1" class="headerlink" title="leetcode&#x6848;&#x4F8B;"></a>leetcode&#x6848;&#x4F8B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字符串中的第一个唯一字符"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x552F;&#x4E00;&#x5B57;&#x7B26;" class="headerlink" title="&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x552F;&#x4E00;&#x5B57;&#x7B26;"></a>&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x552F;&#x4E00;&#x5B57;&#x7B26;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode案例-2"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#leetcode&#x6848;&#x4F8B;-2" class="headerlink" title="leetcode&#x6848;&#x4F8B;"></a>leetcode&#x6848;&#x4F8B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#有效的字母异位"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x6709;&#x6548;&#x7684;&#x5B57;&#x6BCD;&#x5F02;&#x4F4D;" class="headerlink" title="&#x6709;&#x6548;&#x7684;&#x5B57;&#x6BCD;&#x5F02;&#x4F4D;"></a>&#x6709;&#x6548;&#x7684;&#x5B57;&#x6BCD;&#x5F02;&#x4F4D;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode案例-3"><span class="nav-number">4.1.</span> <span class="nav-text"><a href="#leetcode&#x6848;&#x4F8B;-3" class="headerlink" title="leetcode&#x6848;&#x4F8B;"></a>leetcode&#x6848;&#x4F8B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#验证回文字符串"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x9A8C;&#x8BC1;&#x56DE;&#x6587;&#x5B57;&#x7B26;&#x4E32;" class="headerlink" title="&#x9A8C;&#x8BC1;&#x56DE;&#x6587;&#x5B57;&#x7B26;&#x4E32;"></a>&#x9A8C;&#x8BC1;&#x56DE;&#x6587;&#x5B57;&#x7B26;&#x4E32;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode案例-4"><span class="nav-number">5.1.</span> <span class="nav-text"><a href="#leetcode&#x6848;&#x4F8B;-4" class="headerlink" title="leetcode&#x6848;&#x4F8B;"></a>leetcode&#x6848;&#x4F8B;</span></a></li></ol></li></ol></div>
             
 
           </div>
