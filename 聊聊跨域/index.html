@@ -89,10 +89,12 @@
 <meta property="og:site_name" content="CKR技术博客">
 <meta property="og:description" content="闲言记得我在一篇博客中提到跨域问题，这里要说明的一点是，我们之前提到关闭浏览器的安全策略那套解决跨域的方法仅仅是为了便于hybrid开发能够在PC端进行接口调试，而实际上前端端或服务端是需要通过程序来处理跨域的，因为通过关闭浏览器安全策略这套方案并不现实。 什么是跨域跨域这个概念相信不论做web开发或是移动开发都会接触到这个问题。跨域是指请求非同源的资源。同源是所有浏览器的一个策略，所谓同源指的是">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-15T12:32:51.397Z">
+<meta property="og:image" content="https://animalofcoder.github.io/img/20180515/1.jpg">
+<meta property="og:updated_time" content="2018-05-16T06:22:03.307Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="聊聊跨域">
 <meta name="twitter:description" content="闲言记得我在一篇博客中提到跨域问题，这里要说明的一点是，我们之前提到关闭浏览器的安全策略那套解决跨域的方法仅仅是为了便于hybrid开发能够在PC端进行接口调试，而实际上前端端或服务端是需要通过程序来处理跨域的，因为通过关闭浏览器安全策略这套方案并不现实。 什么是跨域跨域这个概念相信不论做web开发或是移动开发都会接触到这个问题。跨域是指请求非同源的资源。同源是所有浏览器的一个策略，所谓同源指的是">
+<meta name="twitter:image" content="https://animalofcoder.github.io/img/20180515/1.jpg">
 
 
 
@@ -376,16 +378,38 @@
 2、DOM无法获得。
 3、AJAX请求不能发送。
 </code></pre><h1 id="跨域解决方案"><a href="#跨域解决方案" class="headerlink" title="跨域解决方案"></a>跨域解决方案</h1><p>其实大家只要明白了跨域的含义，就很容易理解一些关于跨域的解决方案的思路了。<br>常见解决方案如下：</p>
-<pre><code>1、 通过jsonp跨域（适用于）
-2、 document.domain + iframe跨域
-3、 location.hash + iframe
-4、 window.name + iframe跨域
-5、 postMessage跨域
-6、 跨域资源共享（CORS，前后端分离的项目常用，需要了浏览器和服务器同时支持，目前，所有浏览器都支持该功能，IE浏览器不能低于IE10。因此关键在与服务器需实现CORS接口）
-7、 nginx代理跨域（服务器端调用HTTP接口只是使用HTTP协议，不会执行JS脚本，不需要同源策略，也就不存在跨越问题。）
-8、 nodejs中间件代理跨域
-9、 WebSocket协议跨域（常见的库如socket.io）
-</code></pre><p>大家可以参考这几篇博客，内容十分详细：</p>
+<h2 id="通过jsonp跨域"><a href="#通过jsonp跨域" class="headerlink" title="通过jsonp跨域"></a>通过jsonp跨域</h2><p>例如：<br>移动端QQ音乐首页的图片及图片链接的接口：</p>
+<p><a href="https://c.y.qq.com/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg?g_tk=1928093487&amp;inCharset=utf-8&amp;outCharset=utf-8&amp;notice=0&amp;format=jsonp&amp;platform=h5&amp;uin=0&amp;needNewCode=1" target="_blank" rel="noopener">https://c.y.qq.com/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg?g_tk=1928093487&amp;inCharset=utf-8&amp;outCharset=utf-8&amp;notice=0&amp;format=jsonp&amp;platform=h5&amp;uin=0&amp;needNewCode=1</a></p>
+<p><img src="/img/20180515/1.jpg"></p>
+<p>原生代码：</p>
+<pre><code>var jsonp2 = function (data) {
+        console.log(data)
+    }
+var script = document.createElement(&apos;script&apos;);
+script.src = &quot;https://c.y.qq.com/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg?g_tk=1928093487&amp;inCharset=utf-8&amp;outCharset=utf-8&amp;notice=0&amp;format=jsonp&amp;platform=h5&amp;uin=0&amp;needNewCode=1&amp;jsonpCallback=jsonp2&quot;;
+document.head.parentNode.insertBefore(script, document.head);
+</code></pre><p>Ajax:</p>
+<pre><code>$.ajax({
+     url: &quot;https://c.y.qq.com/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg?g_tk=1928093487&amp;inCharset=utf-8&amp;outCharset=utf-8&amp;notice=0&amp;format=jsonp&amp;platform=h5&amp;uin=0&amp;needNewCode=1&quot;,
+    type: &quot;GET&quot;,
+    crossDomain: true,
+    dataType: &quot;jsonp&quot;, //指定服务器返回的数据类型
+    jsonp: &quot;jsonpCallback&quot;, // 与后台约定的回调函数名
+    success: function (data) {
+        console.log(data);
+    }
+  });
+</code></pre><h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
+<li>document.domain + iframe跨域</li>
+<li>location.hash + iframe</li>
+<li>window.name + iframe跨域</li>
+<li>postMessage跨域</li>
+<li>跨域资源共享（CORS，前后端分离的项目常用，需要了浏览器和服务器同时支持，目前，所有浏览器都支持该功能，IE浏览器不能低于IE10。因此关键在与服务器需实现CORS接口）</li>
+<li>nginx代理跨域（服务器端调用HTTP接口只是使用HTTP协议，不会执行JS脚本，不需要同源策略，也就不存在跨越问题。）</li>
+<li>nodejs中间件代理跨域</li>
+<li>WebSocket协议跨域（常见的库如socket.io）</li>
+</ul>
+<p>大家可以参考这几篇博客，内容十分详细：</p>
 <p><a href="http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html" target="_blank" rel="noopener">浏览器同源政策及其规避方法——阮一峰</a><br><a href="http://www.ruanyifeng.com/blog/2016/04/cors.html" target="_blank" rel="noopener">跨域资源共享 CORS 详解——阮一峰</a><br><a href="https://segmentfault.com/a/1190000011145364" target="_blank" rel="noopener">前端常见跨域解决方案（全）</a></p>
 
       
@@ -582,7 +606,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#闲言"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x95F2;&#x8A00;" class="headerlink" title="&#x95F2;&#x8A00;"></a>&#x95F2;&#x8A00;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是跨域"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x4EC0;&#x4E48;&#x662F;&#x8DE8;&#x57DF;" class="headerlink" title="&#x4EC0;&#x4E48;&#x662F;&#x8DE8;&#x57DF;"></a>&#x4EC0;&#x4E48;&#x662F;&#x8DE8;&#x57DF;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#跨域解决方案"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x8DE8;&#x57DF;&#x89E3;&#x51B3;&#x65B9;&#x6848;" class="headerlink" title="&#x8DE8;&#x57DF;&#x89E3;&#x51B3;&#x65B9;&#x6848;"></a>&#x8DE8;&#x57DF;&#x89E3;&#x51B3;&#x65B9;&#x6848;</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#闲言"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x95F2;&#x8A00;" class="headerlink" title="&#x95F2;&#x8A00;"></a>&#x95F2;&#x8A00;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是跨域"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x4EC0;&#x4E48;&#x662F;&#x8DE8;&#x57DF;" class="headerlink" title="&#x4EC0;&#x4E48;&#x662F;&#x8DE8;&#x57DF;"></a>&#x4EC0;&#x4E48;&#x662F;&#x8DE8;&#x57DF;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#跨域解决方案"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x8DE8;&#x57DF;&#x89E3;&#x51B3;&#x65B9;&#x6848;" class="headerlink" title="&#x8DE8;&#x57DF;&#x89E3;&#x51B3;&#x65B9;&#x6848;"></a>&#x8DE8;&#x57DF;&#x89E3;&#x51B3;&#x65B9;&#x6848;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#通过jsonp跨域"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#&#x901A;&#x8FC7;jsonp&#x8DE8;&#x57DF;" class="headerlink" title="&#x901A;&#x8FC7;jsonp&#x8DE8;&#x57DF;"></a>&#x901A;&#x8FC7;jsonp&#x8DE8;&#x57DF;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">3.2.</span> <span class="nav-text"><a href="#&#x5176;&#x4ED6;" class="headerlink" title="&#x5176;&#x4ED6;"></a>&#x5176;&#x4ED6;</span></a></li></ol></li></ol></div>
             
 
           </div>
