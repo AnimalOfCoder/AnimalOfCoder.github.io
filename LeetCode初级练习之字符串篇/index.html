@@ -94,7 +94,8 @@
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180508/3.jpg">
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180508/4.jpg">
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180508/5.jpg">
-<meta property="og:updated_time" content="2018-05-16T12:20:16.439Z">
+<meta property="og:image" content="https://animalofcoder.github.io/img/20180508/6.jpg">
+<meta property="og:updated_time" content="2018-05-18T02:31:50.932Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode初级练习之字符串篇">
 <meta name="twitter:description" content="反转字符串题目：请编写一个函数，其功能是将输入的字符串反转过来。示例： 输入：s = &amp;quot;hello&amp;quot; 返回：&amp;quot;olleh&amp;quot; 分析：js字符串可以通过调用split转换成数组，然后通过调用数组reverse方法反转，最后再调用join将字符串转换成数组。 代码： /**  * @param {string} s  * @return {string}  */">
@@ -726,6 +727,70 @@ var myAtoi = function (str) {
 };
 </code></pre><p>执行时间：80ms</p>
 <p>分析：从头开始遍历，通过sign标志位判断正负，str.charCodeAt(i) &gt;= 48 &amp;&amp; str.charCodeAt(i) &lt;= 57 在unicode编码48-57的为数字。最后通过循环判断是否符合整数范围。</p>
+<h1 id="实现strStr"><a href="#实现strStr" class="headerlink" title="实现strStr()"></a>实现strStr()</h1><p><img src="/img/20180508/6.jpg"></p>
+<p>分析一：直接利用js字符串的indexOf方法</p>
+<p>代码：</p>
+<pre><code>/**
+ * @param {string} haystack
+ * @param {string} needle
+ * @return {number}
+ */
+var strStr = function(haystack, needle) {
+    return haystack.indexOf(needle);
+};
+</code></pre><p>执行时间：58ms</p>
+<p>分析二：先判断是否为空字符串，再判断是否两个字符串相同。最后若haystack包含needle，则利用正则表达式和replace方法，将needle及其后的所有字符全部去掉，所以haystack剩余字符串的长度即为我们所需结果。</p>
+<p>代码：</p>
+<pre><code>/**
+ * @param {string} haystack
+ * @param {string} needle
+ * @return {number}
+ */
+var strStr = function(haystack, needle) {
+    let regx = /\s/;
+    if (regx.test(needle)) {
+        return 0;
+    }
+    if (haystack === needle) {
+        return 0;
+    }
+    // 若haystack包含needle
+    if (haystack.includes(needle)) {
+        let patt = new RegExp(`${needle}[a-zA-Z]*`);
+        haystack = haystack.replace(patt, &quot;&quot;);
+        return haystack.length;
+    } else {
+        return -1;
+    }
+
+};
+</code></pre><p>执行时间：76ms</p>
+<p>完成日期：2018-05-17</p>
+<h2 id="leetcode案例-6"><a href="#leetcode案例-6" class="headerlink" title="leetcode案例"></a>leetcode案例</h2><pre><code>/**
+ * @param {string} haystack
+ * @param {string} needle
+ * @return {number}
+ */
+var strStr = function (haystack, needle) {
+    const slen = haystack.length
+    const plen = needle.length
+    if (slen == plen) {
+        return haystack == needle ? 0 : -1
+    }
+    for (let i = 0; i &lt;= slen - plen; i++) {
+        let j
+        for (j = 0; j &lt; plen; j++) {
+            if (haystack[i + j] != needle[j]) {
+                break
+            }
+        }
+        if (j == plen) return i
+    }
+    return -1
+};
+</code></pre><p>执行时间：52ms</p>
+<p>分析：暴力法，通过两阶for循环，逐一比较haystack和needle，i 指向haystack 的起始，j 指向 needle 的起始；首先 i 向后走，直至haystack[i] == needle [j]; 然后 j 往后走，如果haystack[i+j] != needle [j] 跳出，如果能走 m 步，即存在相同，返回i；如果存在不匹配，则haystack 后移后，从needle[0]重新比较。</p>
+<p>此处时间复杂度是O(slen * plen)，但是执行时间却是52m（用时较短），应该是leetcode系统存在问题。</p>
 
       
     </div>
@@ -925,7 +990,7 @@ var myAtoi = function (str) {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#反转字符串"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x53CD;&#x8F6C;&#x5B57;&#x7B26;&#x4E32;" class="headerlink" title="&#x53CD;&#x8F6C;&#x5B57;&#x7B26;&#x4E32;"></a>&#x53CD;&#x8F6C;&#x5B57;&#x7B26;&#x4E32;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode案例"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#leetcode&#x6848;&#x4F8B;" class="headerlink" title="leetcode&#x6848;&#x4F8B;"></a>leetcode&#x6848;&#x4F8B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#颠倒整数"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x98A0;&#x5012;&#x6574;&#x6570;" class="headerlink" title="&#x98A0;&#x5012;&#x6574;&#x6570;"></a>&#x98A0;&#x5012;&#x6574;&#x6570;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode案例-1"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#leetcode&#x6848;&#x4F8B;-1" class="headerlink" title="leetcode&#x6848;&#x4F8B;"></a>leetcode&#x6848;&#x4F8B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字符串中的第一个唯一字符"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x552F;&#x4E00;&#x5B57;&#x7B26;" class="headerlink" title="&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x552F;&#x4E00;&#x5B57;&#x7B26;"></a>&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x552F;&#x4E00;&#x5B57;&#x7B26;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode案例-2"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#leetcode&#x6848;&#x4F8B;-2" class="headerlink" title="leetcode&#x6848;&#x4F8B;"></a>leetcode&#x6848;&#x4F8B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#有效的字母异位"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x6709;&#x6548;&#x7684;&#x5B57;&#x6BCD;&#x5F02;&#x4F4D;" class="headerlink" title="&#x6709;&#x6548;&#x7684;&#x5B57;&#x6BCD;&#x5F02;&#x4F4D;"></a>&#x6709;&#x6548;&#x7684;&#x5B57;&#x6BCD;&#x5F02;&#x4F4D;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode案例-3"><span class="nav-number">4.1.</span> <span class="nav-text"><a href="#leetcode&#x6848;&#x4F8B;-3" class="headerlink" title="leetcode&#x6848;&#x4F8B;"></a>leetcode&#x6848;&#x4F8B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#验证回文字符串"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x9A8C;&#x8BC1;&#x56DE;&#x6587;&#x5B57;&#x7B26;&#x4E32;" class="headerlink" title="&#x9A8C;&#x8BC1;&#x56DE;&#x6587;&#x5B57;&#x7B26;&#x4E32;"></a>&#x9A8C;&#x8BC1;&#x56DE;&#x6587;&#x5B57;&#x7B26;&#x4E32;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode案例-4"><span class="nav-number">5.1.</span> <span class="nav-text"><a href="#leetcode&#x6848;&#x4F8B;-4" class="headerlink" title="leetcode&#x6848;&#x4F8B;"></a>leetcode&#x6848;&#x4F8B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字符串转整数（atoi）"><span class="nav-number">6.</span> <span class="nav-text"><a href="#&#x5B57;&#x7B26;&#x4E32;&#x8F6C;&#x6574;&#x6570;&#xFF08;atoi&#xFF09;" class="headerlink" title="&#x5B57;&#x7B26;&#x4E32;&#x8F6C;&#x6574;&#x6570;&#xFF08;atoi&#xFF09;"></a>&#x5B57;&#x7B26;&#x4E32;&#x8F6C;&#x6574;&#x6570;&#xFF08;atoi&#xFF09;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode案例-5"><span class="nav-number">6.1.</span> <span class="nav-text"><a href="#leetcode&#x6848;&#x4F8B;-5" class="headerlink" title="leetcode&#x6848;&#x4F8B;"></a>leetcode&#x6848;&#x4F8B;</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#反转字符串"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x53CD;&#x8F6C;&#x5B57;&#x7B26;&#x4E32;" class="headerlink" title="&#x53CD;&#x8F6C;&#x5B57;&#x7B26;&#x4E32;"></a>&#x53CD;&#x8F6C;&#x5B57;&#x7B26;&#x4E32;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode案例"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#leetcode&#x6848;&#x4F8B;" class="headerlink" title="leetcode&#x6848;&#x4F8B;"></a>leetcode&#x6848;&#x4F8B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#颠倒整数"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x98A0;&#x5012;&#x6574;&#x6570;" class="headerlink" title="&#x98A0;&#x5012;&#x6574;&#x6570;"></a>&#x98A0;&#x5012;&#x6574;&#x6570;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode案例-1"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#leetcode&#x6848;&#x4F8B;-1" class="headerlink" title="leetcode&#x6848;&#x4F8B;"></a>leetcode&#x6848;&#x4F8B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字符串中的第一个唯一字符"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x552F;&#x4E00;&#x5B57;&#x7B26;" class="headerlink" title="&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x552F;&#x4E00;&#x5B57;&#x7B26;"></a>&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x552F;&#x4E00;&#x5B57;&#x7B26;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode案例-2"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#leetcode&#x6848;&#x4F8B;-2" class="headerlink" title="leetcode&#x6848;&#x4F8B;"></a>leetcode&#x6848;&#x4F8B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#有效的字母异位"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x6709;&#x6548;&#x7684;&#x5B57;&#x6BCD;&#x5F02;&#x4F4D;" class="headerlink" title="&#x6709;&#x6548;&#x7684;&#x5B57;&#x6BCD;&#x5F02;&#x4F4D;"></a>&#x6709;&#x6548;&#x7684;&#x5B57;&#x6BCD;&#x5F02;&#x4F4D;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode案例-3"><span class="nav-number">4.1.</span> <span class="nav-text"><a href="#leetcode&#x6848;&#x4F8B;-3" class="headerlink" title="leetcode&#x6848;&#x4F8B;"></a>leetcode&#x6848;&#x4F8B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#验证回文字符串"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x9A8C;&#x8BC1;&#x56DE;&#x6587;&#x5B57;&#x7B26;&#x4E32;" class="headerlink" title="&#x9A8C;&#x8BC1;&#x56DE;&#x6587;&#x5B57;&#x7B26;&#x4E32;"></a>&#x9A8C;&#x8BC1;&#x56DE;&#x6587;&#x5B57;&#x7B26;&#x4E32;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode案例-4"><span class="nav-number">5.1.</span> <span class="nav-text"><a href="#leetcode&#x6848;&#x4F8B;-4" class="headerlink" title="leetcode&#x6848;&#x4F8B;"></a>leetcode&#x6848;&#x4F8B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字符串转整数（atoi）"><span class="nav-number">6.</span> <span class="nav-text"><a href="#&#x5B57;&#x7B26;&#x4E32;&#x8F6C;&#x6574;&#x6570;&#xFF08;atoi&#xFF09;" class="headerlink" title="&#x5B57;&#x7B26;&#x4E32;&#x8F6C;&#x6574;&#x6570;&#xFF08;atoi&#xFF09;"></a>&#x5B57;&#x7B26;&#x4E32;&#x8F6C;&#x6574;&#x6570;&#xFF08;atoi&#xFF09;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode案例-5"><span class="nav-number">6.1.</span> <span class="nav-text"><a href="#leetcode&#x6848;&#x4F8B;-5" class="headerlink" title="leetcode&#x6848;&#x4F8B;"></a>leetcode&#x6848;&#x4F8B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实现strStr"><span class="nav-number">7.</span> <span class="nav-text"><a href="#&#x5B9E;&#x73B0;strStr" class="headerlink" title="&#x5B9E;&#x73B0;strStr()"></a>&#x5B9E;&#x73B0;strStr()</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#leetcode案例-6"><span class="nav-number">7.1.</span> <span class="nav-text"><a href="#leetcode&#x6848;&#x4F8B;-6" class="headerlink" title="leetcode&#x6848;&#x4F8B;"></a>leetcode&#x6848;&#x4F8B;</span></a></li></ol></li></ol></div>
             
 
           </div>
