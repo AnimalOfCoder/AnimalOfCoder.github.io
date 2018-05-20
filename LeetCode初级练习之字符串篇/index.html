@@ -95,7 +95,7 @@
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180508/4.jpg">
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180508/5.jpg">
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180508/6.jpg">
-<meta property="og:updated_time" content="2018-05-18T02:31:50.932Z">
+<meta property="og:updated_time" content="2018-05-20T12:04:23.643Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode初级练习之字符串篇">
 <meta name="twitter:description" content="反转字符串题目：请编写一个函数，其功能是将输入的字符串反转过来。示例： 输入：s = &amp;quot;hello&amp;quot; 返回：&amp;quot;olleh&amp;quot; 分析：js字符串可以通过调用split转换成数组，然后通过调用数组reverse方法反转，最后再调用join将字符串转换成数组。 代码： /**  * @param {string} s  * @return {string}  */">
@@ -789,8 +789,7 @@ var strStr = function (haystack, needle) {
     return -1
 };
 </code></pre><p>执行时间：52ms</p>
-<p>分析：暴力法，通过两阶for循环，逐一比较haystack和needle，i 指向haystack 的起始，j 指向 needle 的起始；首先 i 向后走，直至haystack[i] == needle [j]; 然后 j 往后走，如果haystack[i+j] != needle [j] 跳出，如果能走 m 步，即存在相同，返回i；如果存在不匹配，则haystack 后移后，从needle[0]重新比较。</p>
-<p>此处时间复杂度是O(slen * plen)，但是执行时间却是52m（用时较短），应该是leetcode系统存在问题。</p>
+<p>分析：暴力法，通过两阶for循环，逐一比较haystack和needle，i 指向haystack 的起始，j 指向 needle 的起始；首先 i 向后走，直至haystack[i] == needle [j]; 然后 j 往后走，如果haystack[i+j] != needle [j] 跳出，如果能走 m 步，即存在相同，返回i；如果存在不匹配，则haystack 后移后，从needle[0]重新比较。此处时间复杂度是O(slen * plen)，但是执行时间却是52m（用时较短），leetcode给这个时间我就不吐槽了。</p>
 
       
     </div>
