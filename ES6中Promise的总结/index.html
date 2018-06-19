@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="Js," />
+  <meta name="keywords" content="ES6," />
 
 
 
@@ -81,23 +81,21 @@
 
 
 
-<meta name="description" content="今天翻JQuery源码的时候，发现了一个很有意思的东西。 window.jQuery = window.$ = jQuery; 我还是第一次见这种连续赋值的代码。遂去论坛查了挺多资料，发现很多说法缺少一些说服力，或者在一些关键环节就一笔带过了。不过千万不要在JS中使用连等赋值操作的作者逻辑很严谨，下的结论让人信服。我在他的论证过程中，再加上一点书本查到的资料补充一下论证，谈谈自己的见解。班门弄斧，">
-<meta name="keywords" content="Js">
+<meta name="description" content="闲话近期项目比较忙，将近一个月没更博了。趁着今天有空来总结一下Promise，顺便安利给大家一本关于Promise的书：《JavaScript Promise迷你书》，该书对于Promise介绍得比较详细，内容通俗易懂。 什么是PromisePromise是抽象异步处理对象以及对其进行各种操作的组件，来源于Promises/A+社区。它把类似的异步处理对象和处理规则进行规范化，并按照采用统一的接口">
+<meta name="keywords" content="ES6">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Js里的连续赋值">
-<meta property="og:url" content="https://animalofcoder.github.io/Js里的连续赋值/index.html">
+<meta property="og:title" content="ES6中Promise的总结">
+<meta property="og:url" content="https://animalofcoder.github.io/ES6中Promise的总结/index.html">
 <meta property="og:site_name" content="CKR技术博客">
-<meta property="og:description" content="今天翻JQuery源码的时候，发现了一个很有意思的东西。 window.jQuery = window.$ = jQuery; 我还是第一次见这种连续赋值的代码。遂去论坛查了挺多资料，发现很多说法缺少一些说服力，或者在一些关键环节就一笔带过了。不过千万不要在JS中使用连等赋值操作的作者逻辑很严谨，下的结论让人信服。我在他的论证过程中，再加上一点书本查到的资料补充一下论证，谈谈自己的见解。班门弄斧，">
+<meta property="og:description" content="闲话近期项目比较忙，将近一个月没更博了。趁着今天有空来总结一下Promise，顺便安利给大家一本关于Promise的书：《JavaScript Promise迷你书》，该书对于Promise介绍得比较详细，内容通俗易懂。 什么是PromisePromise是抽象异步处理对象以及对其进行各种操作的组件，来源于Promises/A+社区。它把类似的异步处理对象和处理规则进行规范化，并按照采用统一的接口">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://animalofcoder.github.io/img/20180401/1.jpg">
-<meta property="og:image" content="https://animalofcoder.github.io/img/20180401/2.jpg">
-<meta property="og:image" content="https://animalofcoder.github.io/img/20180401/3.jpg">
-<meta property="og:image" content="https://animalofcoder.github.io/img/20180401/4.jpg">
-<meta property="og:updated_time" content="2018-04-02T11:48:32.691Z">
+<meta property="og:image" content="https://animalofcoder.github.io/img/20180619/1.jpg">
+<meta property="og:image" content="https://animalofcoder.github.io/img/20180619/2.jpg">
+<meta property="og:updated_time" content="2018-06-19T06:46:49.417Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Js里的连续赋值">
-<meta name="twitter:description" content="今天翻JQuery源码的时候，发现了一个很有意思的东西。 window.jQuery = window.$ = jQuery; 我还是第一次见这种连续赋值的代码。遂去论坛查了挺多资料，发现很多说法缺少一些说服力，或者在一些关键环节就一笔带过了。不过千万不要在JS中使用连等赋值操作的作者逻辑很严谨，下的结论让人信服。我在他的论证过程中，再加上一点书本查到的资料补充一下论证，谈谈自己的见解。班门弄斧，">
-<meta name="twitter:image" content="https://animalofcoder.github.io/img/20180401/1.jpg">
+<meta name="twitter:title" content="ES6中Promise的总结">
+<meta name="twitter:description" content="闲话近期项目比较忙，将近一个月没更博了。趁着今天有空来总结一下Promise，顺便安利给大家一本关于Promise的书：《JavaScript Promise迷你书》，该书对于Promise介绍得比较详细，内容通俗易懂。 什么是PromisePromise是抽象异步处理对象以及对其进行各种操作的组件，来源于Promises/A+社区。它把类似的异步处理对象和处理规则进行规范化，并按照采用统一的接口">
+<meta name="twitter:image" content="https://animalofcoder.github.io/img/20180619/1.jpg">
 
 
 
@@ -127,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="https://animalofcoder.github.io/Js里的连续赋值/"/>
+  <link rel="canonical" href="https://animalofcoder.github.io/ES6中Promise的总结/"/>
 
 
 
 
 
-  <title>Js里的连续赋值 | CKR技术博客</title>
+  <title>ES6中Promise的总结 | CKR技术博客</title>
   
 
 
@@ -270,7 +268,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://animalofcoder.github.io/Js里的连续赋值/">
+    <link itemprop="mainEntityOfPage" href="https://animalofcoder.github.io/ES6中Promise的总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="陈柯蓉">
@@ -287,7 +285,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Js里的连续赋值</h1>
+          <h1 class="post-title" itemprop="name headline">ES6中Promise的总结</h1>
         
 
         <div class="post-meta">
@@ -299,8 +297,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-01T22:07:51+08:00">
-                2018-04-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-19T09:40:06+08:00">
+                2018-06-19
               </time>
             
 
@@ -339,7 +337,7 @@
 
           
           
-             <span id="/Js里的连续赋值/" class="leancloud_visitors" data-flag-title="Js里的连续赋值">
+             <span id="/ES6中Promise的总结/" class="leancloud_visitors" data-flag-title="ES6中Promise的总结">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -370,33 +368,55 @@
       
 
       
-        <p>今天翻JQuery源码的时候，发现了一个很有意思的东西。</p>
-<pre><code>window.jQuery = window.$ = jQuery;
-</code></pre><p>我还是第一次见这种连续赋值的代码。遂去论坛查了挺多资料，发现很多说法缺少一些说服力，或者在一些关键环节就一笔带过了。不过<a href="http://www.cnblogs.com/xxcanghai/p/4998076.html" target="_blank" rel="noopener">千万不要在JS中使用连等赋值操作</a>的作者逻辑很严谨，下的结论让人信服。我在他的论证过程中，再加上一点书本查到的资料补充一下论证，谈谈自己的见解。班门弄斧，若有不足，希望大家指正。</p>
-<p>代码：</p>
-<pre><code>var a = {n: 1};
-var b = a;
-a.x = a = {n: 2};
-console.log(a.x);// undefined
-console.log(b); // {n:1, x:{n:2}}
-</code></pre><p>大家看到这段代码，肯定对 A = B = C 赋值顺序有两个猜想：</p>
-<ol>
-<li>B = C; A = C; </li>
-<li>B = C; A = B;</li>
-</ol>
-<p>若两个变量同时指向一个对象，那么对这个对象的修改是同步的。<br>我们可以使用ES5中getter特性来测试在赋值的时候，C被读取了几次，从而可以判断哪个猜想是正确的。</p>
-<p><img src="/img/20180401/1.jpg"></p>
-<p>我们可以看到，说明c只被调用了一次，所以可以排除<strong>猜想1</strong>。<br>得出结论：连续赋值是<strong>从右至左永远只取等号右边的表达式结果赋值到等号左侧</strong>。</p>
-<p>我们继续分析，那么这样的话，我们拆开写的效果是否一样呢？</p>
-<p><img src="/img/20180401/2.jpg"></p>
-<p>由此可以看出，并不能拆开写。</p>
-<p>那么 a.x = a = {n: 2}; 这段代码是如何执行的呢，请看《js权威指南》里的一段文字：</p>
-<p><img src="/img/20180401/3.jpg"></p>
-<p>这话的意思是: js会先从左至右计算表达式的值，最后再从右至左进行赋值操作。</p>
-<p>所以，a.x = a = {n: 2}; 首先会计算a.x，此时a仍然和b指向同一个对象{n: 1, x: undefined}，接着计算a，然后开始赋值操作， a = {n: 2}; 然后 a.x = a;相当于 b.x = a;所以可以看出旧的a.x和新的a都会指向{n: 2}，证明它俩是全等的。</p>
-<p>测试：</p>
-<p><img src="/img/20180401/4.jpg"></p>
-<p>结果正确。</p>
+        <h1 id="闲话"><a href="#闲话" class="headerlink" title="闲话"></a>闲话</h1><p>近期项目比较忙，将近一个月没更博了。趁着今天有空来总结一下Promise，顺便安利给大家一本关于Promise的书：《JavaScript Promise迷你书》，该书对于Promise介绍得比较详细，内容通俗易懂。</p>
+<h1 id="什么是Promise"><a href="#什么是Promise" class="headerlink" title="什么是Promise"></a>什么是Promise</h1><p>Promise是抽象异步处理对象以及对其进行各种操作的组件，来源于<strong>Promises/A+社区</strong>。它把类似的异步处理对象和处理规则进行规范化，并按照采用统一的接口来编写，而采取规定方法之外的写法都会出错。也就是说，除Promise对象规定的方法(then、catch)以外的方法都不可使用。而回调函数方式，可以自由地定义回调函数的参数。<br><strong>简单概括</strong>：Promise是一个异步编程机制。有很多版本的实现，而ES6 将其写进了语言标准，统一了用法。</p>
+<h2 id="Promise-工作流"><a href="#Promise-工作流" class="headerlink" title="Promise 工作流"></a>Promise 工作流</h2><p>首先说说其流程，请看如下代码：</p>
+<pre><code>function asyncFunction() {
+    return new Promise(function (resolve, reject) { 
+        setTimeout(function () {
+            resolve(&apos;Async Hello world&apos;); 
+        }, 16);
+    }); 
+}
+asyncFunction().then(function (value) { 
+    console.log(value); // =&gt; &apos;Async Hello world&apos;
+}).catch(function (error) { 
+    console.log(error);
+});
+</code></pre><p>解析：<br>1.<strong>new Promise</strong>构造器之后，会返回一个实例化的promise对象<br>2.<strong>asyncFunction</strong>返回的promise对象，我们调用它的then方法来设置resolve后的回调函数，catch方法来设置发生错误时的回调函数。<br>3.该promise对象会在setTimeout之后的16ms时被resolve, 这时then的回调函数会被调用，并输出’Async Hello world’。这种情况不会执行catch的回调（因为promise返回了resolve）。</p>
+<p>当然，像promise.then(onFulfilled, onRejected)的方法声明一样， 如果不使用catch方<br>法只使用then方法的话，如下所示的代码也能完成相同的工作</p>
+<pre><code>asyncFunction().then(function (value) { 
+    console.log(value);
+}, function (error) { 
+    console.log(error);
+});
+</code></pre><h2 id="Promise-状态"><a href="#Promise-状态" class="headerlink" title="Promise 状态"></a>Promise 状态</h2><p>了解流程以后，我们再说说状态。实例化的promise对象有三种状态：</p>
+<pre><code>pending
+初始状态，初始化Promise时，promise对象刚被创建后的初始化状态
+fulfilled
+完成状态，意味着异步操作成功，此时会调用onRejected
+rejected
+失败状态，意味着异步操作失败，此时会调用onFulfilled
+</code></pre><p>它只有两种状态可以转化，pending-&gt;fulfilled，pending-&gt;rejected</p>
+<p><img src="/img/20180619/1.jpg"></p>
+<p>只有异步操作的结果，可以决定当前是哪一种状态，任何其他操作都无法改变这个状态。<br>从pending转换为fulfilled或rejected之后，这个promise对象的状态就不会再发生任何变化。</p>
+<h1 id="Promise相关API"><a href="#Promise相关API" class="headerlink" title="Promise相关API"></a>Promise相关API</h1><p>关于API的使用，在<a href="http://es6.ruanyifeng.com/#docs/promise" target="_blank" rel="noopener">阮一峰老师的文章</a>中已经介绍得很详细了，在此就不多做描述了。</p>
+<h1 id="Promise与Deferred"><a href="#Promise与Deferred" class="headerlink" title="Promise与Deferred"></a>Promise与Deferred</h1><h2 id="Deffered对象"><a href="#Deffered对象" class="headerlink" title="Deffered对象"></a>Deffered对象</h2><p>此处所说的Deferred指的是JQuery的Deffered对象，关于它的概念可以参考阮一峰老师的<a href="http://www.ruanyifeng.com/blog/2011/08/a_detailed_explanation_of_jquery_deferred_object.html" target="_blank" rel="noopener">jQuery的deferred对象详解</a>。Deffered总结如下：</p>
+<pre><code>（1）$.Deferred()，生成一个deferred对象。
+（2）deferred.done()，指定操作成功时的回调函数
+（3）deferred.fail()，指定操作失败时的回调函数
+（4）deferred.promise()，没有参数时，返回一个新的deferred对象，该对象的运行状态无法被改变；接受参数时，作用为在参数对象上部署deferred接口。
+（5）deferred.resolve()，手动改变deferred对象的运行状态为&quot;已完成&quot;，从而立即触发done()方法。
+（6）deferred.reject()，这个方法与deferred.resolve()正好相反，调用后将deferred对象的运行状态变为&quot;已失败&quot;，从而立即触发fail()方法。，除了这些方法以外，deferred对象还有二个重要方法，上面的教程中没有涉及到。
+（7）$.when()为多个操作指定回调函数。除了这些方法以外，deferred对象还有二个重要方法，上面的教程中没有涉及到。
+（8）deferred.then()，有时为了省事，可以把done()和fail()合在一起写，这就是then()方法。
+（9）deferred.always()，这个方法也是用来指定回调函数的，它的作用是，不管调用的是deferred.resolve()还是deferred.reject()，最后总是执行。
+</code></pre><h2 id="Deferred和Promise的关系"><a href="#Deferred和Promise的关系" class="headerlink" title="Deferred和Promise的关系"></a>Deferred和Promise的关系</h2><p>Promise来源于<strong>Promises/A规范</strong>，ES6将其写进了语言标准，统一了用法，提供了原生Promise对象。jQuery.Deferred是一个遵循<strong>Promises/A规范</strong>的类库。</p>
+<p>Deferred 拥有 Promise<br>Deferred 具备对 Promise的状态进行操作的特权方法（如图）</p>
+<p><img src="/img/20180619/2.jpg"></p>
+<p>所谓的能对Promise状态进行操作的特权方法，指的就是能对promise对象的状态进行resolve、reject等调用的方法，而通常的Promise的话只能在通过构造函数传递的方法之内对promise对象的状态进行操作。</p>
+<p>两者区别：<br>Deferred中的方法并无与Promise.race()对应的功能。</p>
+<h1 id="相关文章推荐"><a href="#相关文章推荐" class="headerlink" title="相关文章推荐"></a>相关文章推荐</h1><p><a href="https://pouchdb.com/2015/05/18/we-have-a-problem-with-promises.html" target="_blank" rel="noopener">We have a problem with promises</a><br><a href="http://complexitymaze.com/2014/03/03/javascript-promises-a-comparison-of-libraries/?utm_source=javascriptweekly&amp;utm_medium=email#progression" target="_blank" rel="noopener">Js Promise类库对比</a></p>
 
       
     </div>
@@ -414,7 +434,7 @@ console.log(b); // {n:1, x:{n:2}}
       
         <div class="post-tags">
           
-            <a href="/tags/Js/" rel="tag"># Js</a>
+            <a href="/tags/ES6/" rel="tag"># ES6</a>
           
         </div>
       
@@ -427,8 +447,8 @@ console.log(b); // {n:1, x:{n:2}}
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Js基础之类数组对象/" rel="next" title="Js基础之类数组对象">
-                <i class="fa fa-chevron-left"></i> Js基础之类数组对象
+              <a href="/LeetCode初级练习之链表篇/" rel="next" title="LeetCode初级练习之链表篇">
+                <i class="fa fa-chevron-left"></i> LeetCode初级练习之链表篇
               </a>
             
           </div>
@@ -436,10 +456,6 @@ console.log(b); // {n:1, x:{n:2}}
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/LeetCode初级练习之数组篇/" rel="prev" title="LeetCode初级练习之数组篇">
-                LeetCode初级练习之数组篇 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -496,8 +512,17 @@ console.log(b); // {n:1, x:{n:2}}
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -577,6 +602,22 @@ console.log(b); // {n:1, x:{n:2}}
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#闲话"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x95F2;&#x8BDD;" class="headerlink" title="&#x95F2;&#x8BDD;"></a>&#x95F2;&#x8BDD;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是Promise"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x4EC0;&#x4E48;&#x662F;Promise" class="headerlink" title="&#x4EC0;&#x4E48;&#x662F;Promise"></a>&#x4EC0;&#x4E48;&#x662F;Promise</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Promise-工作流"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#Promise-&#x5DE5;&#x4F5C;&#x6D41;" class="headerlink" title="Promise &#x5DE5;&#x4F5C;&#x6D41;"></a>Promise &#x5DE5;&#x4F5C;&#x6D41;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Promise-状态"><span class="nav-number">2.2.</span> <span class="nav-text"><a href="#Promise-&#x72B6;&#x6001;" class="headerlink" title="Promise &#x72B6;&#x6001;"></a>Promise &#x72B6;&#x6001;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Promise相关API"><span class="nav-number">3.</span> <span class="nav-text"><a href="#Promise&#x76F8;&#x5173;API" class="headerlink" title="Promise&#x76F8;&#x5173;API"></a>Promise&#x76F8;&#x5173;API</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Promise与Deferred"><span class="nav-number">4.</span> <span class="nav-text"><a href="#Promise&#x4E0E;Deferred" class="headerlink" title="Promise&#x4E0E;Deferred"></a>Promise&#x4E0E;Deferred</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Deffered对象"><span class="nav-number">4.1.</span> <span class="nav-text"><a href="#Deffered&#x5BF9;&#x8C61;" class="headerlink" title="Deffered&#x5BF9;&#x8C61;"></a>Deffered&#x5BF9;&#x8C61;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deferred和Promise的关系"><span class="nav-number">4.2.</span> <span class="nav-text"><a href="#Deferred&#x548C;Promise&#x7684;&#x5173;&#x7CFB;" class="headerlink" title="Deferred&#x548C;Promise&#x7684;&#x5173;&#x7CFB;"></a>Deferred&#x548C;Promise&#x7684;&#x5173;&#x7CFB;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#相关文章推荐"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x76F8;&#x5173;&#x6587;&#x7AE0;&#x63A8;&#x8350;" class="headerlink" title="&#x76F8;&#x5173;&#x6587;&#x7AE0;&#x63A8;&#x8350;"></a>&#x76F8;&#x5173;&#x6587;&#x7AE0;&#x63A8;&#x8350;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
