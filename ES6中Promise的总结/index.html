@@ -91,7 +91,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180619/1.jpg">
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180619/2.jpg">
-<meta property="og:updated_time" content="2018-06-19T06:46:49.417Z">
+<meta property="og:updated_time" content="2018-06-21T07:49:42.471Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ES6中Promise的总结">
 <meta name="twitter:description" content="闲话近期项目比较忙，将近一个月没更博了。趁着今天有空来总结一下Promise，顺便安利给大家一本关于Promise的书：《JavaScript Promise迷你书》，该书对于Promise介绍得比较详细，内容通俗易懂。 什么是PromisePromise是抽象异步处理对象以及对其进行各种操作的组件，来源于Promises/A+社区。它把类似的异步处理对象和处理规则进行规范化，并按照采用统一的接口">
@@ -399,9 +399,95 @@ rejected
 失败状态，意味着异步操作失败，此时会调用onFulfilled
 </code></pre><p>它只有两种状态可以转化，pending-&gt;fulfilled，pending-&gt;rejected</p>
 <p><img src="/img/20180619/1.jpg"></p>
-<p>只有异步操作的结果，可以决定当前是哪一种状态，任何其他操作都无法改变这个状态。<br>从pending转换为fulfilled或rejected之后，这个promise对象的状态就不会再发生任何变化。</p>
+<p>只有异步操作的结果，可以决定当前是哪一种状态，任何其他操作都无法改变这个状态。<br>从pending转换为fulfilled或rejected之后，这个promise对象的状态就不会再发生任何变化，同时我们再添加回调会立即得到结果。这点跟事件不一样，如果在事件发生后再绑定监听，就监听不到了。</p>
+<h1 id="为什么使用Promise"><a href="#为什么使用Promise" class="headerlink" title="为什么使用Promise"></a>为什么使用Promise</h1><p>回调地狱也叫回调金字塔，想必大家应该听过，没听过的看看下边的例子。</p>
+<p>例：现在需要发四个请求，asyncFun1成功以后继续发asyncFun2……直到asyncFun4，若中途有失败的，即停止。</p>
+<p>回调方式实现：</p>
+<pre><code>// 注：asyncFun1第一个参数为成功回调，第二个参数为失败回调。
+asyncFun1(function(response1) {
+    console.log(&quot;接口1发送成功&quot;);
+    asyncFun2(function(response2) {
+        console.log(&quot;接口2发送成功&quot;);
+        asyncFun3(function(response3) {
+            console.log(&quot;接口3发送成功&quot;);
+            asyncFun4(function(response4) {
+                console.log(&quot;接口4发送成功&quot;);
+            }, function(response4){
+                console.log(&quot;接口4发送失败&quot;);
+            });
+        }, function(response3){
+            console.log(&quot;接口3发送失败&quot;);
+        });
+    }, function(response2){
+        console.log(&quot;接口2发送失败&quot;);
+    });
+}, function(response1){
+    console.log(&quot;接口1发送失败&quot;);
+});
+</code></pre><p>就问你晕不晕吧。实际开发过程中，当业务逻辑复杂的时候，回调的嵌套过多代码复杂度增加，可读性降低、维护起来也复杂、调试也复杂，这就是回调地狱。自从我用了ES6自己写项目以后，再看之前的一些没用Promise的项目，简直头皮发麻，说多是泪。。</p>
+<p>使用Promise实现：</p>
+<pre><code>function asyncFun1() {
+    return new Promise((resolve, reject) =&gt; {
+        setTimeout(() =&gt; {
+            resolve(&quot;1&quot;);
+        }, 2000)
+    });
+}
+
+function asyncFun2() {
+    return new Promise((resolve, reject) =&gt; {
+        setTimeout(() =&gt; {
+            resolve(&quot;2&quot;);
+        }, 2000)
+    });
+}
+
+function asyncFun3() {
+    return new Promise((resolve, reject) =&gt; {
+        setTimeout(() =&gt; {
+            resolve(&quot;3&quot;);
+        }, 2000)
+    });
+}
+
+function asyncFun4() {
+    return new Promise((resolve, reject) =&gt; {
+        setTimeout(() =&gt; {
+            resolve(&quot;4&quot;);
+        }, 2000)
+    });
+}
+
+// 一般方式
+asyncFun1().then((value) =&gt; {
+    console.log(&quot;接口&quot; + value + &quot;发送成功&quot;);
+    return asyncFun2();
+}).then((value) =&gt; {
+    console.log(&quot;接口&quot; + value + &quot;发送成功&quot;);
+    return asyncFun3();
+}).then((value) =&gt; {
+    console.log(&quot;接口&quot; + value + &quot;发送成功&quot;);
+    return asyncFun4();
+}).then((value) =&gt; {
+    console.log(&quot;接口&quot; + value + &quot;发送成功&quot;);
+}).catch((err) =&gt; {
+    console.log(&quot;接口&quot; + err + &quot;发送失败&quot;)
+});
+
+// 使用Promise.all
+const p1 = asyncFun1();
+const p2 = asyncFun2();
+const p3 = asyncFun3();
+const p4 = asyncFun4();
+const promises = [p1, p2, p3, p4];
+Promise.all(promises).then((arrInfo) =&gt; {
+    console.log(arrInfo);
+}).catch((err) =&gt; {
+    console.log(&quot;接口&quot; + err + &quot;发送失败&quot;);
+});
+</code></pre><p>这样看起来是不是清爽很多，可读性很高吧？</p>
 <h1 id="Promise相关API"><a href="#Promise相关API" class="headerlink" title="Promise相关API"></a>Promise相关API</h1><p>关于API的使用，在<a href="http://es6.ruanyifeng.com/#docs/promise" target="_blank" rel="noopener">阮一峰老师的文章</a>中已经介绍得很详细了，在此就不多做描述了。</p>
-<h1 id="Promise与Deferred"><a href="#Promise与Deferred" class="headerlink" title="Promise与Deferred"></a>Promise与Deferred</h1><h2 id="Deffered对象"><a href="#Deffered对象" class="headerlink" title="Deffered对象"></a>Deffered对象</h2><p>此处所说的Deferred指的是JQuery的Deffered对象，关于它的概念可以参考阮一峰老师的<a href="http://www.ruanyifeng.com/blog/2011/08/a_detailed_explanation_of_jquery_deferred_object.html" target="_blank" rel="noopener">jQuery的deferred对象详解</a>。Deffered总结如下：</p>
+<h1 id="Promise与Deferred"><a href="#Promise与Deferred" class="headerlink" title="Promise与Deferred"></a>Promise与Deferred</h1><h2 id="Deffered对象"><a href="#Deffered对象" class="headerlink" title="Deffered对象"></a>Deffered对象</h2><p>由于在是给银行做项目，行方还是比较保守的，因此我们项目中仍旧使用ES5，但是回调地狱太恶心，因此我们也会使用Deferred来解决回调地狱的问题。此处所说的Deferred指的是JQuery的Deferred对象，关于它的概念可以参考阮一峰老师的<a href="http://www.ruanyifeng.com/blog/2011/08/a_detailed_explanation_of_jquery_deferred_object.html" target="_blank" rel="noopener">jQuery的deferred对象详解</a>。Deffered总结如下：</p>
 <pre><code>（1）$.Deferred()，生成一个deferred对象。
 （2）deferred.done()，指定操作成功时的回调函数
 （3）deferred.fail()，指定操作失败时的回调函数
@@ -416,7 +502,7 @@ rejected
 <p><img src="/img/20180619/2.jpg"></p>
 <p>所谓的能对Promise状态进行操作的特权方法，指的就是能对promise对象的状态进行resolve、reject等调用的方法，而通常的Promise的话只能在通过构造函数传递的方法之内对promise对象的状态进行操作。</p>
 <p>两者区别：<br>Deferred中的方法并无与Promise.race()对应的功能。</p>
-<h1 id="相关文章推荐"><a href="#相关文章推荐" class="headerlink" title="相关文章推荐"></a>相关文章推荐</h1><p><a href="https://pouchdb.com/2015/05/18/we-have-a-problem-with-promises.html" target="_blank" rel="noopener">We have a problem with promises</a><br><a href="http://complexitymaze.com/2014/03/03/javascript-promises-a-comparison-of-libraries/?utm_source=javascriptweekly&amp;utm_medium=email#progression" target="_blank" rel="noopener">Js Promise类库对比</a></p>
+<h1 id="相关文章推荐"><a href="#相关文章推荐" class="headerlink" title="相关文章推荐"></a>相关文章推荐</h1><p><a href="https://pouchdb.com/2015/05/18/we-have-a-problem-with-promises.html" target="_blank" rel="noopener">We have a problem with promises</a><br><a href="http://web.jobbole.com/82601/" target="_blank" rel="noopener">promises 很酷，但很多人并没有理解就在用了</a><br><a href="http://complexitymaze.com/2014/03/03/javascript-promises-a-comparison-of-libraries/?utm_source=javascriptweekly&amp;utm_medium=email#progression" target="_blank" rel="noopener">Js Promise类库对比</a></p>
 
       
     </div>
@@ -612,7 +698,7 @@ rejected
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#闲话"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x95F2;&#x8BDD;" class="headerlink" title="&#x95F2;&#x8BDD;"></a>&#x95F2;&#x8BDD;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是Promise"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x4EC0;&#x4E48;&#x662F;Promise" class="headerlink" title="&#x4EC0;&#x4E48;&#x662F;Promise"></a>&#x4EC0;&#x4E48;&#x662F;Promise</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Promise-工作流"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#Promise-&#x5DE5;&#x4F5C;&#x6D41;" class="headerlink" title="Promise &#x5DE5;&#x4F5C;&#x6D41;"></a>Promise &#x5DE5;&#x4F5C;&#x6D41;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Promise-状态"><span class="nav-number">2.2.</span> <span class="nav-text"><a href="#Promise-&#x72B6;&#x6001;" class="headerlink" title="Promise &#x72B6;&#x6001;"></a>Promise &#x72B6;&#x6001;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Promise相关API"><span class="nav-number">3.</span> <span class="nav-text"><a href="#Promise&#x76F8;&#x5173;API" class="headerlink" title="Promise&#x76F8;&#x5173;API"></a>Promise&#x76F8;&#x5173;API</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Promise与Deferred"><span class="nav-number">4.</span> <span class="nav-text"><a href="#Promise&#x4E0E;Deferred" class="headerlink" title="Promise&#x4E0E;Deferred"></a>Promise&#x4E0E;Deferred</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Deffered对象"><span class="nav-number">4.1.</span> <span class="nav-text"><a href="#Deffered&#x5BF9;&#x8C61;" class="headerlink" title="Deffered&#x5BF9;&#x8C61;"></a>Deffered&#x5BF9;&#x8C61;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deferred和Promise的关系"><span class="nav-number">4.2.</span> <span class="nav-text"><a href="#Deferred&#x548C;Promise&#x7684;&#x5173;&#x7CFB;" class="headerlink" title="Deferred&#x548C;Promise&#x7684;&#x5173;&#x7CFB;"></a>Deferred&#x548C;Promise&#x7684;&#x5173;&#x7CFB;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#相关文章推荐"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x76F8;&#x5173;&#x6587;&#x7AE0;&#x63A8;&#x8350;" class="headerlink" title="&#x76F8;&#x5173;&#x6587;&#x7AE0;&#x63A8;&#x8350;"></a>&#x76F8;&#x5173;&#x6587;&#x7AE0;&#x63A8;&#x8350;</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#闲话"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x95F2;&#x8BDD;" class="headerlink" title="&#x95F2;&#x8BDD;"></a>&#x95F2;&#x8BDD;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是Promise"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x4EC0;&#x4E48;&#x662F;Promise" class="headerlink" title="&#x4EC0;&#x4E48;&#x662F;Promise"></a>&#x4EC0;&#x4E48;&#x662F;Promise</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Promise-工作流"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#Promise-&#x5DE5;&#x4F5C;&#x6D41;" class="headerlink" title="Promise &#x5DE5;&#x4F5C;&#x6D41;"></a>Promise &#x5DE5;&#x4F5C;&#x6D41;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Promise-状态"><span class="nav-number">2.2.</span> <span class="nav-text"><a href="#Promise-&#x72B6;&#x6001;" class="headerlink" title="Promise &#x72B6;&#x6001;"></a>Promise &#x72B6;&#x6001;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么使用Promise"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x4E3A;&#x4EC0;&#x4E48;&#x4F7F;&#x7528;Promise" class="headerlink" title="&#x4E3A;&#x4EC0;&#x4E48;&#x4F7F;&#x7528;Promise"></a>&#x4E3A;&#x4EC0;&#x4E48;&#x4F7F;&#x7528;Promise</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Promise相关API"><span class="nav-number">4.</span> <span class="nav-text"><a href="#Promise&#x76F8;&#x5173;API" class="headerlink" title="Promise&#x76F8;&#x5173;API"></a>Promise&#x76F8;&#x5173;API</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Promise与Deferred"><span class="nav-number">5.</span> <span class="nav-text"><a href="#Promise&#x4E0E;Deferred" class="headerlink" title="Promise&#x4E0E;Deferred"></a>Promise&#x4E0E;Deferred</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Deffered对象"><span class="nav-number">5.1.</span> <span class="nav-text"><a href="#Deffered&#x5BF9;&#x8C61;" class="headerlink" title="Deffered&#x5BF9;&#x8C61;"></a>Deffered&#x5BF9;&#x8C61;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deferred和Promise的关系"><span class="nav-number">5.2.</span> <span class="nav-text"><a href="#Deferred&#x548C;Promise&#x7684;&#x5173;&#x7CFB;" class="headerlink" title="Deferred&#x548C;Promise&#x7684;&#x5173;&#x7CFB;"></a>Deferred&#x548C;Promise&#x7684;&#x5173;&#x7CFB;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#相关文章推荐"><span class="nav-number">6.</span> <span class="nav-text"><a href="#&#x76F8;&#x5173;&#x6587;&#x7AE0;&#x63A8;&#x8350;" class="headerlink" title="&#x76F8;&#x5173;&#x6587;&#x7AE0;&#x63A8;&#x8350;"></a>&#x76F8;&#x5173;&#x6587;&#x7AE0;&#x63A8;&#x8350;</span></a></li></ol></div>
             
 
           </div>
