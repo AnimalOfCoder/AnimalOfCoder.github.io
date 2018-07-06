@@ -81,22 +81,22 @@
 
 
 
-<meta name="description" content="趁着周末有时间，继续来与大家分享一下我对js作用域的理解。 作用域域，表示的是一个范围，作用域就是作用范围。简单点就是，作用域说明的是一个变量可以在什么地方被使用，什么地方不能被使用。特别需要注意的是，ES5中没有块级作用域，唯一可以产生作用域的只有函数。例： for(var i=0; i&amp;lt;9; i++){    var num = i; } console.log(i);    // 9">
+<meta name="description" content="概念在MDN中这样描述：new运算符创建一个用户定义的对象类型的实例或具有构造函数的内置对象的实例。说白了就是在Js中编写函数来定义对象类型，然后可以通过new关键字来创建一个对象实例。 原理那么new一个函数到底经历了什么过程，看下图：第三点大致意思就是：如果构造函数内部有return语句，而且return后面跟着一个对象，new命令会返回return语句指定的对象；否则，就会不管return语">
 <meta name="keywords" content="Js基础">
 <meta property="og:type" content="article">
-<meta property="og:title" content="谈谈Js作用域">
-<meta property="og:url" content="https://animalofcoder.github.io/谈谈Js作用域/index.html">
+<meta property="og:title" content="Js的new关键字">
+<meta property="og:url" content="https://animalofcoder.github.io/Js的New关键字/index.html">
 <meta property="og:site_name" content="CKR技术博客">
-<meta property="og:description" content="趁着周末有时间，继续来与大家分享一下我对js作用域的理解。 作用域域，表示的是一个范围，作用域就是作用范围。简单点就是，作用域说明的是一个变量可以在什么地方被使用，什么地方不能被使用。特别需要注意的是，ES5中没有块级作用域，唯一可以产生作用域的只有函数。例： for(var i=0; i&amp;lt;9; i++){    var num = i; } console.log(i);    // 9">
+<meta property="og:description" content="概念在MDN中这样描述：new运算符创建一个用户定义的对象类型的实例或具有构造函数的内置对象的实例。说白了就是在Js中编写函数来定义对象类型，然后可以通过new关键字来创建一个对象实例。 原理那么new一个函数到底经历了什么过程，看下图：第三点大致意思就是：如果构造函数内部有return语句，而且return后面跟着一个对象，new命令会返回return语句指定的对象；否则，就会不管return语">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://animalofcoder.github.io/img/20180325/1.jpg">
-<meta property="og:image" content="https://animalofcoder.github.io/img/20180325/3.jpg">
-<meta property="og:image" content="https://animalofcoder.github.io/img/20180325/2.jpg">
-<meta property="og:updated_time" content="2018-07-05T02:35:36.512Z">
+<meta property="og:image" content="https://animalofcoder.github.io/img/20180705/1.jpg">
+<meta property="og:image" content="https://animalofcoder.github.io/img/20180705/2.jpg">
+<meta property="og:image" content="https://animalofcoder.github.io/img/20180705/3.jpg">
+<meta property="og:updated_time" content="2018-07-06T01:47:00.048Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="谈谈Js作用域">
-<meta name="twitter:description" content="趁着周末有时间，继续来与大家分享一下我对js作用域的理解。 作用域域，表示的是一个范围，作用域就是作用范围。简单点就是，作用域说明的是一个变量可以在什么地方被使用，什么地方不能被使用。特别需要注意的是，ES5中没有块级作用域，唯一可以产生作用域的只有函数。例： for(var i=0; i&amp;lt;9; i++){    var num = i; } console.log(i);    // 9">
-<meta name="twitter:image" content="https://animalofcoder.github.io/img/20180325/1.jpg">
+<meta name="twitter:title" content="Js的new关键字">
+<meta name="twitter:description" content="概念在MDN中这样描述：new运算符创建一个用户定义的对象类型的实例或具有构造函数的内置对象的实例。说白了就是在Js中编写函数来定义对象类型，然后可以通过new关键字来创建一个对象实例。 原理那么new一个函数到底经历了什么过程，看下图：第三点大致意思就是：如果构造函数内部有return语句，而且return后面跟着一个对象，new命令会返回return语句指定的对象；否则，就会不管return语">
+<meta name="twitter:image" content="https://animalofcoder.github.io/img/20180705/1.jpg">
 
 
 
@@ -126,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="https://animalofcoder.github.io/谈谈Js作用域/"/>
+  <link rel="canonical" href="https://animalofcoder.github.io/Js的New关键字/"/>
 
 
 
 
 
-  <title>谈谈Js作用域 | CKR技术博客</title>
+  <title>Js的new关键字 | CKR技术博客</title>
   
 
 
@@ -269,7 +269,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://animalofcoder.github.io/谈谈Js作用域/">
+    <link itemprop="mainEntityOfPage" href="https://animalofcoder.github.io/Js的New关键字/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="陈柯蓉">
@@ -286,7 +286,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">谈谈Js作用域</h1>
+          <h1 class="post-title" itemprop="name headline">Js的new关键字</h1>
         
 
         <div class="post-meta">
@@ -298,8 +298,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-25T15:00:39+08:00">
-                2018-03-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-05T10:31:36+08:00">
+                2018-07-05
               </time>
             
 
@@ -338,7 +338,7 @@
 
           
           
-             <span id="/谈谈Js作用域/" class="leancloud_visitors" data-flag-title="谈谈Js作用域">
+             <span id="/Js的New关键字/" class="leancloud_visitors" data-flag-title="Js的new关键字">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -369,60 +369,96 @@
       
 
       
-        <p>趁着周末有时间，继续来与大家分享一下我对js作用域的理解。</p>
-<h1 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h1><p><strong>域</strong>，表示的是一个范围，<strong>作用域</strong>就是作用范围。<br>简单点就是，作用域说明的是一个变量可以在什么地方被使用，什么地方不能被使用。<br>特别需要注意的是，ES5中没有块级作用域，唯一可以产生作用域的只有函数。<br>例：</p>
-<pre><code>for(var i=0; i&lt;9; i++){
-   var num = i;
-}
-console.log(i);    // 9
-console.log(num);  // 8
-</code></pre><p>(若有块级作用域，上面代码会打印undefined)</p>
-<h2 id="词法作用域（js使用的）"><a href="#词法作用域（js使用的）" class="headerlink" title="词法作用域（js使用的）"></a>词法作用域（js使用的）</h2><p>所谓词法作用域（也叫静态作用域），就是定义在词法阶段的作用域，是由写代码时将变量和块作用域写在哪里来决定的，因此当词法分析器处理代码时会保持作用域不变。<br>可以理解为：js代码一旦写好，作用范围就已经确定好了。</p>
-<p>Js中词法作用域规则：</p>
-<ul>
-<li>函数允许访问函数外的数据</li>
-<li>作用域规则首先使用变量提升分析</li>
-<li>如果当前作用域中有该变量，就不再考虑外边的同名变量</li>
-</ul>
-<p>和词法作用域相对的叫<strong>动态作用域</strong>，咱先看下面代码</p>
-<pre><code>var a = 123;
-function f1 () {
-   console.log(a);
-}
-function f2 () {
-   var a = 456;
-   f1();
-}
-f2(); // 123
-</code></pre><p>(若为动态作用域，以上代码会打印456)</p>
-<p>由此可看出：</p>
-<ul>
-<li>词法作用域是在<strong>代码书写</strong>或定义的时候确定，关注点是<strong>函数在何处声明</strong>。</li>
-<li>动态作用域是在<strong>运行时</strong>确定的，关注点是<strong>函数在何处调用</strong>。</li>
-</ul>
-<p>接下来介绍的就是执行环境，介绍它是为了引出作用域链这个概念。</p>
-<h1 id="执行环境"><a href="#执行环境" class="headerlink" title="执行环境"></a>执行环境</h1><p>定义了变量或者函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的<strong>变量对象</strong>（用来存储该执行环境的变量的。代码无法访问，解析器处理数据时会使用）。</p>
-<p>值得一提的是使用<strong>var</strong>声明的变量会自动被添加到最接近的环境中。在<strong>函数内部</strong>，最接近的环境就是函数的局部环境。如果初始化变量时没有使用<strong>var</strong>声明，该变量会自动被添加到全局环境中。</p>
-<p>每个函数都有自己的执行环境，当执行流进入一个函数时，函数环境就会被推入一个环境栈中，在函数执行之后，栈将其环境弹出，把控制权返回给之前的执行环境。</p>
-<h1 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h1><p>Js高程是这么说的：<br><img src="/img/20180325/1.jpg"><br>大致就是：</p>
-<ul>
-<li>只要是函数就会创建一个作用域，而函数内部作用域可以访问函数外部作用域</li>
-<li>函数中可以创建一个函数，所以如果有多个函数嵌套，那么会构成一个函数内指向函数外的链式结构，这就是作用域链。</li>
-</ul>
-<p>高程中更为详细的描述是在闭包那一章节：</p>
-<p><img src="/img/20180325/3.jpg"></p>
-<p>举个例子：</p>
-<pre><code>function f1(){
-    function f2(){}
+        <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>在<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/new" target="_blank" rel="noopener">MDN</a>中这样描述：<br><strong>new</strong>运算符创建一个用户定义的对象类型的实例或具有构造函数的内置对象的实例。说白了就是在Js中编写函数来定义对象类型，然后可以通过<strong>new</strong>关键字来创建一个对象实例。</p>
+<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><p>那么<strong>new一个函数</strong>到底经历了什么过程，看下图：<br><img src="/img/20180705/1.jpg"><br>第三点大致意思就是：如果构造函数内部有return语句，而且return后面跟着一个对象，new命令会返回return语句指定的对象；否则，就会不管return语句，返回this指向的新生对象。</p>
+<p>new命令简化的内部流程，可以用下面的代码表示。</p>
+<pre><code>function _new(/* 构造函数 */ constructor, /* 构造函数参数 */ params) {
+  // 将 arguments 对象转为数组
+  var args = [].slice.call(arguments);
+  // 取出构造函数
+  var constructor = args.shift();
+  // 创建一个空对象，继承构造函数的 prototype 属性
+  var context = Object.create(constructor.prototype);
+  // 执行构造函数
+  var result = constructor.apply(context, args);
+  // 如果返回结果是对象，就直接返回，否则返回 context 对象
+  return (typeof result === &apos;object&apos; &amp;&amp; result != null) ? result : context;
 }
 
-var num = 123;
+// 实例
+var actor = _new(Person, &apos;张三&apos;, 28);
+</code></pre><p>知道了原理，接下来自己实践一下，请看下边例子：</p>
+<pre><code>function Person(name, age, sex) {
+   this.name = name;
+   this.age = age;
+   this.sex = sex;
 
-function f3(){
-    function f4(){}
 }
-</code></pre><p>对应作用域链（简洁版）：<br><img src="/img/20180325/2.jpg"><br>访问原则：首先在局部环境中搜索是否存在该变量，不存在则向上一级作用域搜索，直到全局作用域中都未找到，则报错。f2可以访问f1的作用域，可以访问全局作用域。f3可以访问f4及全局作用域。</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>掌握好了Js作用域，我们就可以在写代码时避免出现无意中创建了个全局变量、访问变量出错等一些低级的错误。同时，作用域链这块东西，其实就是闭包的原理，关于闭包，我会专门写一篇博客来详细讲解，敬请关注！</p>
+Person._flg = true;
+Person.prototype.sayName = function () {
+    console.log(&apos;My name is&apos; + this.name)
+}
+var p1 = new Person(&apos;张三&apos;, &apos;18&apos;, &apos;男&apos;);
+console.log(p1._flg);
+p1.sayName();
+Person.sayName();
+</code></pre><p>运行结果如下：<br><img src="/img/20180705/2.jpg"><br>分析：<br>p1原型链： p1 -&gt; Person.prototype(p1.__proto__) -&gt; Object.prototype -&gt; null<br>Person原型链：Person -&gt; Function.prototype(Person.__proto__) -&gt; Object.prototype -&gt; null<br>所以当它们访问一个属性时，会先从自身属性查找，没找到并沿着原型链找，直到找到为止，找不到就报错。</p>
+<p><strong>因此，通过 new 创建的 对象 和 构造函数 之间建立了一条原型链，原型链的建立，让原本孤立的对象有了依赖关系和继承能力，让JavaScript 对象能以更合适的方式来映射真实世界里的对象，这是面向对象的本质。</strong></p>
+<h1 id="经典例子"><a href="#经典例子" class="headerlink" title="经典例子"></a>经典例子</h1><p>这题我记得我在变量提升和函数提升那提过一部分，这次增加了几个函数调用。</p>
+<pre><code>function Foo(){
+    getName = function(){
+        console.log(1)
+    }
+    return this;
+}
+Foo.getName = function(){
+    console.log(2)
+}
+Foo.prototype.getName = function(){
+    console.log(3)
+}
+var getName = function(){
+    console.log(4)
+}
+function getName(){
+    console.log(5)
+}
+// ouput:
+Foo.getName(); // 2
+getName(); // 4 
+Foo().getName(); // 1
+getName(); // 1
+new Foo.getName(); // 2
+new Foo().getName(); // 3
+new new Foo().getName(); // 3
+</code></pre><p>以上代码等价于：</p>
+<pre><code>function Foo() {
+   getName = function(){ console.log(1);}
+   return this;
+}
+
+var getName;
+
+function getName(){ console.log(5);}
+
+Foo.getName = function(){ console.log(2);}
+
+Foo.prototype.getName = function(){ console.log(3);}
+
+getName = function(){ console.log(4);}
+
+Foo.getName(); // 2
+getName(); // 4 
+Foo().getName(); // 1
+getName(); // 1
+new Foo.getName(); // 2
+new Foo().getName(); // 3
+new new Foo().getName(); // 3
+</code></pre><p>这是由于存在变量提升，前四个的解释具体可参考我之前写的<a href="https://animalofcoder.github.io/%E8%B0%88%E8%B0%88Js%E7%9A%84%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87%E5%8F%8A%E5%87%BD%E6%95%B0%E6%8F%90%E5%8D%87/">谈谈Js的变量提升及函数提升</a><br>我们直接从第五个开始：<br><strong>5.new Foo.getName()</strong>，Foo.getName()就是一个函数，<br>等价于： new FooGetName()（其中FooGetName = Foo.getName）<br>所以通过new命令就直接调用了。</p>
+<p><strong>6.new Foo().getName()</strong>，等价于：(new Foo()).getName()<br>new Foo() 首先自身定义的getName覆盖了全局的getName变量，然后返回了一个对象（new Foo() 的实例对象），对象.getName()首先会在对象自身查找getName函数，找不到就根据原型链找。</p>
+<p><strong>7.new new Foo().getName()</strong>，等价于：在6的基础上加个new，所以结果依然是3。</p>
+<h1 id="对比Object-create"><a href="#对比Object-create" class="headerlink" title="对比Object.create()"></a>对比Object.create()</h1><p>生成实例对象的常用方法是，使用new命令让构造函数返回一个实例。但是很多时候，只能拿到一个实例对象，它可能根本不是由构建函数生成的，那么能不能从一个实例对象，生成另一个实例对象呢？<br>Object.create()方法创建一个新对象，使用现有的对象来提供新创建的对象的__proto__。<br><img src="/img/20180705/3.jpg"><br>具体内容可参考阮一峰老师写的<a href="http://javascript.ruanyifeng.com/oop/object.html#toc2" target="_blank" rel="noopener">Object 对象的相关方法</a></p>
+<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><p><a href="http://javascript.ruanyifeng.com/oop/basic.html#toc2" target="_blank" rel="noopener">构造函数与 new 命令</a><br><a href="https://www.cnblogs.com/onepixel/p/5043523.html" target="_blank" rel="noopener">深入理解 new 操作符</a><br><a href="https://zhuanlan.zhihu.com/p/23987456?refer=study-fe" target="_blank" rel="noopener">JS 的 new 到底是干什么的？</a></p>
 
       
     </div>
@@ -453,8 +489,8 @@ function f3(){
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/谈谈Js中的原型/" rel="next" title="谈谈Js中的原型">
-                <i class="fa fa-chevron-left"></i> 谈谈Js中的原型
+              <a href="/Js计时器的小发现/" rel="next" title="Js计时器的小发现">
+                <i class="fa fa-chevron-left"></i> Js计时器的小发现
               </a>
             
           </div>
@@ -462,10 +498,6 @@ function f3(){
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/谈谈Js的变量提升及函数提升/" rel="prev" title="谈谈Js的变量提升及函数提升">
-                谈谈Js的变量提升及函数提升 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -622,7 +654,7 @@ function f3(){
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#作用域"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x4F5C;&#x7528;&#x57DF;" class="headerlink" title="&#x4F5C;&#x7528;&#x57DF;"></a>&#x4F5C;&#x7528;&#x57DF;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#词法作用域（js使用的）"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#&#x8BCD;&#x6CD5;&#x4F5C;&#x7528;&#x57DF;&#xFF08;js&#x4F7F;&#x7528;&#x7684;&#xFF09;" class="headerlink" title="&#x8BCD;&#x6CD5;&#x4F5C;&#x7528;&#x57DF;&#xFF08;js&#x4F7F;&#x7528;&#x7684;&#xFF09;"></a>&#x8BCD;&#x6CD5;&#x4F5C;&#x7528;&#x57DF;&#xFF08;js&#x4F7F;&#x7528;&#x7684;&#xFF09;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#执行环境"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x6267;&#x884C;&#x73AF;&#x5883;" class="headerlink" title="&#x6267;&#x884C;&#x73AF;&#x5883;"></a>&#x6267;&#x884C;&#x73AF;&#x5883;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#作用域链"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x4F5C;&#x7528;&#x57DF;&#x94FE;" class="headerlink" title="&#x4F5C;&#x7528;&#x57DF;&#x94FE;"></a>&#x4F5C;&#x7528;&#x57DF;&#x94FE;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x6982;&#x5FF5;" class="headerlink" title="&#x6982;&#x5FF5;"></a>&#x6982;&#x5FF5;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#原理"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x539F;&#x7406;" class="headerlink" title="&#x539F;&#x7406;"></a>&#x539F;&#x7406;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#经典例子"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x7ECF;&#x5178;&#x4F8B;&#x5B50;" class="headerlink" title="&#x7ECF;&#x5178;&#x4F8B;&#x5B50;"></a>&#x7ECF;&#x5178;&#x4F8B;&#x5B50;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对比Object-create"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x5BF9;&#x6BD4;Object-create" class="headerlink" title="&#x5BF9;&#x6BD4;Object.create()"></a>&#x5BF9;&#x6BD4;Object.create()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文章"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x53C2;&#x8003;&#x6587;&#x7AE0;" class="headerlink" title="&#x53C2;&#x8003;&#x6587;&#x7AE0;"></a>&#x53C2;&#x8003;&#x6587;&#x7AE0;</span></a></li></ol></div>
             
 
           </div>
