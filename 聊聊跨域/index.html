@@ -90,7 +90,7 @@
 <meta property="og:description" content="闲言记得我在一篇博客中提到跨域问题，这里要说明的一点是，我们之前提到关闭浏览器的安全策略那套解决跨域的方法仅仅是为了便于hybrid开发能够在PC端进行接口调试，而实际上前端端或服务端是需要通过程序来处理跨域的，因为通过关闭浏览器安全策略这套方案并不现实。 什么是跨域跨域这个概念相信不论做web开发或是移动开发都会接触到这个问题。跨域是指请求非同源的资源。同源是所有浏览器的一个策略，所谓同源指的是">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180515/1.jpg">
-<meta property="og:updated_time" content="2018-05-16T06:29:07.747Z">
+<meta property="og:updated_time" content="2018-07-13T00:59:38.066Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="聊聊跨域">
 <meta name="twitter:description" content="闲言记得我在一篇博客中提到跨域问题，这里要说明的一点是，我们之前提到关闭浏览器的安全策略那套解决跨域的方法仅仅是为了便于hybrid开发能够在PC端进行接口调试，而实际上前端端或服务端是需要通过程序来处理跨域的，因为通过关闭浏览器安全策略这套方案并不现实。 什么是跨域跨域这个概念相信不论做web开发或是移动开发都会接触到这个问题。跨域是指请求非同源的资源。同源是所有浏览器的一个策略，所谓同源指的是">
@@ -399,7 +399,8 @@ document.head.parentNode.insertBefore(script, document.head);
         console.log(data);
     }
   });
-</code></pre><h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
+</code></pre><p>Jsonp优点：支持老式浏览器，服务器改造非常小，可以向不支持CORS的网站请求数据。<br>Jsonp缺点：只支持GET请求。</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
 <li>document.domain + iframe跨域</li>
 <li>location.hash + iframe</li>
 <li>window.name + iframe跨域</li>

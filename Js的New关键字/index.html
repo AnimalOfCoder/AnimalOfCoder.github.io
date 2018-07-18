@@ -81,22 +81,23 @@
 
 
 
-<meta name="description" content="概念在MDN中这样描述：new运算符创建一个用户定义的对象类型的实例或具有构造函数的内置对象的实例。说白了就是在Js中编写函数来定义对象类型，然后可以通过new关键字来创建一个对象实例。 原理那么new一个函数到底经历了什么过程，看下图：第三点大致意思就是：如果构造函数内部有return语句，而且return后面跟着一个对象，new命令会返回return语句指定的对象；否则，就会不管return语">
+<meta name="description" content="概念在MDN中这样描述：new运算符创建一个用户定义的对象类型的实例或具有构造函数的内置对象的实例。说白了就是在Js中编写函数来定义对象类型，然后可以通过new关键字来创建一个对象实例。 原理那么new一个函数到底经历了什么过程，看下图：《你不知道的Js》这样描述：MDN这样描述：第三点大致意思就是：如果构造函数内部有return语句，而且return后面跟着一个对象，new命令会返回return">
 <meta name="keywords" content="Js基础">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Js的new关键字">
 <meta property="og:url" content="https://animalofcoder.github.io/Js的New关键字/index.html">
 <meta property="og:site_name" content="CKR技术博客">
-<meta property="og:description" content="概念在MDN中这样描述：new运算符创建一个用户定义的对象类型的实例或具有构造函数的内置对象的实例。说白了就是在Js中编写函数来定义对象类型，然后可以通过new关键字来创建一个对象实例。 原理那么new一个函数到底经历了什么过程，看下图：第三点大致意思就是：如果构造函数内部有return语句，而且return后面跟着一个对象，new命令会返回return语句指定的对象；否则，就会不管return语">
+<meta property="og:description" content="概念在MDN中这样描述：new运算符创建一个用户定义的对象类型的实例或具有构造函数的内置对象的实例。说白了就是在Js中编写函数来定义对象类型，然后可以通过new关键字来创建一个对象实例。 原理那么new一个函数到底经历了什么过程，看下图：《你不知道的Js》这样描述：MDN这样描述：第三点大致意思就是：如果构造函数内部有return语句，而且return后面跟着一个对象，new命令会返回return">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://animalofcoder.github.io/img/20180705/4.jpg">
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180705/1.jpg">
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180705/2.jpg">
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180705/3.jpg">
-<meta property="og:updated_time" content="2018-07-06T01:47:00.048Z">
+<meta property="og:updated_time" content="2018-07-18T01:16:50.507Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Js的new关键字">
-<meta name="twitter:description" content="概念在MDN中这样描述：new运算符创建一个用户定义的对象类型的实例或具有构造函数的内置对象的实例。说白了就是在Js中编写函数来定义对象类型，然后可以通过new关键字来创建一个对象实例。 原理那么new一个函数到底经历了什么过程，看下图：第三点大致意思就是：如果构造函数内部有return语句，而且return后面跟着一个对象，new命令会返回return语句指定的对象；否则，就会不管return语">
-<meta name="twitter:image" content="https://animalofcoder.github.io/img/20180705/1.jpg">
+<meta name="twitter:description" content="概念在MDN中这样描述：new运算符创建一个用户定义的对象类型的实例或具有构造函数的内置对象的实例。说白了就是在Js中编写函数来定义对象类型，然后可以通过new关键字来创建一个对象实例。 原理那么new一个函数到底经历了什么过程，看下图：《你不知道的Js》这样描述：MDN这样描述：第三点大致意思就是：如果构造函数内部有return语句，而且return后面跟着一个对象，new命令会返回return">
+<meta name="twitter:image" content="https://animalofcoder.github.io/img/20180705/4.jpg">
 
 
 
@@ -370,8 +371,7 @@
 
       
         <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>在<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/new" target="_blank" rel="noopener">MDN</a>中这样描述：<br><strong>new</strong>运算符创建一个用户定义的对象类型的实例或具有构造函数的内置对象的实例。说白了就是在Js中编写函数来定义对象类型，然后可以通过<strong>new</strong>关键字来创建一个对象实例。</p>
-<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><p>那么<strong>new一个函数</strong>到底经历了什么过程，看下图：<br><img src="/img/20180705/1.jpg"><br>第三点大致意思就是：如果构造函数内部有return语句，而且return后面跟着一个对象，new命令会返回return语句指定的对象；否则，就会不管return语句，返回this指向的新生对象。</p>
-<p>new命令简化的内部流程，可以用下面的代码表示。</p>
+<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><p>那么<strong>new一个函数</strong>到底经历了什么过程，看下图：<br><a href="https://github.com/getify/You-Dont-Know-JS/blob/1ed-zh-CN/this%20%26%20object%20prototypes/ch2.md" target="_blank" rel="noopener">《你不知道的Js》</a>这样描述：<br><img src="/img/20180705/4.jpg"><br>MDN这样描述：<br><img src="/img/20180705/1.jpg"><br>第三点大致意思就是：如果构造函数内部有return语句，而且return后面跟着一个对象，new命令会返回return语句指定的对象；否则，就会不管return语句，返回this指向的新生对象。<br>由此可见，两者描述都是同一个意思。<br>new命令简化的内部流程，可以用下面的代码表示。</p>
 <pre><code>function _new(/* 构造函数 */ constructor, /* 构造函数参数 */ params) {
   // 将 arguments 对象转为数组
   var args = [].slice.call(arguments);
