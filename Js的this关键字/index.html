@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="Er9jNWRjwa" />
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Js基础," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Js中的this关键字，是个比较令人困惑的机制，起初我仔细研读了MDN里的介绍，但是终究不知其所以然，本着刨根究底的劲拜读了大神的《你不知道的Js》，感觉豁然开朗，在此分享个人的读后感。 什么是this？它是一个在每个函数作用域中自动定义的特殊标识符关键字。 this不是编写时绑定，而是运行时绑定。它依赖于函数调用的上下文条件。换句话说：this实际上是在函数被调用时建立的一个绑定，它指向什么是完">
+<meta name="keywords" content="Js基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Js的this关键字">
+<meta property="og:url" content="https://animalofcoder.github.io/Js的this关键字/index.html">
+<meta property="og:site_name" content="CKR技术博客">
+<meta property="og:description" content="Js中的this关键字，是个比较令人困惑的机制，起初我仔细研读了MDN里的介绍，但是终究不知其所以然，本着刨根究底的劲拜读了大神的《你不知道的Js》，感觉豁然开朗，在此分享个人的读后感。 什么是this？它是一个在每个函数作用域中自动定义的特殊标识符关键字。 this不是编写时绑定，而是运行时绑定。它依赖于函数调用的上下文条件。换句话说：this实际上是在函数被调用时建立的一个绑定，它指向什么是完">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://animalofcoder.github.io/img/20180718/1.jpg">
+<meta property="og:image" content="https://animalofcoder.github.io/img/20180718/2.jpg">
+<meta property="og:image" content="https://animalofcoder.github.io/img/20180718/3.jpg">
+<meta property="og:image" content="https://animalofcoder.github.io/img/20180718/4.jpg">
+<meta property="og:image" content="https://animalofcoder.github.io/img/20180718/5.jpg">
+<meta property="og:updated_time" content="2018-07-23T07:02:30.021Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Js的this关键字">
+<meta name="twitter:description" content="Js中的this关键字，是个比较令人困惑的机制，起初我仔细研读了MDN里的介绍，但是终究不知其所以然，本着刨根究底的劲拜读了大神的《你不知道的Js》，感觉豁然开朗，在此分享个人的读后感。 什么是this？它是一个在每个函数作用域中自动定义的特殊标识符关键字。 this不是编写时绑定，而是运行时绑定。它依赖于函数调用的上下文条件。换句话说：this实际上是在函数被调用时建立的一个绑定，它指向什么是完">
+<meta name="twitter:image" content="https://animalofcoder.github.io/img/20180718/1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://animalofcoder.github.io/Js的this关键字/"/>
+
+
+
+
+
+  <title>Js的this关键字 | CKR技术博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CKR技术博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://animalofcoder.github.io/Js的this关键字/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈柯蓉">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CKR技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Js的this关键字</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-18T16:21:37+08:00">
+                2018-07-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端技术/" itemprop="url" rel="index">
+                    <span itemprop="name">前端技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/Js的this关键字/" class="leancloud_visitors" data-flag-title="Js的this关键字">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Js中的<strong>this</strong>关键字，是个比较令人困惑的机制，起初我仔细研读了<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/this" target="_blank" rel="noopener">MDN</a>里的介绍，但是终究不知其所以然，本着刨根究底的劲拜读了大神的《你不知道的Js》，感觉豁然开朗，在此分享个人的读后感。</p>
+<h1 id="什么是this？"><a href="#什么是this？" class="headerlink" title="什么是this？"></a>什么是this？</h1><p>它是一个在每个函数作用域中自动定义的特殊标识符关键字。</p>
+<p><strong>this不是编写时绑定，而是运行时绑定。它依赖于函数调用的上下文条件。</strong><br>换句话说：<strong>this</strong>实际上是在函数被调用时建立的一个绑定，它指向<strong>什么</strong>是完全由函数被调用的<strong>调用点</strong>来决定的。</p>
+<p>当一个函数被调用时，会建立一个称为执行环境的活动记录。这个记录包含：<br>1.函数是从何处（调用栈 —— call-stack）被调用的<br>2.函数是如何被调用的<br>3.被传递了什么参数<br>……<br>这个记录的属性之一，就是在函数执行期间将被使用的 this 引用。</p>
+<h1 id="调用点"><a href="#调用点" class="headerlink" title="调用点"></a>调用点</h1><p>调用点位于当前执行中的函数<strong>之前</strong>的调用，它是影响<strong>this</strong>绑定的唯一因素。<br>一张图让你轻松了解调用栈、调用点：<br><img src="/img/20180718/1.jpg"></p>
+<h1 id="适用调用点的规则"><a href="#适用调用点的规则" class="headerlink" title="适用调用点的规则"></a>适用调用点的规则</h1><p>在《你不知道的Js》中给出了4种规则，并且在同时满足时，它们各自的优先级。下面我来一一给大家分析：</p>
+<h2 id="默认绑定"><a href="#默认绑定" class="headerlink" title="默认绑定"></a>默认绑定</h2><p>最常见的是：独立函数调用，这种this规则相当于是没有其他规则适用时的默认规则。<br>例：</p>
+<pre><code>function foo() {
+    console.log( this.a );
+}
+
+var a = 2;
+
+foo(); // 2
+</code></pre><p>foo()被调用时，this指向的是全局对象。</p>
+<p>若函数体内容在严格模式下，此处this会被设置为undefined。<br>例：</p>
+<pre><code>function foo() {
+    &quot;use strict&quot;;
+
+    console.log( this.a );
+}
+
+var a = 2;
+
+foo(); // TypeError: `this` is `undefined`
+</code></pre><p>值得注意的是：foo() 的调用点的 strict mode 状态与this绑定无关。<br>例：</p>
+<pre><code>function foo() {
+    console.log( this.a );
+}
+
+var a = 2;
+
+(function(){
+    &quot;use strict&quot;;
+
+    foo(); // 2
+})();
+</code></pre><h2 id="隐含绑定"><a href="#隐含绑定" class="headerlink" title="隐含绑定"></a>隐含绑定</h2><p>先看代码：</p>
+<pre><code>function foo() {
+    console.log( this.a );
+}
+
+var obj = {
+    a: 2,
+    foo: foo
+};
+
+obj.foo(); // 2
+</code></pre><p>书作者认为：不论一开始在obj中声明，或是后来作为引用添加，foo函数并非被obj真正拥有或包含。因此，obj对象仅仅在函数被调用的时间点上“拥有”或“包含”这个<strong>函数引用</strong>。</p>
+<p><strong>隐含绑定规则</strong>：当一个方法引用<strong>存在</strong>一个环境对象时，这个对象应当被用于这个函数调用的 this 绑定。换句话说，就是改变目标对象使它自身包含一个对函数的引用，而后使用这个<strong>函数引用属性</strong>来间接地（隐含地）将 this 绑定到该对象上。</p>
+<p>值得注意的是，<strong>对象属性引用链</strong>的最后一层是影响调用点的。</p>
+<p>例：</p>
+<pre><code>function foo() {
+    console.log( this.a );
+}
+
+var obj2 = {
+    a: 42,
+    foo: foo
+};
+
+var obj1 = {
+    a: 2,
+    obj2: obj2
+};
+
+obj1.obj2.foo(); // 42
+</code></pre><h3 id="隐含丢失"><a href="#隐含丢失" class="headerlink" title="隐含丢失"></a>隐含丢失</h3><p>所谓的隐含丢失指的是：隐含绑定丢失了它的绑定，通常就意味着退回到了默认绑定。<br>看几个书作者给的例子，</p>
+<p>例一：</p>
+<pre><code>function foo() {
+    console.log( this.a );
+}
+
+var obj = {
+    a: 2,
+    foo: foo
+};
+
+var bar = obj.foo; // 函数引用！
+
+var a = &quot;oops, global&quot;; // `a` 也是一个全局对象的属性
+
+bar(); // &quot;oops, global&quot;
+</code></pre><p><strong>解析：var bar = obj.foo，bar其实是引用foo本身。而调用点是bar()，因此此时 默认绑定 适用。</strong></p>
+<p>例二：</p>
+<pre><code>function foo() {
+    console.log( this.a );
+}
+
+function doFoo(fn) {
+    // `fn` 只不过 `foo` 的另一个引用
+
+    fn(); // &lt;-- 调用点!
+}
+
+var obj = {
+    a: 2,
+    foo: foo
+};
+
+var a = &quot;oops, global&quot;; // `a` 也是一个全局对象的属性
+
+doFoo( obj.foo ); // &quot;oops, global&quot;    
+</code></pre><p><strong>解析：参数传递仅仅是一种隐含的赋值，而传递函数是一个隐含的引用赋值，所以最终结果与之前一样。</strong></p>
+<p>如果接收你所传递回调的函数是语言内建的呢？没有区别，同样的结果。<br>例三：</p>
+<pre><code>function foo() {
+    console.log( this.a );
+}
+
+var obj = {
+    a: 2,
+    foo: foo
+};
+
+var a = &quot;oops, global&quot;; // `a` 也是一个全局对象的属性
+
+setTimeout( obj.foo, 100 ); // &quot;oops, global&quot;
+</code></pre><p>可以看出，回调函数丢掉自身的 this 绑定是十分常见的事情，甚至会被一些第三方框架覆盖。</p>
+<h2 id="明确绑定"><a href="#明确绑定" class="headerlink" title="明确绑定"></a>明确绑定</h2><p>相当于通过 call 和 apply 直接指明你想让 this 是什么。<br>例：</p>
+<pre><code>function foo() {
+    console.log( this.a );
+}
+
+var obj = {
+    a: 2
+};
+
+foo.call( obj ); // 2
+</code></pre><p>虽然强制 this 指向了obj，但是并未解决回调函数丢失自身 this 绑定 等问题。<br>那么我们可以这样：把 foo.call( obj ) 包裹在一个函数里。给一个高大尚的命名——<strong>硬绑定</strong></p>
+<h3 id="硬绑定"><a href="#硬绑定" class="headerlink" title="硬绑定"></a>硬绑定</h3><p>直接看例子：</p>
+<pre><code>function foo() {
+    console.log( this.a );
+}
+
+var obj = {
+    a: 2
+};
+
+var bar = function() {
+    foo.call( obj );
+};
+
+bar(); // 2
+setTimeout( bar, 100 ); // 2
+
+// `bar` 将 `foo` 的 `this` 硬绑定到 `obj`
+// 所以它不可以被覆盖
+bar.call( window ); // 2
+</code></pre><p>将 foo.call( obj ) 包裹在bar的函数体里，这样，不论如何调用bar，this 永远和 obj 绑定。<br>其他例子：<br><img src="/img/20180718/2.jpg"></p>
+<p>由于硬绑定很常用，因此已作为 ES5 的内建工具提供：Function.prototype.bind。<br>注：在 ES6 中，bind(..) 生成的硬绑定函数有一个名为 .name 的属性，它源自于原始的 目标函数（target function）</p>
+<h3 id="API调用的环境"><a href="#API调用的环境" class="headerlink" title="API调用的环境"></a>API调用的环境</h3><p>许多Js库里的函数和原生Js的函数都提供了一个可选参数，通常称之为<strong>环境</strong>。这样设计是为了确保回调函数使用特定的 this 而不必非得使用 bind(..)。<br>例：<br><img src="/img/20180718/3.jpg"></p>
+<pre><code>function foo(el) {
+    console.log( el, this.id );
+}
+
+var obj = {
+    id: &quot;awesome&quot;
+};
+
+// 使用 `obj` 作为 `this` 来调用 `foo(..)`
+[1, 2, 3].forEach( foo, obj ); // 1 awesome  2 awesome  3 awesome
+</code></pre><p>从内部来说，几乎可以确定这种类型的函数是通过 call(..) 或 apply(..) 来使用 明确绑定 以节省你的麻烦。</p>
+<h2 id="new绑定"><a href="#new绑定" class="headerlink" title="new绑定"></a>new绑定</h2><p>例：</p>
+<pre><code>function foo(a) {
+    this.a = a;
+}
+
+var bar = new foo( 2 );
+console.log( bar.a ); // 2
+</code></pre><p>可以看出：我们构建了一个新的对象并把这个新对象作为 foo(..) 调用的 this，关于 new 的机制详细情况可参考我之前写的《Js的new关键字》。</p>
+<h2 id="this绑定规则优先级总结"><a href="#this绑定规则优先级总结" class="headerlink" title="this绑定规则优先级总结"></a>this绑定规则优先级总结</h2><h3 id="通用规则"><a href="#通用规则" class="headerlink" title="通用规则"></a>通用规则</h3><p><img src="/img/20180718/4.jpg"></p>
+<h3 id="特例"><a href="#特例" class="headerlink" title="特例"></a>特例</h3><p>规则难免会有特例。</p>
+<h4 id="当传递-null-或-undefined-作为-call、apply-或-bind-的-this-绑定参数时，会使用默认绑定的规则。"><a href="#当传递-null-或-undefined-作为-call、apply-或-bind-的-this-绑定参数时，会使用默认绑定的规则。" class="headerlink" title="当传递 null 或 undefined 作为 call、apply 或 bind 的 this 绑定参数时，会使用默认绑定的规则。"></a>当传递 null 或 undefined 作为 call、apply 或 bind 的 this 绑定参数时，会使用默认绑定的规则。</h4><p>然而需要的注意的是：如果这样处理函数调用，当遇到不归自己管控的第三方包时，并且那些函数的确用了this引用，那么默认绑定规则意味着可能不经意引用或改变 global 对象（在浏览器中是 window）。<br>更安全的方式是：传递<strong>完全为空的对象</strong>（通过Object.create(null)创建）作为 call、apply 或 bind 的 this 绑定参数。</p>
+<h4 id="间接引用"><a href="#间接引用" class="headerlink" title="间接引用"></a>间接引用</h4><p>例：</p>
+<pre><code>function foo() {
+    console.log( this.a );
+}
+
+var a = 2;
+var o = { a: 3, foo: foo };
+var p = { a: 4 };
+
+o.foo(); // 3
+(p.foo = o.foo)(); // 2
+</code></pre><p>赋值表达式 p.foo = o.foo 的 结果值 是一个刚好指向底层函数对象的引用。如此，起作用的调用点就是 foo()，而非你期待的 p.foo() 或 o.foo()。根据上面的规则，默认绑定 适用。</p>
+<h4 id="ES6的箭头函数"><a href="#ES6的箭头函数" class="headerlink" title="ES6的箭头函数"></a>ES6的箭头函数</h4><p>例：</p>
+<pre><code>function foo() {
+    // 返回一个箭头函数
+    return (a) =&gt; {
+        // 这里的 `this` 是词法上从 `foo()` 采用的
+        console.log( this.a );
+    };
+}
+
+var obj1 = {
+    a: 2
+};
+
+var obj2 = {
+    a: 3
+};
+
+var bar = foo.call( obj1 );
+bar.call( obj2 ); // 2, 不是3!
+</code></pre><p>代码等价于：<br><img src="/img/20180718/5.jpg"></p>
+<p>箭头函数从封闭它的（函数或全局）作用域采用 this 绑定。本质是使用广为人知的词法作用域来禁止了传统的 this 机制。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>在写这篇读后感最初的想法是打算在书作者的基础上对 this 进行总结并加入个人的想法，但是可能确实涉及的东西比较多，相互关联，因此可能并没有总结得很到位。感觉我只是把书重新读了一遍，然后筛选了一些我认为比较重要的知识点。详细的大家可以去参考大神的著作。</p>
+<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/this" target="_blank" rel="noopener">MDN-this</a><br><a href="https://github.com/getify/You-Dont-Know-JS/blob/1ed-zh-CN/this%20%26%20object%20prototypes/ch1.md" target="_blank" rel="noopener">你不知道的Js-this与对象原型</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Js基础/" rel="tag"># Js基础</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Js的new关键字/" rel="next" title="Js的new关键字">
+                <i class="fa fa-chevron-left"></i> Js的new关键字
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMzc5NC8xMDM0Nw=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.JPG"
+                alt="陈柯蓉" />
+            
+              <p class="site-author-name" itemprop="name">陈柯蓉</p>
+              <p class="site-description motion-element" itemprop="description">人一定要保持优秀</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/AnimalOfCoder" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.zhihu.com/people/JungleCK" target="_blank" title="知乎">
+                    
+                      <i class="fa fa-fw fa-circle"></i>知乎</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是this？"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x4EC0;&#x4E48;&#x662F;this&#xFF1F;" class="headerlink" title="&#x4EC0;&#x4E48;&#x662F;this&#xFF1F;"></a>&#x4EC0;&#x4E48;&#x662F;this&#xFF1F;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#调用点"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x8C03;&#x7528;&#x70B9;" class="headerlink" title="&#x8C03;&#x7528;&#x70B9;"></a>&#x8C03;&#x7528;&#x70B9;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#适用调用点的规则"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x9002;&#x7528;&#x8C03;&#x7528;&#x70B9;&#x7684;&#x89C4;&#x5219;" class="headerlink" title="&#x9002;&#x7528;&#x8C03;&#x7528;&#x70B9;&#x7684;&#x89C4;&#x5219;"></a>&#x9002;&#x7528;&#x8C03;&#x7528;&#x70B9;&#x7684;&#x89C4;&#x5219;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#默认绑定"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#&#x9ED8;&#x8BA4;&#x7ED1;&#x5B9A;" class="headerlink" title="&#x9ED8;&#x8BA4;&#x7ED1;&#x5B9A;"></a>&#x9ED8;&#x8BA4;&#x7ED1;&#x5B9A;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#隐含绑定"><span class="nav-number">3.2.</span> <span class="nav-text"><a href="#&#x9690;&#x542B;&#x7ED1;&#x5B9A;" class="headerlink" title="&#x9690;&#x542B;&#x7ED1;&#x5B9A;"></a>&#x9690;&#x542B;&#x7ED1;&#x5B9A;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#隐含丢失"><span class="nav-number">3.2.1.</span> <span class="nav-text"><a href="#&#x9690;&#x542B;&#x4E22;&#x5931;" class="headerlink" title="&#x9690;&#x542B;&#x4E22;&#x5931;"></a>&#x9690;&#x542B;&#x4E22;&#x5931;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#明确绑定"><span class="nav-number">3.3.</span> <span class="nav-text"><a href="#&#x660E;&#x786E;&#x7ED1;&#x5B9A;" class="headerlink" title="&#x660E;&#x786E;&#x7ED1;&#x5B9A;"></a>&#x660E;&#x786E;&#x7ED1;&#x5B9A;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#硬绑定"><span class="nav-number">3.3.1.</span> <span class="nav-text"><a href="#&#x786C;&#x7ED1;&#x5B9A;" class="headerlink" title="&#x786C;&#x7ED1;&#x5B9A;"></a>&#x786C;&#x7ED1;&#x5B9A;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#API调用的环境"><span class="nav-number">3.3.2.</span> <span class="nav-text"><a href="#API&#x8C03;&#x7528;&#x7684;&#x73AF;&#x5883;" class="headerlink" title="API&#x8C03;&#x7528;&#x7684;&#x73AF;&#x5883;"></a>API&#x8C03;&#x7528;&#x7684;&#x73AF;&#x5883;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#new绑定"><span class="nav-number">3.4.</span> <span class="nav-text"><a href="#new&#x7ED1;&#x5B9A;" class="headerlink" title="new&#x7ED1;&#x5B9A;"></a>new&#x7ED1;&#x5B9A;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#this绑定规则优先级总结"><span class="nav-number">3.5.</span> <span class="nav-text"><a href="#this&#x7ED1;&#x5B9A;&#x89C4;&#x5219;&#x4F18;&#x5148;&#x7EA7;&#x603B;&#x7ED3;" class="headerlink" title="this&#x7ED1;&#x5B9A;&#x89C4;&#x5219;&#x4F18;&#x5148;&#x7EA7;&#x603B;&#x7ED3;"></a>this&#x7ED1;&#x5B9A;&#x89C4;&#x5219;&#x4F18;&#x5148;&#x7EA7;&#x603B;&#x7ED3;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#通用规则"><span class="nav-number">3.5.1.</span> <span class="nav-text"><a href="#&#x901A;&#x7528;&#x89C4;&#x5219;" class="headerlink" title="&#x901A;&#x7528;&#x89C4;&#x5219;"></a>&#x901A;&#x7528;&#x89C4;&#x5219;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特例"><span class="nav-number">3.5.2.</span> <span class="nav-text"><a href="#&#x7279;&#x4F8B;" class="headerlink" title="&#x7279;&#x4F8B;"></a>&#x7279;&#x4F8B;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#当传递-null-或-undefined-作为-call、apply-或-bind-的-this-绑定参数时，会使用默认绑定的规则。"><span class="nav-number">3.5.2.1.</span> <span class="nav-text"><a href="#&#x5F53;&#x4F20;&#x9012;-null-&#x6216;-undefined-&#x4F5C;&#x4E3A;-call&#x3001;apply-&#x6216;-bind-&#x7684;-this-&#x7ED1;&#x5B9A;&#x53C2;&#x6570;&#x65F6;&#xFF0C;&#x4F1A;&#x4F7F;&#x7528;&#x9ED8;&#x8BA4;&#x7ED1;&#x5B9A;&#x7684;&#x89C4;&#x5219;&#x3002;" class="headerlink" title="&#x5F53;&#x4F20;&#x9012; null &#x6216; undefined &#x4F5C;&#x4E3A; call&#x3001;apply &#x6216; bind &#x7684; this &#x7ED1;&#x5B9A;&#x53C2;&#x6570;&#x65F6;&#xFF0C;&#x4F1A;&#x4F7F;&#x7528;&#x9ED8;&#x8BA4;&#x7ED1;&#x5B9A;&#x7684;&#x89C4;&#x5219;&#x3002;"></a>&#x5F53;&#x4F20;&#x9012; null &#x6216; undefined &#x4F5C;&#x4E3A; call&#x3001;apply &#x6216; bind &#x7684; this &#x7ED1;&#x5B9A;&#x53C2;&#x6570;&#x65F6;&#xFF0C;&#x4F1A;&#x4F7F;&#x7528;&#x9ED8;&#x8BA4;&#x7ED1;&#x5B9A;&#x7684;&#x89C4;&#x5219;&#x3002;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#间接引用"><span class="nav-number">3.5.2.2.</span> <span class="nav-text"><a href="#&#x95F4;&#x63A5;&#x5F15;&#x7528;" class="headerlink" title="&#x95F4;&#x63A5;&#x5F15;&#x7528;"></a>&#x95F4;&#x63A5;&#x5F15;&#x7528;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ES6的箭头函数"><span class="nav-number">3.5.2.3.</span> <span class="nav-text"><a href="#ES6&#x7684;&#x7BAD;&#x5934;&#x51FD;&#x6570;" class="headerlink" title="ES6&#x7684;&#x7BAD;&#x5934;&#x51FD;&#x6570;"></a>ES6&#x7684;&#x7BAD;&#x5934;&#x51FD;&#x6570;</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文章"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x53C2;&#x8003;&#x6587;&#x7AE0;" class="headerlink" title="&#x53C2;&#x8003;&#x6587;&#x7AE0;"></a>&#x53C2;&#x8003;&#x6587;&#x7AE0;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈柯蓉</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("VcqLAkGU4J8S3og4vAS2uQQp-gzGzoHsz", "3JdzUUvuJ5fJPkciMTWvrq3t");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
