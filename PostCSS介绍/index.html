@@ -81,21 +81,21 @@
 
 
 
-<meta name="description" content="闲言之前我们部门做的一套智能网点解决方案中，厅堂Pad使用PostCSS的插件来解决多终端适配问题，在浏览的文章中，发现一篇博客简明扼要地介绍了PostCss 引子CSS目前CSS所存在的一些问题：1.浏览器实现各异导致了兼容性问题，根本原因是浏览器对CSS规范的实现和方案不统一。尤其以IE最甚，虽然现在微软不在对IE进行维护了。2.CSS弱编程能力，体现在不支持嵌套，甚至运算、变量、复用等这些几">
+<meta name="description" content="闲言之前我们部门做的一套智能网点解决方案中，厅堂Pad使用PostCSS的插件来解决多终端适配问题，在此和大家分享一下。 引子CSS目前CSS所存在的一些问题：1.浏览器实现各异导致了兼容性问题，根本原因是浏览器对CSS规范的实现和方案不统一。尤其以IE最甚，虽然现在微软不在对IE进行维护了。2.CSS弱编程能力，体现在不支持嵌套，甚至运算、变量、复用等这些几乎是编写复杂代码的必备特性。从CSS3">
 <meta name="keywords" content="Css">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PostCSS介绍">
 <meta property="og:url" content="https://animalofcoder.github.io/PostCSS介绍/index.html">
 <meta property="og:site_name" content="CKR技术博客">
-<meta property="og:description" content="闲言之前我们部门做的一套智能网点解决方案中，厅堂Pad使用PostCSS的插件来解决多终端适配问题，在浏览的文章中，发现一篇博客简明扼要地介绍了PostCss 引子CSS目前CSS所存在的一些问题：1.浏览器实现各异导致了兼容性问题，根本原因是浏览器对CSS规范的实现和方案不统一。尤其以IE最甚，虽然现在微软不在对IE进行维护了。2.CSS弱编程能力，体现在不支持嵌套，甚至运算、变量、复用等这些几">
+<meta property="og:description" content="闲言之前我们部门做的一套智能网点解决方案中，厅堂Pad使用PostCSS的插件来解决多终端适配问题，在此和大家分享一下。 引子CSS目前CSS所存在的一些问题：1.浏览器实现各异导致了兼容性问题，根本原因是浏览器对CSS规范的实现和方案不统一。尤其以IE最甚，虽然现在微软不在对IE进行维护了。2.CSS弱编程能力，体现在不支持嵌套，甚至运算、变量、复用等这些几乎是编写复杂代码的必备特性。从CSS3">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180926/1.jpg">
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180926/2.jpg">
 <meta property="og:image" content="https://animalofcoder.github.io/img/20180926/3.jpg">
-<meta property="og:updated_time" content="2018-09-26T11:50:51.876Z">
+<meta property="og:updated_time" content="2018-09-26T11:54:01.912Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PostCSS介绍">
-<meta name="twitter:description" content="闲言之前我们部门做的一套智能网点解决方案中，厅堂Pad使用PostCSS的插件来解决多终端适配问题，在浏览的文章中，发现一篇博客简明扼要地介绍了PostCss 引子CSS目前CSS所存在的一些问题：1.浏览器实现各异导致了兼容性问题，根本原因是浏览器对CSS规范的实现和方案不统一。尤其以IE最甚，虽然现在微软不在对IE进行维护了。2.CSS弱编程能力，体现在不支持嵌套，甚至运算、变量、复用等这些几">
+<meta name="twitter:description" content="闲言之前我们部门做的一套智能网点解决方案中，厅堂Pad使用PostCSS的插件来解决多终端适配问题，在此和大家分享一下。 引子CSS目前CSS所存在的一些问题：1.浏览器实现各异导致了兼容性问题，根本原因是浏览器对CSS规范的实现和方案不统一。尤其以IE最甚，虽然现在微软不在对IE进行维护了。2.CSS弱编程能力，体现在不支持嵌套，甚至运算、变量、复用等这些几乎是编写复杂代码的必备特性。从CSS3">
 <meta name="twitter:image" content="https://animalofcoder.github.io/img/20180926/1.jpg">
 
 
@@ -369,7 +369,7 @@
       
 
       
-        <h1 id="闲言"><a href="#闲言" class="headerlink" title="闲言"></a>闲言</h1><p>之前我们部门做的一套智能网点解决方案中，厅堂Pad使用PostCSS的插件来解决多终端适配问题，在浏览的文章中，发现一篇博客简明扼要地介绍了PostCss</p>
+        <h1 id="闲言"><a href="#闲言" class="headerlink" title="闲言"></a>闲言</h1><p>之前我们部门做的一套智能网点解决方案中，厅堂Pad使用PostCSS的插件来解决多终端适配问题，在此和大家分享一下。</p>
 <h1 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h1><h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><p>目前CSS所存在的一些问题：<br>1.浏览器实现各异导致了兼容性问题，根本原因是浏览器对CSS规范的实现和方案不统一。尤其以IE最甚，虽然现在微软不在对IE进行维护了。<br>2.CSS弱编程能力，体现在不支持嵌套，甚至运算、变量、复用等这些几乎是编写复杂代码的必备特性。从CSS3引入了cal()以及处于草案阶段的var()可以隐约看出W3C有意加强CSS的编程能力。</p>
 <p>在此种情境下，CSS预编译器顺势而生。</p>
 <h2 id="CSS预编译"><a href="#CSS预编译" class="headerlink" title="CSS预编译"></a>CSS预编译</h2><p>CSS预编译的工作原理是提供便捷的语法和特性供开发者编写源代码，随后经过专门的编译工具将源码转化为CSS语法。最早的CSS预编译器是2007年起源于Ruby on Rails社区的SASS，目前比较流行的其他CSS预编译器如Less、Stylus的诞生都一定程度上受到了SASS的影响和启发。</p>
