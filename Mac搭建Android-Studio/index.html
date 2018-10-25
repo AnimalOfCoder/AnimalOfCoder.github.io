@@ -96,7 +96,11 @@
 <meta property="og:image" content="https://animalofcoder.github.io/img/20181024/5.jpg">
 <meta property="og:image" content="https://animalofcoder.github.io/img/20181024/6.jpg">
 <meta property="og:image" content="https://animalofcoder.github.io/img/20181024/7.jpg">
-<meta property="og:updated_time" content="2018-10-24T08:55:02.341Z">
+<meta property="og:image" content="https://animalofcoder.github.io/img/20181024/8.jpg">
+<meta property="og:image" content="https://animalofcoder.github.io/img/20181024/9.jpg">
+<meta property="og:image" content="https://animalofcoder.github.io/img/20181024/10.jpg">
+<meta property="og:image" content="https://animalofcoder.github.io/img/20181024/11.jpg">
+<meta property="og:updated_time" content="2018-10-25T01:58:50.801Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac搭建Android Studio">
 <meta name="twitter:description" content="闲言之前 Android app 打包都是在windows电脑上搞的。现在在行里只能用自己电脑了，因此在自己的 Mac 电脑上搭建打包环境。本以为安装个 IDE 很简单，结果踩了个大坑，坑得不要不要的。下面先介绍一下搭建过程。 搭建概括起来其实就三样东西：JDK、Android Studio、Android SDK。第一步就是去下个 JDK 然后安装好并配置环境变量。如图： 弄好 JDK 了就去下">
@@ -379,7 +383,12 @@
 <p>我的 Android SDK:<br><img src="/img/20181024/2.jpg"><br><img src="/img/20181024/3.jpg"></p>
 <p>到此处，IDE 基本安装完成了。但是需要打开工程，打开过程中会安装一些工程的依赖，如：gradle（工程的构建工具）。下载安装完成会自动进入工程，gradle 会自动构建工程，如果控制台没报错，说明成功了。</p>
 <h1 id="遇到的坑"><a href="#遇到的坑" class="headerlink" title="遇到的坑"></a>遇到的坑</h1><p>好了，来说说我遇到的大坑。<br>进入工程，gradle 在构建的时候报错：<br><img src="/img/20181024/4.jpg"><br>开始以为是被墙了的原因，所以对请求地址进行修改，却依然报错：<br><img src="/img/20181024/5.jpg"><br><img src="/img/20181024/6.jpg"><br>仔细看了看，发现好像是 gradle 资源获取不到的问题，因此我打算使用本地的 gradle，配置了一下依然报相同的错。此时万分绝望，去网上找了很多答案终不得其解。</p>
-<p>不过后来终归是找到了原因，其实把 /Users/chenkerong/.gradle 删了，然后进入 IDE 让其重新下载，然后配置一个gradle路径即可。<br>IDE 配置 gralde 路径如下：<br><img src="/img/20181024/7.jpg"></p>
+<p>不过后来终归是找到了原因，其实把 /Users/chenkerong/.gradle（用户名自己替换） 删了，然后进入 IDE 让其重新下载，然后配置一个gradle路径即可。<br>IDE 配置 gralde 路径如下：<br><img src="/img/20181024/7.jpg"></p>
+<h1 id="关于真机测试"><a href="#关于真机测试" class="headerlink" title="关于真机测试"></a>关于真机测试</h1><p>要把 Android设备 连接 Mac 打包，需要配置 adb（Android Debug Bridge） 环境。<br>1.首先找到adb的文件目录，一般都是放置在 SDK 的目录下，<br><img src="/img/20181024/8.jpg"></p>
+<p>2.配置环境变量：<br><img src="/img/20181024/9.jpg"><br>配置好后，在终端输入 adb 命令验证是否配置成功。</p>
+<p>3.将设备连接 Mac，然后在终端输入：system_profiler SPUSBDataType，复制Vendor ID，如图：<br><img src="/img/20181024/10.jpg"></p>
+<p>4.进入 /Users/chenkerong/Library/Android（用户名自己替换） 路径下，将 Vendor ID 添加到 adb_usb.ini（没有就创建一个） 文件中。<br><img src="/img/20181024/11.jpg"></p>
+<p>5.配置好以后，打开 Android Studio，连接设备即可。</p>
 
       
     </div>
@@ -575,7 +584,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#闲言"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x95F2;&#x8A00;" class="headerlink" title="&#x95F2;&#x8A00;"></a>&#x95F2;&#x8A00;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#搭建"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x642D;&#x5EFA;" class="headerlink" title="&#x642D;&#x5EFA;"></a>&#x642D;&#x5EFA;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#遇到的坑"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x9047;&#x5230;&#x7684;&#x5751;" class="headerlink" title="&#x9047;&#x5230;&#x7684;&#x5751;"></a>&#x9047;&#x5230;&#x7684;&#x5751;</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#闲言"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x95F2;&#x8A00;" class="headerlink" title="&#x95F2;&#x8A00;"></a>&#x95F2;&#x8A00;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#搭建"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x642D;&#x5EFA;" class="headerlink" title="&#x642D;&#x5EFA;"></a>&#x642D;&#x5EFA;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#遇到的坑"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x9047;&#x5230;&#x7684;&#x5751;" class="headerlink" title="&#x9047;&#x5230;&#x7684;&#x5751;"></a>&#x9047;&#x5230;&#x7684;&#x5751;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于真机测试"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x5173;&#x4E8E;&#x771F;&#x673A;&#x6D4B;&#x8BD5;" class="headerlink" title="&#x5173;&#x4E8E;&#x771F;&#x673A;&#x6D4B;&#x8BD5;"></a>&#x5173;&#x4E8E;&#x771F;&#x673A;&#x6D4B;&#x8BD5;</span></a></li></ol></div>
             
 
           </div>
