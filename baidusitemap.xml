@@ -4,6 +4,46 @@
 
     
   <url>
+    <loc>https://animalofcoder.github.io/%E8%81%8A%E8%81%8A%E6%B7%B7%E5%90%88%E5%BC%80%E5%8F%91/</loc>
+    <lastmod>2018-11-18T07:56:06.321Z</lastmod>
+    <data>
+        <display>
+        <title>聊聊混合开发</title>
+        <pubTime>2018-11-11T07:19:05.000Z</pubTime>
+        
+        <tag>Js基础</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端技术" url="https://animalofcoder.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://animalofcoder.github.io/%E8%81%8A%E8%81%8AJs%E7%9A%84%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2018-11-14T05:29:15.627Z</lastmod>
+    <data>
+        <display>
+        <title>聊聊Js的精度问题</title>
+        <pubTime>2018-05-03T12:55:48.000Z</pubTime>
+        
+        <tag>Js</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端技术" url="https://animalofcoder.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://animalofcoder.github.io/ES6%E6%A8%A1%E5%9D%97%E5%8A%A0%E8%BD%BD%E9%97%AE%E9%A2%98/</loc>
     <lastmod>2018-10-29T08:14:26.651Z</lastmod>
     <data>
@@ -418,26 +458,6 @@
            
              
               <breadCrumb title="算法" url="https://animalofcoder.github.io/categories/%E7%AE%97%E6%B3%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://animalofcoder.github.io/%E8%81%8A%E8%81%8AJs%E7%9A%84%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/</loc>
-    <lastmod>2018-05-16T07:55:57.859Z</lastmod>
-    <data>
-        <display>
-        <title>聊聊Js的精度问题</title>
-        <pubTime>2018-05-03T12:55:48.000Z</pubTime>
-        
-        <tag>Js</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端技术" url="https://animalofcoder.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
           
         </display>
     </data>
