@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="Xss攻击," />
+  <meta name="keywords" content="Js基础," />
 
 
 
@@ -81,25 +81,22 @@
 
 
 
-<meta name="description" content="什么是 XSS 攻击？Cross Site Scripting（跨站脚本攻击）简称 XSS，攻击者通过在目标网站上注入恶意脚本（如：获取 Cookie、SessionID 等），使之在用户的浏览器上运行。为了和 CSS 区分，故称 XSS。 XSS 本质恶意代码未经过滤，与网站正常的代码混在一起，浏览器无法分辨哪些脚本是可信的，导致恶意脚本被执行。由于直接在用户的终端执行，恶意代码能够直接获取用户">
-<meta name="keywords" content="Xss攻击">
+<meta name="description" content="闲言其实我最开始写这篇博客，是想和大家聊聊关于 Js 定时器的精准度的，但是发现要把这事说得清清楚楚会涉及到很多基础概念，因此我系统地给大家介绍一下 Js 运行机制。 浏览器内核浏览器内核其实是浏览器的一个渲染进程，它是多线程的。给大家介绍一些常驻线程：GUI 渲染线程负责渲染浏览器界面，解析 HTML，CSS，构建 DOM 树和 RenderObject 树，布局和绘制等。当界面需要重绘（Rep">
+<meta name="keywords" content="Js基础">
 <meta property="og:type" content="article">
-<meta property="og:title" content="聊聊XSS攻击">
-<meta property="og:url" content="https://animalofcoder.github.io/聊聊XSS攻击/index.html">
+<meta property="og:title" content="聊聊Js运行机制">
+<meta property="og:url" content="https://animalofcoder.github.io/聊聊Js运行机制/index.html">
 <meta property="og:site_name" content="CKR技术博客">
-<meta property="og:description" content="什么是 XSS 攻击？Cross Site Scripting（跨站脚本攻击）简称 XSS，攻击者通过在目标网站上注入恶意脚本（如：获取 Cookie、SessionID 等），使之在用户的浏览器上运行。为了和 CSS 区分，故称 XSS。 XSS 本质恶意代码未经过滤，与网站正常的代码混在一起，浏览器无法分辨哪些脚本是可信的，导致恶意脚本被执行。由于直接在用户的终端执行，恶意代码能够直接获取用户">
+<meta property="og:description" content="闲言其实我最开始写这篇博客，是想和大家聊聊关于 Js 定时器的精准度的，但是发现要把这事说得清清楚楚会涉及到很多基础概念，因此我系统地给大家介绍一下 Js 运行机制。 浏览器内核浏览器内核其实是浏览器的一个渲染进程，它是多线程的。给大家介绍一些常驻线程：GUI 渲染线程负责渲染浏览器界面，解析 HTML，CSS，构建 DOM 树和 RenderObject 树，布局和绘制等。当界面需要重绘（Rep">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://animalofcoder.github.io/img/20181124/1.jpg">
-<meta property="og:image" content="https://animalofcoder.github.io/img/20181124/2.jpg">
-<meta property="og:image" content="https://animalofcoder.github.io/img/20181124/3.jpg">
-<meta property="og:image" content="https://animalofcoder.github.io/img/20181124/4.jpg">
-<meta property="og:image" content="https://animalofcoder.github.io/img/20181124/5.jpg">
-<meta property="og:image" content="https://animalofcoder.github.io/img/20181124/6.jpg">
-<meta property="og:updated_time" content="2018-11-25T09:34:21.744Z">
+<meta property="og:image" content="https://animalofcoder.github.io/img/20181216/1.jpg">
+<meta property="og:image" content="https://animalofcoder.github.io/img/20181216/2.jpg">
+<meta property="og:image" content="https://animalofcoder.github.io/img/20181216/3.jpg">
+<meta property="og:updated_time" content="2018-12-22T05:02:57.821Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="聊聊XSS攻击">
-<meta name="twitter:description" content="什么是 XSS 攻击？Cross Site Scripting（跨站脚本攻击）简称 XSS，攻击者通过在目标网站上注入恶意脚本（如：获取 Cookie、SessionID 等），使之在用户的浏览器上运行。为了和 CSS 区分，故称 XSS。 XSS 本质恶意代码未经过滤，与网站正常的代码混在一起，浏览器无法分辨哪些脚本是可信的，导致恶意脚本被执行。由于直接在用户的终端执行，恶意代码能够直接获取用户">
-<meta name="twitter:image" content="https://animalofcoder.github.io/img/20181124/1.jpg">
+<meta name="twitter:title" content="聊聊Js运行机制">
+<meta name="twitter:description" content="闲言其实我最开始写这篇博客，是想和大家聊聊关于 Js 定时器的精准度的，但是发现要把这事说得清清楚楚会涉及到很多基础概念，因此我系统地给大家介绍一下 Js 运行机制。 浏览器内核浏览器内核其实是浏览器的一个渲染进程，它是多线程的。给大家介绍一些常驻线程：GUI 渲染线程负责渲染浏览器界面，解析 HTML，CSS，构建 DOM 树和 RenderObject 树，布局和绘制等。当界面需要重绘（Rep">
+<meta name="twitter:image" content="https://animalofcoder.github.io/img/20181216/1.jpg">
 
 
 
@@ -129,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="https://animalofcoder.github.io/聊聊XSS攻击/"/>
+  <link rel="canonical" href="https://animalofcoder.github.io/聊聊Js运行机制/"/>
 
 
 
 
 
-  <title>聊聊XSS攻击 | CKR技术博客</title>
+  <title>聊聊Js运行机制 | CKR技术博客</title>
   
 
 
@@ -272,7 +269,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://animalofcoder.github.io/聊聊XSS攻击/">
+    <link itemprop="mainEntityOfPage" href="https://animalofcoder.github.io/聊聊Js运行机制/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="陈柯蓉">
@@ -289,7 +286,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">聊聊XSS攻击</h1>
+          <h1 class="post-title" itemprop="name headline">聊聊Js运行机制</h1>
         
 
         <div class="post-meta">
@@ -301,8 +298,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-24T13:29:44+08:00">
-                2018-11-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-16T13:04:19+08:00">
+                2018-12-16
               </time>
             
 
@@ -324,8 +321,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/网络安全/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
+                  <a href="/categories/前端技术/" itemprop="url" rel="index">
+                    <span itemprop="name">前端技术</span>
                   </a>
                 </span>
 
@@ -341,7 +338,7 @@
 
           
           
-             <span id="/聊聊XSS攻击/" class="leancloud_visitors" data-flag-title="聊聊XSS攻击">
+             <span id="/聊聊Js运行机制/" class="leancloud_visitors" data-flag-title="聊聊Js运行机制">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -372,47 +369,87 @@
       
 
       
-        <h1 id="什么是-XSS-攻击？"><a href="#什么是-XSS-攻击？" class="headerlink" title="什么是 XSS 攻击？"></a>什么是 XSS 攻击？</h1><p>Cross Site Scripting（跨站脚本攻击）简称 XSS，攻击者通过在目标网站上注入恶意脚本（如：获取 Cookie、SessionID 等），使之在用户的浏览器上运行。为了和 CSS 区分，故称 XSS。</p>
-<h2 id="XSS-本质"><a href="#XSS-本质" class="headerlink" title="XSS 本质"></a>XSS 本质</h2><p>恶意代码未经过滤，与网站正常的代码混在一起，浏览器无法分辨哪些脚本是可信的，导致恶意脚本被执行。由于直接在用户的终端执行，恶意代码能够直接获取用户的信息，或者利用这些信息冒充用户向网站发请求（攻击者定义的）。<br>有输入限制的，可以通过引入外部的脚本，并由浏览器执行，来完成比较复杂的攻击策略。</p>
-<h2 id="注入方式"><a href="#注入方式" class="headerlink" title="注入方式"></a>注入方式</h2><ul>
-<li><p>UGC（用户原创内容）</p>
-</li>
-<li><p>来自第三方的链接</p>
-</li>
-<li><p>URL 参数</p>
-</li>
-<li><p>POST 参数</p>
-</li>
-<li><p>Referer （可能来自不可信的来源）</p>
-</li>
-<li><p>Cookie （可能来自其他子域注入）</p>
-</li>
-</ul>
-<h1 id="XSS-分类"><a href="#XSS-分类" class="headerlink" title="XSS 分类"></a>XSS 分类</h1><p>根据攻击来源分类：<br><img src="/img/20181124/1.jpg"></p>
-<h2 id="存储型-XSS"><a href="#存储型-XSS" class="headerlink" title="存储型 XSS"></a>存储型 XSS</h2><p><img src="/img/20181124/2.jpg"><br>步骤：<br>1.攻击者将恶意代码提交到目标网站的数据库中。<br>2.用户打开目标网站时，网站服务端将恶意代码从数据库取出，拼接在 HTML 中返回给浏览器。<br>3.用户浏览器接收到响应后解析执行，混在其中的恶意代码也被执行。<br>4.恶意代码窃取用户数据并发送到攻击者的网站，或者冒充用户的行为，调用目标网站接口执行攻击者指定的操作。</p>
-<p>这种攻击常见于带有用户保存数据的网站功能，如论坛发帖、商品评论、用户私信等。</p>
-<h2 id="反射型-XSS"><a href="#反射型-XSS" class="headerlink" title="反射型 XSS"></a>反射型 XSS</h2><p><img src="/img/20181124/3.jpg"><br>步骤：<br>1.攻击者构造出特殊的 URL，其中包含恶意代码。<br>2.用户打开带有恶意代码的 URL 时，网站服务端将恶意代码从 URL 中取出，拼接在 HTML 中返回给浏览器。<br>3.用户浏览器接收到响应后解析执行，混在其中的恶意代码也被执行。<br>4.恶意代码窃取用户数据并发送到攻击者的网站，或者冒充用户的行为，调用目标网站接口执行攻击者指定的操作。</p>
-<p>反射型 XSS 漏洞常见于通过 URL 传递参数的功能，如网站搜索、跳转等。<br>由于需要用户主动打开恶意的 URL 才能生效，攻击者往往会结合多种手段诱导用户点击。<br>POST 的内容也可以触发反射型 XSS，只不过其触发条件比较苛刻（需要构造表单提交页面，并引导用户点击），所以非常少见。</p>
-<p>反射型 跟存储型 区别：<br>存储型 的恶意代码存在数据库里，反射型 的恶意代码存在 URL 里。</p>
-<h2 id="DOM-型-XSS"><a href="#DOM-型-XSS" class="headerlink" title="DOM 型 XSS"></a>DOM 型 XSS</h2><p><img src="/img/20181124/4.jpg"><br>步骤：<br>1.攻击者构造出特殊的 URL，其中包含恶意代码。<br>2.用户打开带有恶意代码的 URL。<br>3.用户浏览器接收到响应后解析执行，前端 JavaScript 取出 URL 中的恶意代码并执行。<br>4.恶意代码窃取用户数据并发送到攻击者的网站，或者冒充用户的行为，调用目标网站接口执行攻击者指定的操作。</p>
-<p>跟前两种 XSS 的区别：<br>DOM 型 取出和执行恶意代码由浏览器端完成，属于前端 Js 自身的安全漏洞，而其他两种 XSS 都属于服务端的安全漏洞。</p>
-<h1 id="XSS-攻击预防"><a href="#XSS-攻击预防" class="headerlink" title="XSS 攻击预防"></a>XSS 攻击预防</h1><p>通过前面介绍，我们了解到 XSS 攻击的对象是客户端，攻击要素：<br>1.攻击者提交恶意代码。<br>2.浏览器执行恶意代码。</p>
-<p>我们接下来一一展开。</p>
-<h2 id="防止攻击者提交恶意代码"><a href="#防止攻击者提交恶意代码" class="headerlink" title="防止攻击者提交恶意代码"></a>防止攻击者提交恶意代码</h2><p>我们可以进行<strong>输入过滤</strong>，将用户提交的内容进行过滤。问题来了，前端做还是后端做呢？<br>1.前端过滤<br>攻击者可以构造请求，直接绕过前端将恶意代码提交。<br>2.后端过滤<br>前端接收到的是转义后的内容，在有些位置需要进行转义，否则可能显示是乱码，但是你转义后，是不是意味着这个代码依旧不变（依然会攻击）。因此输入过滤它只能解决部分 XSS 问题。<br>不过对于明确的输入类型，例如：数字、URL、电话号码、邮件地址等等内容，进行输入过滤还是必要的。<br>既然防止攻击者提交恶意代码并不完全可靠，我们就试试另一种。</p>
-<h2 id="防止浏览器执行恶意代码"><a href="#防止浏览器执行恶意代码" class="headerlink" title="防止浏览器执行恶意代码"></a>防止浏览器执行恶意代码</h2><p>我们应该从这两方面进行思考：<br>1.防止 HTML 中出现注入。<br>2.防止 JavaScript 执行时，执行恶意代码。</p>
-<h3 id="分析一"><a href="#分析一" class="headerlink" title="分析一"></a>分析一</h3><p>存储型和反射型 XSS 都是在服务端取出恶意代码后，插入到响应 HTML 里然后被浏览器所执行。预防这两种漏洞，有两种常见做法：</p>
-<p><strong>1.改成纯前端渲染，把代码和数据分隔开</strong><br>&emsp;&emsp;其实就是浏览器先渲染静态 HTML，然后页面所需数据直接让 Js 通过 Ajax 获取数据。但是仍然需要预防 DOM 型 XSS（文章后会提到）</p>
-<p><strong>2.对 HTML 做充分转义</strong><br>&emsp;&emsp;对于性能要求高，或有 SEO 需求的页面，我们仍然要面对拼接 HTML 的问题。那么采用合适的转义库，对 HTML 模板各处插入点进行充分的转义，同时在不同的上下文里要使用相应的转义规则。</p>
-<h3 id="分析二"><a href="#分析二" class="headerlink" title="分析二"></a>分析二</h3><p><img src="/img/20181124/5.jpg"><br>不同的上下文，如 HTML 属性、HTML 文字内容、HTML 注释、跳转链接、内联 JavaScript 字符串、内联 CSS 样式表等，所需要的转义规则不一致。</p>
-<h2 id="其他-XSS-预防"><a href="#其他-XSS-预防" class="headerlink" title="其他 XSS 预防"></a>其他 XSS 预防</h2><p><img src="/img/20181124/6.jpg"></p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>关于网络安全的问题，其实我们在做金融 app 解决方案的过程中，同样会提供一套关于安全的解决方案，例如：</p>
+        <h1 id="闲言"><a href="#闲言" class="headerlink" title="闲言"></a>闲言</h1><p>其实我最开始写这篇博客，是想和大家聊聊关于 Js 定时器的精准度的，但是发现要把这事说得清清楚楚会涉及到很多基础概念，因此我系统地给大家介绍一下 Js 运行机制。</p>
+<h1 id="浏览器内核"><a href="#浏览器内核" class="headerlink" title="浏览器内核"></a>浏览器内核</h1><p>浏览器内核其实是浏览器的一个渲染进程，它是多线程的。给大家介绍一些常驻线程：<br><strong><em>GUI 渲染线程</em></strong><br>负责渲染浏览器界面，解析 HTML，CSS，构建 DOM 树和 RenderObject 树，布局和绘制等。<br>当界面需要重绘（Repaint）或由于某种操作引发回流（reflow）时，该线程就会执行<br>注意，GUI 渲染线程与 Js 引擎线程是互斥的，当JS引擎执行时GUI线程会被挂起（相当于被冻结了），GUI 更新会被保存在一个队列中等到 Js 引擎空闲时立即被执行。</p>
+<p><strong><em>Js 引擎线程</em></strong><br>也称为 Js 内核，负责处理 Js 脚本程序（例如V8引擎）。<br>Js 引擎线程负责解析 Js 脚本，运行代码。<br>Js 引擎一直等待着任务队列中任务的到来，然后加以处理，一个 Tab 页（renderer进程）中无论什么时候都只有一个 Js 线程在运行 Js 程序<br>同样注意，GUI 渲染线程与 Js 引擎线程是互斥的，所以如果 Js 执行的时间过长，这样就会造成页面的渲染不连贯，导致页面渲染加载阻塞。</p>
+<p><strong><em>事件触发线程</em></strong><br>归属于浏览器而不是JS引擎，用来控制事件循环（可以理解，Js 引擎自己都忙不过来，需要浏览器另开线程协助）<br>当 Js 引擎执行代码块如 setTimeOut 时（也可来自浏览器内核的其他线程，如鼠标点击、Ajax 异步请求等），会将对应任务添加到事件线程中<br>当对应的事件符合触发条件被触发时，该线程会把事件添加到待处理队列的队尾，等待JS引擎的处理<br>注意，由于 Js 的单线程关系，所以这些待处理队列中的事件都得排队等待JS引擎处理（当 Js 引擎空闲时才会去执行）</p>
+<p><strong><em>定时触发器线程</em></strong><br>传说中的 setInterval 与 setTimeout 所在线程<br>浏览器定时计数器并不是由 Js 引擎计数的,（因为 Js 引擎是单线程的, 如果处于阻塞线程状态就会影响记计时的准确）<br>因此通过单独线程来计时并触发定时（计时完毕后，添加到事件队列中，等待 Js 引擎空闲后执行）<br>注意，W3C 在 HTML 标准中规定，规定要求 setTimeout 中低于 4ms 的时间间隔算为 4ms。</p>
+<p><strong><em>异步 http 请求线程</em></strong><br>在 XMLHttpRequest 在连接后是通过浏览器新开一个线程请求<br>将检测到状态变更时，如果设置有回调函数，异步线程就产生状态变更事件，将这个回调再放入事件队列中。再由 Js 引擎执行。</p>
+<h1 id="Js-运行机制"><a href="#Js-运行机制" class="headerlink" title="Js 运行机制"></a>Js 运行机制</h1><h2 id="浏览器的-Event-Loop（事件循环）"><a href="#浏览器的-Event-Loop（事件循环）" class="headerlink" title="浏览器的 Event Loop（事件循环）"></a>浏览器的 Event Loop（事件循环）</h2><p>Js 语言的核心特性是单线程。虽然 HTML5 提出 Web Worker 标准，允许 Js 脚本创建多个线程，但是子线程完全受主线程控制，且不得操作 DOM。所以，这个新标准并没有改变 Js 单线程的本质。<br>由于单线程这个特性，为了充分利用 CPU，所有任务分成两种，一种是同步任务（主线程上执行），一种是异步任务（有运行结果后会向任务队列添加事件）。<br>主线程和任务队列的示意图：<br><img src="/img/20181216/1.jpg"><br>主线程上有一个<strong>执行栈</strong>，一旦同步任务执行完毕，系统就会去读取<strong>任务队列</strong>，那些对应的异步任务会结束等待状态，进入执行栈并开始执行。这个过程会不断重复，整个的这种运行机制又称为 Event Loop（事件循环）</p>
+<p><strong>浏览器的 Event Loop 遵循的是 HTML5 标准，而 NodeJs 的 Event Loop 遵循的是 libuv</strong><br>具体大家可以参考：<a href="http://www.ruanyifeng.com/blog/2014/10/event-loop.html" target="_blank" rel="noopener">再谈Event Loop</a></p>
+<h2 id="Event-Loop-如何处理宏任务与微任务"><a href="#Event-Loop-如何处理宏任务与微任务" class="headerlink" title="Event Loop 如何处理宏任务与微任务"></a>Event Loop 如何处理宏任务与微任务</h2><p>Js 中分为两种任务类型：macrotask（宏任务） 和 microtask（微任务），在 ECMAScript 中，microtask 称为 jobs，macrotask 可称为 task。<br>我将 Event Loop 循环进行了拓展，如图：<br><img src="/img/20181216/2.jpg"><br><strong><em>Task</em></strong><br>严格按照时间顺序压栈和执行的，所以浏览器能够使得 Js 内部任务与 DOM 任务能够有序的执行。当一个 task 执行结束后，在下一个 task 执行开始前，浏览器可以对页面进行<strong>重新渲染</strong>。每一个 task 都是需要分配的，例如：从用户的点击操作到一个点击事件、渲染 HTML 文档、setTimeout等。</p>
+<p><strong><em>Microtask</em></strong><br>在 task 执行结束后立即执行的任务，例如：需要对一系列的任务做出回应，或者是需要异步的执行任务而又不需要分配一个新的 task，这样便可以减小一点性能的开销。microtask 任务队列是一个与 task 任务队列相互独立的队列，microtask 任务将会在每一个 task 任务执行结束之后执行。每一个 task 中<strong>产生</strong>的 microtask 都将会添加到 microtask 队列中，microtask 中产生的 microtask 将会添加至当前队列的尾部，并且 microtask 会按顺序处理完队列中的所有任务。microtask 类型的任务目前包括了 Promise 的回调函数等。</p>
+<p><strong><em>在何种场景会形成 macrotask 和 microtask ？</em></strong><br>macrotask：主代码块，setTimeout，setInterval等（我们可以看到，事件队列中的每一个事件都是一个 macrotask）<br>microtask：Promise，process.nextTick（node.js相关）等</p>
+<p><strong><em>运行机制总结</em></strong> </p>
 <ul>
-<li>EMM（Enterprise Mobility Management）能够帮助企业将移动设备与安全框架、系统以及IT生命周期管理进行集成。企业可以使用EMM进行配置、审计，保护企业数据安全和用户支持。</li>
-<li>VPN 在公用网络上建立专用网络，进行加密通讯。</li>
-<li>HTTPS 协议。</li>
+<li>执行一个宏任务（栈中没有就从事件队列中获取）</li>
+<li>执行过程中如果遇到微任务，就将它添加到微任务的任务队列中</li>
+<li>宏任务执行完毕后，立即执行当前微任务队列中的所有微任务（依次执行）</li>
+<li>当前宏任务执行完毕，开始检查渲染，然后GUI线程接管渲染</li>
+<li>渲染完毕后，JS线程继续接管，开始下一个宏任务（从事件队列中获取）</li>
 </ul>
-<p>不过虽然有了一套成熟的解决方案，但是对于一个研发人员，网络安全的基本知识还是需要了解的。</p>
-<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><p><a href="https://www.imooc.com/learn/812" target="_blank" rel="noopener">Web安全-XSS</a><br><a href="https://www.freebuf.com/articles/web/185654.html" target="_blank" rel="noopener">如何防止XSS攻击？</a></p>
+<p>说完概念，我们来看几个代码示例。</p>
+<h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><p>示例一：</p>
+<pre><code>console.log(&apos;script start&apos;);
+
+setTimeout(function() {
+    console.log(&apos;setTimeout&apos;);
+}, 0);                                                     
+
+Promise.resolve().then(function() {
+    console.log(&apos;promise1&apos;);
+}).then(function() {
+    console.log(&apos;promise2&apos;);
+});                                                         
+
+console.log(&apos;script end&apos;);
+</code></pre><p>分析：<br><img src="/img/20181216/3.jpg"></p>
+<p>由此可知，log 顺序：<br>script start<br>script end<br>promise1<br>promise2<br>setTimeout</p>
+<p>更为详细的分析，大家可以参考这位大神的文章：<a href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules" target="_blank" rel="noopener">Tasks, microtasks, queues and schedules</a></p>
+<p>示例二：</p>
+<pre><code>async function async1() {
+  console.log(&apos;async1 start&apos;)
+  await async2()
+  console.log(&apos;async1 end&apos;)
+}
+
+async function async2() {
+    console.log(&apos;async2&apos;)
+}
+
+console.log(&apos;script start&apos;)
+
+setTimeout(function () {
+    console.log(&apos;setTimeout&apos;)
+}, 0)
+
+async1();
+
+new Promise (function (resolve) {
+    console.log(&apos;promise1&apos;)
+    resolve();
+}).then(function () {
+    console.log(&apos;promise2&apos;)
+});
+
+console.log(&apos;script end&apos;)
+
+/*
+    script start
+    async1 start
+    async2
+    promise1
+    script end
+    promise2
+    async1 end
+    setTimeout
+*/
+</code></pre><p>其实本题大家只要了解 async await 的话，很快就能明白为什么是这个答案。<br>分析：<br><strong><em>async</em></strong><br>带 async 关键字的函数，它使得你的函数的返回值必定是 Promise 对象。若 async 关键字函数 return 的不是promise，会自动用 Promise.resolve() 包装。如果 async 关键字函数显式地返回 Promise，那就以其为准。</p>
+<p><strong><em>await</em></strong><br>它等是右侧「表达式」的结果，await 会阻塞后面的代码，先执行 async 外面的同步代码，等同步代码执行完，再回到 async 内部。此时右侧「表达式」的结果：</p>
+<p>1.是 Promise 对象，等着 Promise 对象 fulfilled，然后把 resolve 的参数作为 await 表达式的运算结果。<br>2.不是 Promise 对象，把这个非 Promise 的东西，作为 await表达式的结果</p>
+<p>因此，async1 end 之所以在 setTimeout 前，是因为执行 await async2() 时，阻塞了 console.log(‘async1 end’)，它作为下个宏任务添加到任务队列中，因此队列中，它是排在 setTimeout 的回调前的。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>相信大家看到这里，已经对于 Js 运行机制有一个大体的了解了。那么对于 setTimeout、setInterval 这两个计时器，大家可能发现了，它不一定按我们设置的时延精准地去执行回调。在下一篇文章中，我会详细给大家讲讲。</p>
+<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><p><a href="https://segmentfault.com/a/1190000012925872" target="_blank" rel="noopener">从浏览器多进程到JS单线程，JS运行机制最全面的一次梳理</a><br><a href="https://mp.weixin.qq.com/s/2fnJADWMneTg6Zxl_oVahA" target="_blank" rel="noopener">8张图帮你一步步看清 async/await 和 promise 的执行顺序</a></p>
 
       
     </div>
@@ -430,7 +467,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Xss攻击/" rel="tag"># Xss攻击</a>
+            <a href="/tags/Js基础/" rel="tag"># Js基础</a>
           
         </div>
       
@@ -443,8 +480,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/聊聊混合开发/" rel="next" title="聊聊混合开发">
-                <i class="fa fa-chevron-left"></i> 聊聊混合开发
+              <a href="/Hybrid-Android-app键盘遮挡问题/" rel="next" title="Hybrid Android app 键盘遮挡问题">
+                <i class="fa fa-chevron-left"></i> Hybrid Android app 键盘遮挡问题
               </a>
             
           </div>
@@ -452,10 +489,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/Unexpected-strict-mode-reserved-word-报错/" rel="prev" title="Unexpected strict mode reserved word 报错">
-                Unexpected strict mode reserved word 报错 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -612,7 +645,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是-XSS-攻击？"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x4EC0;&#x4E48;&#x662F;-XSS-&#x653B;&#x51FB;&#xFF1F;" class="headerlink" title="&#x4EC0;&#x4E48;&#x662F; XSS &#x653B;&#x51FB;&#xFF1F;"></a>&#x4EC0;&#x4E48;&#x662F; XSS &#x653B;&#x51FB;&#xFF1F;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#XSS-本质"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#XSS-&#x672C;&#x8D28;" class="headerlink" title="XSS &#x672C;&#x8D28;"></a>XSS &#x672C;&#x8D28;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注入方式"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#&#x6CE8;&#x5165;&#x65B9;&#x5F0F;" class="headerlink" title="&#x6CE8;&#x5165;&#x65B9;&#x5F0F;"></a>&#x6CE8;&#x5165;&#x65B9;&#x5F0F;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#XSS-分类"><span class="nav-number">2.</span> <span class="nav-text"><a href="#XSS-&#x5206;&#x7C7B;" class="headerlink" title="XSS &#x5206;&#x7C7B;"></a>XSS &#x5206;&#x7C7B;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#存储型-XSS"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#&#x5B58;&#x50A8;&#x578B;-XSS" class="headerlink" title="&#x5B58;&#x50A8;&#x578B; XSS"></a>&#x5B58;&#x50A8;&#x578B; XSS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反射型-XSS"><span class="nav-number">2.2.</span> <span class="nav-text"><a href="#&#x53CD;&#x5C04;&#x578B;-XSS" class="headerlink" title="&#x53CD;&#x5C04;&#x578B; XSS"></a>&#x53CD;&#x5C04;&#x578B; XSS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM-型-XSS"><span class="nav-number">2.3.</span> <span class="nav-text"><a href="#DOM-&#x578B;-XSS" class="headerlink" title="DOM &#x578B; XSS"></a>DOM &#x578B; XSS</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#XSS-攻击预防"><span class="nav-number">3.</span> <span class="nav-text"><a href="#XSS-&#x653B;&#x51FB;&#x9884;&#x9632;" class="headerlink" title="XSS &#x653B;&#x51FB;&#x9884;&#x9632;"></a>XSS &#x653B;&#x51FB;&#x9884;&#x9632;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#防止攻击者提交恶意代码"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#&#x9632;&#x6B62;&#x653B;&#x51FB;&#x8005;&#x63D0;&#x4EA4;&#x6076;&#x610F;&#x4EE3;&#x7801;" class="headerlink" title="&#x9632;&#x6B62;&#x653B;&#x51FB;&#x8005;&#x63D0;&#x4EA4;&#x6076;&#x610F;&#x4EE3;&#x7801;"></a>&#x9632;&#x6B62;&#x653B;&#x51FB;&#x8005;&#x63D0;&#x4EA4;&#x6076;&#x610F;&#x4EE3;&#x7801;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#防止浏览器执行恶意代码"><span class="nav-number">3.2.</span> <span class="nav-text"><a href="#&#x9632;&#x6B62;&#x6D4F;&#x89C8;&#x5668;&#x6267;&#x884C;&#x6076;&#x610F;&#x4EE3;&#x7801;" class="headerlink" title="&#x9632;&#x6B62;&#x6D4F;&#x89C8;&#x5668;&#x6267;&#x884C;&#x6076;&#x610F;&#x4EE3;&#x7801;"></a>&#x9632;&#x6B62;&#x6D4F;&#x89C8;&#x5668;&#x6267;&#x884C;&#x6076;&#x610F;&#x4EE3;&#x7801;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分析一"><span class="nav-number">3.2.1.</span> <span class="nav-text"><a href="#&#x5206;&#x6790;&#x4E00;" class="headerlink" title="&#x5206;&#x6790;&#x4E00;"></a>&#x5206;&#x6790;&#x4E00;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析二"><span class="nav-number">3.2.2.</span> <span class="nav-text"><a href="#&#x5206;&#x6790;&#x4E8C;" class="headerlink" title="&#x5206;&#x6790;&#x4E8C;"></a>&#x5206;&#x6790;&#x4E8C;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他-XSS-预防"><span class="nav-number">3.3.</span> <span class="nav-text"><a href="#&#x5176;&#x4ED6;-XSS-&#x9884;&#x9632;" class="headerlink" title="&#x5176;&#x4ED6; XSS &#x9884;&#x9632;"></a>&#x5176;&#x4ED6; XSS &#x9884;&#x9632;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文章"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x53C2;&#x8003;&#x6587;&#x7AE0;" class="headerlink" title="&#x53C2;&#x8003;&#x6587;&#x7AE0;"></a>&#x53C2;&#x8003;&#x6587;&#x7AE0;</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#闲言"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x95F2;&#x8A00;" class="headerlink" title="&#x95F2;&#x8A00;"></a>&#x95F2;&#x8A00;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#浏览器内核"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x6D4F;&#x89C8;&#x5668;&#x5185;&#x6838;" class="headerlink" title="&#x6D4F;&#x89C8;&#x5668;&#x5185;&#x6838;"></a>&#x6D4F;&#x89C8;&#x5668;&#x5185;&#x6838;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Js-运行机制"><span class="nav-number">3.</span> <span class="nav-text"><a href="#Js-&#x8FD0;&#x884C;&#x673A;&#x5236;" class="headerlink" title="Js &#x8FD0;&#x884C;&#x673A;&#x5236;"></a>Js &#x8FD0;&#x884C;&#x673A;&#x5236;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器的-Event-Loop（事件循环）"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#&#x6D4F;&#x89C8;&#x5668;&#x7684;-Event-Loop&#xFF08;&#x4E8B;&#x4EF6;&#x5FAA;&#x73AF;&#xFF09;" class="headerlink" title="&#x6D4F;&#x89C8;&#x5668;&#x7684; Event Loop&#xFF08;&#x4E8B;&#x4EF6;&#x5FAA;&#x73AF;&#xFF09;"></a>&#x6D4F;&#x89C8;&#x5668;&#x7684; Event Loop&#xFF08;&#x4E8B;&#x4EF6;&#x5FAA;&#x73AF;&#xFF09;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Event-Loop-如何处理宏任务与微任务"><span class="nav-number">3.2.</span> <span class="nav-text"><a href="#Event-Loop-&#x5982;&#x4F55;&#x5904;&#x7406;&#x5B8F;&#x4EFB;&#x52A1;&#x4E0E;&#x5FAE;&#x4EFB;&#x52A1;" class="headerlink" title="Event Loop &#x5982;&#x4F55;&#x5904;&#x7406;&#x5B8F;&#x4EFB;&#x52A1;&#x4E0E;&#x5FAE;&#x4EFB;&#x52A1;"></a>Event Loop &#x5982;&#x4F55;&#x5904;&#x7406;&#x5B8F;&#x4EFB;&#x52A1;&#x4E0E;&#x5FAE;&#x4EFB;&#x52A1;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码示例"><span class="nav-number">3.2.1.</span> <span class="nav-text"><a href="#&#x4EE3;&#x7801;&#x793A;&#x4F8B;" class="headerlink" title="&#x4EE3;&#x7801;&#x793A;&#x4F8B;"></a>&#x4EE3;&#x7801;&#x793A;&#x4F8B;</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文章"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x53C2;&#x8003;&#x6587;&#x7AE0;" class="headerlink" title="&#x53C2;&#x8003;&#x6587;&#x7AE0;"></a>&#x53C2;&#x8003;&#x6587;&#x7AE0;</span></a></li></ol></div>
             
 
           </div>

@@ -4,12 +4,32 @@
 
     
   <url>
-    <loc>https://animalofcoder.github.io/Hybrid-Android-app%E9%94%AE%E7%9B%98%E9%81%AE%E6%8C%A1%E9%97%AE%E9%A2%98/</loc>
-    <lastmod>2018-12-15T03:02:59.567Z</lastmod>
+    <loc>https://animalofcoder.github.io/%E8%81%8A%E8%81%8AJs%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6/</loc>
+    <lastmod>2018-12-22T05:02:57.821Z</lastmod>
     <data>
         <display>
-        <title>Hybrid Android app 键盘遮挡问题</title>
-        <pubTime>2018-12-12T10:30:27.000Z</pubTime>
+        <title>聊聊Js运行机制</title>
+        <pubTime>2018-12-16T05:04:19.000Z</pubTime>
+        
+        <tag>Js基础</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端技术" url="https://animalofcoder.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://animalofcoder.github.io/Unexpected-strict-mode-reserved-word-%E6%8A%A5%E9%94%99/</loc>
+    <lastmod>2018-12-16T04:03:00.279Z</lastmod>
+    <data>
+        <display>
+        <title>Unexpected strict mode reserved word 报错</title>
+        <pubTime>2018-12-11T07:38:24.000Z</pubTime>
         
         <tag>移动端</tag>
          
@@ -23,13 +43,14 @@
     </url>
 
     
+    
   <url>
-    <loc>https://animalofcoder.github.io/Unexpected-strict-mode-reserved-word-%E6%8A%A5%E9%94%99/</loc>
-    <lastmod>2018-12-12T03:13:13.388Z</lastmod>
+    <loc>https://animalofcoder.github.io/Hybrid-Android-app%E9%94%AE%E7%9B%98%E9%81%AE%E6%8C%A1%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2018-12-15T03:02:59.567Z</lastmod>
     <data>
         <display>
-        <title>Unexpected strict mode reserved word 报错</title>
-        <pubTime>2018-12-11T07:38:24.000Z</pubTime>
+        <title>Hybrid Android app 键盘遮挡问题</title>
+        <pubTime>2018-12-12T10:30:27.000Z</pubTime>
         
         <tag>移动端</tag>
          
@@ -302,7 +323,6 @@
     </data>
     </url>
 
-    
     
   <url>
     <loc>https://animalofcoder.github.io/%E8%81%8A%E8%81%8A%E8%B7%A8%E5%9F%9F/</loc>

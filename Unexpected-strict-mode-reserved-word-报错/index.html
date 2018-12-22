@@ -94,7 +94,7 @@
 <meta property="og:image" content="https://animalofcoder.github.io/img/20181211/3.jpg">
 <meta property="og:image" content="https://animalofcoder.github.io/img/20181211/2.jpg">
 <meta property="og:image" content="https://animalofcoder.github.io/img/20181211/4.jpg">
-<meta property="og:updated_time" content="2018-12-12T03:13:13.388Z">
+<meta property="og:updated_time" content="2018-12-16T04:03:00.279Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Unexpected strict mode reserved word 报错">
 <meta name="twitter:description" content="描述今天同事在做混合 App 方案演示的时候遇到个问题，如图：Pad 信息：华为，Android 5.1.1 分析报错的意思是在严格模式下使用了保留关键字，一般是因为变量命名使用了保留关键字，但是同事拿的代码版本就是从我这拿的（我们按照ESlint规范进行开发的），这个情况基本可以排除。我这边 Pad 信息：联想，Android 6.0同一套代码，在编译时没问题，运行在不同设备上出问题了，那应该就">
@@ -373,7 +373,7 @@
       
         <h1 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h1><p>今天同事在做混合 App 方案演示的时候遇到个问题，如图：<br><img src="/img/20181211/1.jpg"><br>Pad 信息：华为，Android 5.1.1</p>
 <h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>报错的意思是在严格模式下使用了保留关键字，一般是因为变量命名使用了保留关键字，但是同事拿的代码版本就是从我这拿的（我们按照ESlint规范进行开发的），这个情况基本可以排除。<br>我这边 Pad 信息：联想，Android 6.0<br>同一套代码，在编译时没问题，运行在不同设备上出问题了，那应该就是兼容性的问题了。顺着这个思路，既然是 Js 语法的问题，那八九不离十，应该就是 ES6 语法转换可能出了问题。我查了一下配置 babel 的文件，如下：<br><img src="/img/20181211/5.jpg"><br>babel 主要处理的目录是 src，这是我们代码的主目录，其他处理的文件我都去对应看过了，然后左右对比，问题大约定位在 ab-manager 这个目录，它没被 babel 处理。这个目录主要是存放公司产品部提供的一些 Js 库，因为 ES6 并不是被所有系统兼容的，所以一般都是用 ES5 来开发，用 ES6 开发的也会转成 ES5。插件虽然不算很多，但我总不能挨个文档去查吧。</p>
-<p>我的思路：既然会报错，那么应该就可以定位到原始代码行，而不是定位到打包后的代码，webpack 的 devtool 属性可以配置 source map 来定位报错，我查了一下配置文件已经配置了开发环境下 devtool 配置是  cheap-eval-source-map。但是在 npm run build 的时候是将环境设置成 product 的，因此把环境改一下，然后打个包放到 pad 上应该就可以定位报错行了。<br>尴尬的是，同事那边项目比较忙，直接升级 android 系统到 6.0 了，我手头上没有 5.0 的 pad。那只能装个模拟器了。由于公司没外网，这个验证我留到周末去验证吧（节省一波流量-、-）。</p>
+<p>我的思路：既然会报错，那么应该就可以定位到原始代码行，而不是定位到打包后的代码，webpack 的 devtool 属性可以配置 source map 来定位报错，我查了一下配置文件已经配置了开发环境下 devtool 配置是  cheap-eval-source-map。但是在 npm run build 的时候是将环境设置成 product 的，因此把环境改一下，然后打个包放到 pad 上应该就可以定位报错行了。<br>尴尬的是，同事那边项目比较忙，直接升级 android 系统到 6.0 了，我手头上没有 5.0 的 pad。那只能装个模拟器了，但是我装了模拟器，在 run 程序的时候，报错了，不知道是不是公司做了一些安全措施，这个问题只能暂时搁置了。</p>
 <h2 id="插曲"><a href="#插曲" class="headerlink" title="插曲"></a>插曲</h2><p>我在查问题时，看到 <a href="https://www.jianshu.com/p/c038a935a187" target="_blank" rel="noopener">《关于”Unexpected strict mode reserved word”的其他出错可能》</a> 作者提到他定位的问题是 let 关键字并未转成 ES5 语法。然后我抱着一试的心态去 dist/static/js/app.js 里全局搜索 let，竟然被我查到了。<br><img src="/img/20181211/3.jpg"><br>那么问题基本清楚了：Android 5.1.1 不支持 ES6 let 语法，而 Android 6.0 支持。</p>
 <p>兼容性如下图：<br><img src="/img/20181211/2.jpg"><br>可以看出，let 在 Android 6及以上是完全兼容的。5-6是不完全兼容，5以下完全不兼容。<br>兼容性相关的查询，大家可以参考 <a href="https://caniuse.com/#search=let" target="_blank" rel="noopener">https://caniuse.com/#search=let</a> （需要翻墙）。</p>
 <h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><p><img src="/img/20181211/4.jpg"><br>只需要将 ab-manager 目录下的配置进去即可。当然，最优的是配置存在 ES6 语法的文件，但是为了防止产品同事开发不小心使用了 ES6 语法没转换就丢给我们，然后弄得方案部同事焦头烂额，所以我直接配的是整个目录。其实还有个考虑，就是在 app.js 通过直接查找 let 这个操作并不是很可靠，因为还可能存在其他的 ES6 语法，所以最保险的就是整个目录转了。</p>
@@ -505,7 +505,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
