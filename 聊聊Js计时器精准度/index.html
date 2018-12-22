@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Js," />
 
 
 
@@ -81,17 +81,20 @@
 
 
 
-<meta name="description" content="人一定要保持优秀">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Tagcloud">
-<meta property="og:url" content="https://animalofcoder.github.io/tags/index.html">
+<meta name="description" content="闲言在上篇文章中，我们系统了解了 Js 运行机制，我们接着来说说 Js 计时器的精准度问题。计时器功能主要由 setTimeout() 和 setInterval() 这两个函数来完成，它们的内部运行机制完全一样，区别在于前者指定的代码是一次性执行，后者则为反复执行。我们直接来看一些例子吧。 定时器时延无法保证setTimeout： let time1 = new Date().getTime()">
+<meta name="keywords" content="Js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="聊聊Js计时器精准度">
+<meta property="og:url" content="https://animalofcoder.github.io/聊聊Js计时器精准度/index.html">
 <meta property="og:site_name" content="CKR技术博客">
-<meta property="og:description" content="人一定要保持优秀">
+<meta property="og:description" content="闲言在上篇文章中，我们系统了解了 Js 运行机制，我们接着来说说 Js 计时器的精准度问题。计时器功能主要由 setTimeout() 和 setInterval() 这两个函数来完成，它们的内部运行机制完全一样，区别在于前者指定的代码是一次性执行，后者则为反复执行。我们直接来看一些例子吧。 定时器时延无法保证setTimeout： let time1 = new Date().getTime()">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-11T05:48:58.000Z">
+<meta property="og:image" content="https://animalofcoder.github.io/img/20181222/1.jpg">
+<meta property="og:updated_time" content="2018-12-22T09:17:58.027Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Tagcloud">
-<meta name="twitter:description" content="人一定要保持优秀">
+<meta name="twitter:title" content="聊聊Js计时器精准度">
+<meta name="twitter:description" content="闲言在上篇文章中，我们系统了解了 Js 运行机制，我们接着来说说 Js 计时器的精准度问题。计时器功能主要由 setTimeout() 和 setInterval() 这两个函数来完成，它们的内部运行机制完全一样，区别在于前者指定的代码是一次性执行，后者则为反复执行。我们直接来看一些例子吧。 定时器时延无法保证setTimeout： let time1 = new Date().getTime()">
+<meta name="twitter:image" content="https://animalofcoder.github.io/img/20181222/1.jpg">
 
 
 
@@ -121,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="https://animalofcoder.github.io/tags/"/>
+  <link rel="canonical" href="https://animalofcoder.github.io/聊聊Js计时器精准度/"/>
 
 
 
 
 
-  <title>Tagcloud | CKR技术博客</title>
+  <title>聊聊Js计时器精准度 | CKR技术博客</title>
   
 
 
@@ -252,40 +255,239 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://animalofcoder.github.io/聊聊Js计时器精准度/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈柯蓉">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CKR技术博客">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">Tagcloud</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-                目前共计 17 个标签
-            </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/Cordova-Vue/" style="font-size: 12px; color: #ccc">Cordova+Vue</a> <a href="/tags/Css/" style="font-size: 16.5px; color: #9d9d9d">Css</a> <a href="/tags/ES6/" style="font-size: 16.5px; color: #9d9d9d">ES6</a> <a href="/tags/Hexo/" style="font-size: 12px; color: #ccc">Hexo</a> <a href="/tags/Js/" style="font-size: 21px; color: #6f6f6f">Js</a> <a href="/tags/Js基础/" style="font-size: 30px; color: #111">Js基础</a> <a href="/tags/Mac/" style="font-size: 12px; color: #ccc">Mac</a> <a href="/tags/Vue2-0/" style="font-size: 12px; color: #ccc">Vue2.0</a> <a href="/tags/Xss攻击/" style="font-size: 12px; color: #ccc">Xss攻击</a> <a href="/tags/ios/" style="font-size: 12px; color: #ccc">ios</a> <a href="/tags/ios-Cordova/" style="font-size: 12px; color: #ccc">ios+Cordova</a> <a href="/tags/字符串篇/" style="font-size: 12px; color: #ccc">字符串篇</a> <a href="/tags/数组篇/" style="font-size: 12px; color: #ccc">数组篇</a> <a href="/tags/移动端/" style="font-size: 25.5px; color: #404040">移动端</a> <a href="/tags/跨域/" style="font-size: 12px; color: #ccc">跨域</a> <a href="/tags/通讯协议/" style="font-size: 12px; color: #ccc">通讯协议</a> <a href="/tags/链表篇/" style="font-size: 12px; color: #ccc">链表篇</a>
-            </div>
-          </div>
+          <h1 class="post-title" itemprop="name headline">聊聊Js计时器精准度</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-22T13:06:17+08:00">
+                2018-12-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端技术/" itemprop="url" rel="index">
+                    <span itemprop="name">前端技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/聊聊Js计时器精准度/" class="leancloud_visitors" data-flag-title="聊聊Js计时器精准度">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h1 id="闲言"><a href="#闲言" class="headerlink" title="闲言"></a>闲言</h1><p>在上篇文章中，我们系统了解了 Js 运行机制，我们接着来说说 Js 计时器的精准度问题。<br>计时器功能主要由 setTimeout() 和 setInterval() 这两个函数来完成，它们的内部运行机制完全一样，区别在于前者指定的代码是一次性执行，后者则为反复执行。<br>我们直接来看一些例子吧。</p>
+<h1 id="定时器时延无法保证"><a href="#定时器时延无法保证" class="headerlink" title="定时器时延无法保证"></a>定时器时延无法保证</h1><p><strong>setTimeout：</strong></p>
+<pre><code>let time1 = new Date().getTime();
+setTimeout(() =&gt; {
+ let time2 = new Date().getTime();
+ console.log(&quot;setTimeout执行的差值时间：&quot; + (time2-time1)/1000 + &apos;s&apos;);
+},1000);
+
+for (let i = 0; i &lt; 10000; i++) {
+    console.log(&apos;setTimeout&apos;);
+}
+/*
+10000setTimeout
+setTimeout执行的差值时间：1.206s
+*/
+</code></pre><p>大家可以去浏览器跑一下这段代码，会发现每次结果都不一样，相差的秒数都是大于 1s 的，因为 setTimeout 的回调执行要等到主线程上的 for 循环跑完。<br>说明：HTML5 标准规定了 setTimeout() 的第二个参数的最小值（最短间隔），不得低于 4 毫秒，如果低于这个值，就会自动增加。在此之前，老版本的浏览器都将最短间隔设为10毫秒。<br><strong>setInterval：</strong></p>
+<pre><code>let time1 = new Date().getTime();
+setInterval(() =&gt; {
+ let time2 = new Date().getTime();
+ console.log(&quot;setInterval执行的差值时间：&quot; + (time2-time1)/1000 + &apos;s&apos;);
+}, 1000);
+
+/*
+setInterval执行的差值时间：1.001s
+setInterval执行的差值时间：2.001s
+setInterval执行的差值时间：3.003s
+setInterval执行的差值时间：4.004s
+setInterval执行的差值时间：5s
+setInterval执行的差值时间：6.006s
+setInterval执行的差值时间：7.004s
+setInterval执行的差值时间：8.003s
+setInterval执行的差值时间：9.005s
+setInterval执行的差值时间：10.004s
+*/
+</code></pre><p>对于 setInterval，都不需要让它去等待主线程，它本身就不准。</p>
+<h1 id="疑问"><a href="#疑问" class="headerlink" title="疑问"></a>疑问</h1><p>我在这篇博客 <a href="https://fanyi.baidu.com/translate#en/zh/" target="_blank" rel="noopener">https://fanyi.baidu.com/translate#en/zh/</a> （需要梯子）中看到这张图：<br><img src="/img/20181222/1.jpg"><br>我们注意到图中标红的 Dropped! ，作者观点的大致意思是：setInterval 的回调在任务队列排队阶段，若此时未等到执行，并又一次触发回调时（达到指定的时延），该回调将会被移除。<br>这使得我比较困惑，我用如下代码验证了一下：</p>
+<pre><code>let time1 = new Date().getTime();
+setInterval(() =&gt; {
+     let time2 = new Date().getTime();
+     console.log(&quot;setInterval执行的差值时间：&quot; + (time2-time1) + &apos;ms&apos;);
+}, 1000);
+for (let i = 0; i &lt; 10000; i++) {
+    console.log(&quot;任务执行中&quot;)
+}
+/*
+setInterval执行的差值时间：1163ms
+setInterval执行的差值时间：2000ms
+setInterval执行的差值时间：3002ms
+setInterval执行的差值时间：4002ms
+setInterval执行的差值时间：5003ms
+setInterval执行的差值时间：6004ms
+setInterval执行的差值时间：7004ms
+setInterval执行的差值时间：8004ms
+setInterval执行的差值时间：9003ms
+setInterval执行的差值时间：10003ms
+setInterval执行的差值时间：11004ms
+setInterval执行的差值时间：12006ms
+setInterval执行的差值时间：13005ms
+setInterval执行的差值时间：14005ms
+setInterval执行的差值时间：15001ms
+*/
+</code></pre><p>发现并没有出现被移除的情况，执行时，直接输入了 4 行。然后每隔一秒输出一次。</p>
+<p>因为在好多博客中看到那张图，终于找到了出处，本来跑完这代码以后，验证了这个结论有问题后，我就不打算说了的，但是查了一下作者是：<br>John Resig，jQuery 的创始人和技术领袖，目前在 Mozilla 担任 JavaScript 工具开发工程师。于是我去搜了一下相关的问题，但是始终没有找到答案，于是我尝试去给作者提问，看看咋说。<br>未完待续。。。。。。</p>
+
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Js/" rel="tag"># Js</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/聊聊Js运行机制/" rel="next" title="聊聊Js运行机制">
+                <i class="fa fa-chevron-left"></i> 聊聊Js运行机制
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -294,6 +496,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMzc5NC8xMDM0Nw=="></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -314,8 +525,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -395,6 +615,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#闲言"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x95F2;&#x8A00;" class="headerlink" title="&#x95F2;&#x8A00;"></a>&#x95F2;&#x8A00;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定时器时延无法保证"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x5B9A;&#x65F6;&#x5668;&#x65F6;&#x5EF6;&#x65E0;&#x6CD5;&#x4FDD;&#x8BC1;" class="headerlink" title="&#x5B9A;&#x65F6;&#x5668;&#x65F6;&#x5EF6;&#x65E0;&#x6CD5;&#x4FDD;&#x8BC1;"></a>&#x5B9A;&#x65F6;&#x5668;&#x65F6;&#x5EF6;&#x65E0;&#x6CD5;&#x4FDD;&#x8BC1;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#疑问"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x7591;&#x95EE;" class="headerlink" title="&#x7591;&#x95EE;"></a>&#x7591;&#x95EE;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -561,6 +797,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
