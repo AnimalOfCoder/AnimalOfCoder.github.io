@@ -4,6 +4,46 @@
 
     
   <url>
+    <loc>https://animalofcoder.github.io/%E8%81%8A%E8%81%8AJs%E7%9A%84%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2019-01-02T06:17:11.805Z</lastmod>
+    <data>
+        <display>
+        <title>聊聊Js的精度问题</title>
+        <pubTime>2018-05-03T12:55:48.000Z</pubTime>
+        
+        <tag>Js</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端技术" url="https://animalofcoder.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://animalofcoder.github.io/%E8%B0%88%E8%B0%88Js%E4%BD%9C%E7%94%A8%E5%9F%9F/</loc>
+    <lastmod>2018-12-24T13:07:12.638Z</lastmod>
+    <data>
+        <display>
+        <title>谈谈Js作用域</title>
+        <pubTime>2018-03-25T07:00:39.000Z</pubTime>
+        
+        <tag>Js基础</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端技术" url="https://animalofcoder.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://animalofcoder.github.io/%E8%81%8A%E8%81%8AJs%E8%AE%A1%E6%97%B6%E5%99%A8%E7%B2%BE%E5%87%86%E5%BA%A6/</loc>
     <lastmod>2018-12-22T09:17:58.027Z</lastmod>
     <data>
@@ -113,26 +153,6 @@
         <pubTime>2018-11-11T07:19:05.000Z</pubTime>
         
         <tag>Js基础</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端技术" url="https://animalofcoder.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://animalofcoder.github.io/%E8%81%8A%E8%81%8AJs%E7%9A%84%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/</loc>
-    <lastmod>2018-11-14T05:29:15.627Z</lastmod>
-    <data>
-        <display>
-        <title>聊聊Js的精度问题</title>
-        <pubTime>2018-05-03T12:55:48.000Z</pubTime>
-        
-        <tag>Js</tag>
          
          
            
@@ -411,26 +431,6 @@
         <display>
         <title>谈谈Js中的原型</title>
         <pubTime>2018-03-24T03:36:08.000Z</pubTime>
-        
-        <tag>Js基础</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端技术" url="https://animalofcoder.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://animalofcoder.github.io/%E8%B0%88%E8%B0%88Js%E4%BD%9C%E7%94%A8%E5%9F%9F/</loc>
-    <lastmod>2018-07-05T02:35:36.512Z</lastmod>
-    <data>
-        <display>
-        <title>谈谈Js作用域</title>
-        <pubTime>2018-03-25T07:00:39.000Z</pubTime>
         
         <tag>Js基础</tag>
          
