@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="ES6," />
+  <meta name="keywords" content="Js作用域," />
 
 
 
@@ -81,25 +81,18 @@
 
 
 
-<meta name="description" content="问题PM提了个需求：查询广告 接口上送的 PlayRuleId（广告字段）的值改成可配置的，而这个值会在 查询数据字典 接口中返回。 交易流程：调用 查询数据字典 接口，然后将结果存储到 store 里，数据字典文件通过一个 getDictJson 函数获取到处理后的数据字典，在需要使用数据字典的页面 import 数据字典文件对应变量即可。 数据字典文件 newCenterDict.js 如下：">
-<meta name="keywords" content="ES6">
+<meta name="description" content="变量对象Variable Object，简称 VO，它是一个与执行上下文相关的特殊对象。它存储着在上下文中定义的：  变量声明函数声明 (FunctionDeclaration，FD)函数的形参  我们可以把 VO 理解为执行上下文的一个属性（property）。当我们声明一个变量或一个函数的时候，就像我们为 VO 增加一个新属性一样。 变量对象只是一个抽象概念。(从本质上说，在具体执行上下文中，">
+<meta name="keywords" content="Js作用域">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ES6模块加载问题">
-<meta property="og:url" content="https://animalofcoder.github.io/ES6模块加载问题/index.html">
+<meta property="og:title" content="深入Js作用域：变量对象">
+<meta property="og:url" content="https://animalofcoder.github.io/深入Js作用域：变量对象/index.html">
 <meta property="og:site_name" content="CKR技术博客">
-<meta property="og:description" content="问题PM提了个需求：查询广告 接口上送的 PlayRuleId（广告字段）的值改成可配置的，而这个值会在 查询数据字典 接口中返回。 交易流程：调用 查询数据字典 接口，然后将结果存储到 store 里，数据字典文件通过一个 getDictJson 函数获取到处理后的数据字典，在需要使用数据字典的页面 import 数据字典文件对应变量即可。 数据字典文件 newCenterDict.js 如下：">
+<meta property="og:description" content="变量对象Variable Object，简称 VO，它是一个与执行上下文相关的特殊对象。它存储着在上下文中定义的：  变量声明函数声明 (FunctionDeclaration，FD)函数的形参  我们可以把 VO 理解为执行上下文的一个属性（property）。当我们声明一个变量或一个函数的时候，就像我们为 VO 增加一个新属性一样。 变量对象只是一个抽象概念。(从本质上说，在具体执行上下文中，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://animalofcoder.github.io/img/20181027/1.jpg">
-<meta property="og:image" content="https://animalofcoder.github.io/img/20181027/6.jpg">
-<meta property="og:image" content="https://animalofcoder.github.io/img/20181027/2.jpg">
-<meta property="og:image" content="https://animalofcoder.github.io/img/20181027/3.jpg">
-<meta property="og:image" content="https://animalofcoder.github.io/img/20181027/4.jpg">
-<meta property="og:image" content="https://animalofcoder.github.io/img/20181027/5.jpg">
-<meta property="og:updated_time" content="2018-10-29T08:14:26.651Z">
+<meta property="og:updated_time" content="2019-01-08T11:55:14.237Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ES6模块加载问题">
-<meta name="twitter:description" content="问题PM提了个需求：查询广告 接口上送的 PlayRuleId（广告字段）的值改成可配置的，而这个值会在 查询数据字典 接口中返回。 交易流程：调用 查询数据字典 接口，然后将结果存储到 store 里，数据字典文件通过一个 getDictJson 函数获取到处理后的数据字典，在需要使用数据字典的页面 import 数据字典文件对应变量即可。 数据字典文件 newCenterDict.js 如下：">
-<meta name="twitter:image" content="https://animalofcoder.github.io/img/20181027/1.jpg">
+<meta name="twitter:title" content="深入Js作用域：变量对象">
+<meta name="twitter:description" content="变量对象Variable Object，简称 VO，它是一个与执行上下文相关的特殊对象。它存储着在上下文中定义的：  变量声明函数声明 (FunctionDeclaration，FD)函数的形参  我们可以把 VO 理解为执行上下文的一个属性（property）。当我们声明一个变量或一个函数的时候，就像我们为 VO 增加一个新属性一样。 变量对象只是一个抽象概念。(从本质上说，在具体执行上下文中，">
 
 
 
@@ -129,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://animalofcoder.github.io/ES6模块加载问题/"/>
+  <link rel="canonical" href="https://animalofcoder.github.io/深入Js作用域：变量对象/"/>
 
 
 
 
 
-  <title>ES6模块加载问题 | CKR技术博客</title>
+  <title>深入Js作用域：变量对象 | CKR技术博客</title>
   
 
 
@@ -272,7 +265,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://animalofcoder.github.io/ES6模块加载问题/">
+    <link itemprop="mainEntityOfPage" href="https://animalofcoder.github.io/深入Js作用域：变量对象/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="陈柯蓉">
@@ -289,7 +282,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">ES6模块加载问题</h1>
+          <h1 class="post-title" itemprop="name headline">深入Js作用域：变量对象</h1>
         
 
         <div class="post-meta">
@@ -301,8 +294,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-27T16:43:44+08:00">
-                2018-10-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-08T18:45:21+08:00">
+                2019-01-08
               </time>
             
 
@@ -341,7 +334,7 @@
 
           
           
-             <span id="/ES6模块加载问题/" class="leancloud_visitors" data-flag-title="ES6模块加载问题">
+             <span id="/深入Js作用域：变量对象/" class="leancloud_visitors" data-flag-title="深入Js作用域：变量对象">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -372,168 +365,128 @@
       
 
       
-        <h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>PM提了个需求：<strong>查询广告</strong> 接口上送的 PlayRuleId（广告字段）的值改成可配置的，而这个值会在 <strong>查询数据字典</strong> 接口中返回。</p>
-<p>交易流程：调用 查询数据字典 接口，然后将结果存储到 store 里，数据字典文件通过一个 getDictJson 函数获取到处理后的数据字典，在需要使用数据字典的页面 import 数据字典文件对应变量即可。</p>
-<p>数据字典文件 newCenterDict.js 如下：<br><img src="/img/20181027/1.jpg"><br>其中 dictTran.js 如下：<br><img src="/img/20181027/6.jpg"></p>
-<p>由于，<strong>查询数据字典</strong> 与 <strong>查询广告</strong> 接口是在同一个vue页面 shopShow.vue，因此我在 shopShow.vue 中 import newCenterDict.js 中的变量时，会导致变量是 []，并且会导致后续路由到的界面（凡是import newCenterDict.js文件中的变量）都获取到 []。</p>
-<p>记得阮一峰老师在ES6中对于模块加载有说过：ES6 的 import 原始值变了，import加载的值也会跟着变，ES6 模块是动态引用，并且不会缓存值，模块里面的变量绑定其所在的模块。但是现在遇到的情况好像不是这样，因为阮老师博客验证的是基本类型赋值，于是我写了个 demo 来验证我的一些猜想。</p>
-<h1 id="探究"><a href="#探究" class="headerlink" title="探究"></a>探究</h1><p>我直接用 vue-cli 搭建了个 vue 工程，然后简单配置了两个路由，分别从 App.vue 路由到 test.vue、anotherTest.vue。<br>demo 目录如下：<br><img src="/img/20181027/2.jpg"></p>
-<h2 id="猜想：export-的变量是引用赋值，被引用对象改变，import-的变量会跟着变"><a href="#猜想：export-的变量是引用赋值，被引用对象改变，import-的变量会跟着变" class="headerlink" title="猜想：export 的变量是引用赋值，被引用对象改变，import 的变量会跟着变"></a>猜想：export 的变量是引用赋值，被引用对象改变，import 的变量会跟着变</h2><h3 id="验证一"><a href="#验证一" class="headerlink" title="验证一"></a>验证一</h3><p>思路：模块 export 一个方法，该方法可以改变模块中变量的引用。</p>
-<p>test1.js:</p>
-<pre><code>let Obj = {
-    key : &apos;1&apos;
-};
-
-export var Big_Value = Obj;
-
-export function change_BigValue() {
-    Obj.key = &apos;2&apos;;
-    console.log(&apos;test1.js里，change_BigValue调用，Big_Value值为：&apos;);
-    console.log(Big_Value)
+        <h1 id="变量对象"><a href="#变量对象" class="headerlink" title="变量对象"></a>变量对象</h1><p>Variable Object，简称 VO，它是一个与执行上下文相关的特殊对象。它存储着在上下文中定义的：</p>
+<blockquote>
+<p>变量声明<br>函数声明 (FunctionDeclaration，FD)<br>函数的形参</p>
+</blockquote>
+<p>我们可以把 VO 理解为执行上下文的一个属性（property）。当我们<strong>声明</strong>一个变量或一个函数的时候，就像我们为 VO 增加一个新属性一样。</p>
+<p>变量对象只是一个抽象概念。(从本质上说，在具体执行上下文中，VO 名称是不一样的，并且初始结构也不一样），对于所有类型的执行上下文来说，变量对象的一些操作(如变量初始化)和行为都是共通的。</p>
+<pre><code>抽象变量对象 VO (变量初始化过程的一般行为)
+  ║
+  ╠══&gt; 全局上下文变量对象 GlobalContextVO
+  ║    (VO === this === global)
+  ║
+  ╠══&gt; 函数上下文变量对象 FunctionContextVO
+  ║    (VO === AO, 并且添加了 arguments 和 formal parameters)
+</code></pre><p>无论有多少个函数上下文，但是全局上下文只有一个。</p>
+<h1 id="全局上下文VO"><a href="#全局上下文VO" class="headerlink" title="全局上下文VO"></a>全局上下文VO</h1><p>全局上下文的 VO 其实是我们非常熟悉的一个对象，全局对象(Global Object)：</p>
+<ul>
+<li>在进入任何执行上下文之前就已经创建了的对象</li>
+<li>只存在一份，它的属性在程序中任何地方都可以访问，生命周期终止于程序退出那一刻</li>
+</ul>
+<p>如：在客户端中 Js 中，全局对象就是 Window</p>
+<p><strong>注：</strong>只有全局上下文的 VO 允许通过 <strong>VO属性名称</strong> 来间接访问(因为在全局上下文里，全局对象自身就是变量对象)，在其它上下文中是不能直接访问 VO 对象的，因为它只是内部机制的一个实现。</p>
+<h1 id="函数上下文VO-AO"><a href="#函数上下文VO-AO" class="headerlink" title="函数上下文VO/AO"></a>函数上下文VO/AO</h1><p>只有到当进入一个执行上下文中，这个执行上下文的变量对象才会被激活，而只有被激活的变量对象，也就是活动对象上的各种属性才能被访问。</p>
+<p><strong><em>进入函数执行上下文之前</em></strong></p>
+<ul>
+<li>VO 中的属性是不能直接访问的。</li>
+</ul>
+<p><strong><em>进入函数执行上下文时</em></strong></p>
+<ul>
+<li>VO 转变成了活动对象(Activation Object，AO)，里面的属性都能被访问了，也就是说 AO 是在进入到执行上下文的时候被激活</li>
+<li>AO 通过函数的 arguments 属性初始化（arguments 属性的值是 Arguments 对象）。</li>
+</ul>
+<h1 id="处理上下文代码过程"><a href="#处理上下文代码过程" class="headerlink" title="处理上下文代码过程"></a>处理上下文代码过程</h1><p>执行上下文的代码被分成两个基本的阶段来处理：</p>
+<pre><code>1.创建阶段（进入执行上下文）
+2.执行代码
+</code></pre><p>变量对象的修改变化与这两个阶段紧密相关。</p>
+<p>注：这2个阶段的处理是一般行为，和上下文的类型无关（即在全局上下文和函数上下文中的表现是一样的）。</p>
+<h2 id="进入执行上下文"><a href="#进入执行上下文" class="headerlink" title="进入执行上下文"></a>进入执行上下文</h2><p>当进入执行上下文时（此时代码还没执行），VO 会按如下顺序进行初始化：</p>
+<blockquote>
+<p><strong>1.函数的所有形参(如果是在函数执行上下文中)</strong></p>
+<ul>
+<li>由名称和对应值组成的一个变量对象的属性被创建</li>
+<li>没有传递对应参数的，属性值为 undefined</li>
+</ul>
+<p><strong>2.函数声明(FunctionDeclaration，FD)</strong></p>
+<ul>
+<li>由名称和对应值（函数对象(function-object)）组成一个变量对象的属性被创建</li>
+<li>如果变量对象已经存在相同名称的属性，则完全替换这个属性</li>
+</ul>
+<p><strong>3.变量声明(VariableDeclaration，VD)</strong></p>
+<ul>
+<li>由名称和对应值（undefined）组成一个变量对象的属性被创建</li>
+<li>若变量名称跟已经声明的<strong>形式参数</strong>或<strong>函数</strong>相同，则变量声明不会干扰已经存在的这类属性</li>
+</ul>
+</blockquote>
+<p>例：</p>
+<pre><code>function test(a, b) {
+  var c = 10;
+  function d() {}
+  var e = function _e() {};
+  (function x() {});
 }
-</code></pre><p>test.vue:</p>
-<pre><code>&lt;template&gt;
-    &lt;div&gt;
-        &lt;h1&gt;测试&lt;/h1&gt;
-        &lt;div @click=&quot;back&quot;&gt;返回&lt;/div&gt;
-    &lt;/div&gt;
-&lt;/template&gt;
 
-&lt;script&gt;
-import router from &apos;../../router/index&apos;;
-import { Big_Value, change_BigValue } from &apos;../../test1&apos;;
-
-export default {
-    created() {
-        console.log(&apos;test.vue创建时 Big_Value：&apos;);
-        console.log(Big_Value);
-        change_BigValue();
-
-        console.log(&apos;test.vue调用 change_BigValue 后 Big_Value：&apos;);
-        console.log(Big_Value);
+test(10); // call
+</code></pre><p>进入函数 EC 时：</p>
+<pre><code>AO(test) = {
+    arguments: {
+    0: 1,
+    1: undefined,
+    length: 2
+},
+  a: 10,
+  b: undefined,
+  c: undefined,
+  d: &lt;reference to FunctionDeclaration &quot;d&quot;&gt;
+  e: undefined
+};
+</code></pre><p>注：AO 里并不包含函数 x 。这是因为 x 是一个函数表达式（FunctionExpression, FE）而不是函数声明，函数表达式不会影响变量对象。</p>
+<h2 id="执行代码"><a href="#执行代码" class="headerlink" title="执行代码"></a>执行代码</h2><p>在执行代码阶段，AO 已经拥有了属性(不过，并不是所有的属性都有值，大部分属性的值还是系统默认的初始值 undefined)。<br>此时会顺序执行代码，根据代码，修改变量对象的值。接上边例子，此时 AO：</p>
+<pre><code>AO(test) = {
+    arguments: {
+      0: 1,
+      1: undefined,
+      length: 2
     },
-    methods: {
-        back() {
-            router.push(&apos;/&apos;)
-        }
-    }
-}
-
-&lt;/script&gt;
-</code></pre><p>结果：<br><img src="/img/20181027/3.jpg"></p>
-<h3 id="验证二"><a href="#验证二" class="headerlink" title="验证二"></a>验证二</h3><p>思路：模块里通过 setTimeout 在5秒后改变导出的变量值，在引入变量的页面先打印该值，然后在10秒后再打印一次。</p>
-<p>test1.js</p>
-<pre><code>let Obj = {
-    key : &apos;1&apos;
+    a: 10,
+    b: undefined,
+    c: 10,
+    d: &lt;reference to FunctionDeclaration &quot;d&quot;&gt;
+    e: &lt;reference to FunctionDeclaration &quot;_e&quot;&gt;
 };
+</code></pre><h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><pre><code>console.log(foo);
 
-export var Big_Value = Obj;
-
-setTimeout(() =&gt; {
-    Obj.key = &apos;2&apos;;
-    console.log(&apos;test1.js里，在5秒后 Big_Value 变成：&apos;);
-    console.log(Big_Value);
-}, 5000);
-</code></pre><p>anotherTest.vue</p>
-<pre><code>&lt;template&gt;
-    &lt;div&gt;
-        &lt;h1&gt;另一个测试&lt;/h1&gt;
-        &lt;div @click=&quot;back&quot;&gt;返回&lt;/div&gt;
-    &lt;/div&gt;
-
-&lt;/template&gt;
-
-&lt;script&gt;
-    import { Big_Value } from &apos;../../test1&apos;;
-    import router from &apos;../../router/index&apos;;
-    export default {
-        created() {
-            console.log(&apos;anotherTest.vue创建时：&apos;);
-            console.log(Big_Value);
-            setTimeout(() =&gt; {
-                console.log(&apos;来自anotherTest，10秒后 Big_Value：&apos;);
-                console.log(Big_Value);
-            }, 10000);
-        },
-        methods: {
-            back() {
-                router.push(&apos;/&apos;)
-            }
-        }
-    }
-&lt;/script&gt;
-</code></pre><p>结果：<br><img src="/img/20181027/4.jpg"></p>
-<h3 id="验证三"><a href="#验证三" class="headerlink" title="验证三"></a>验证三</h3><p>还有一种引用类型-函数。虽然在 Js 中，函数也是对象。但是我遇到的问题，就是通过函数取值的。所以在此需要验证一下。</p>
-<p>test1.js：</p>
-<pre><code>console.warn(&apos;test1.js执行&apos;);
-
-let a = &quot;1&quot;
-function getValue() {
-    setTimeout(() =&gt; {
-        a = &apos;2&apos;;
-        console.log(&apos;5秒后 getValue 将 a 变成：&apos; + a);
-        console.log(&apos;此时 Big_Value：&apos; + Big_Value);
-    }, 5000);
-
-    return a;
+function foo(){
+    console.log(&quot;foo&quot;);
 }
 
-export var Big_Value = getValue();
-console.log(&apos;test1.js刚执行时，Big_Value：&apos; + Big_Value);
-</code></pre><p>test.vue:</p>
-<pre><code>&lt;template&gt;
-    &lt;div&gt;
-        &lt;h1&gt;测试&lt;/h1&gt;
-        &lt;div @click=&quot;back&quot;&gt;返回&lt;/div&gt;
-    &lt;/div&gt;
-&lt;/template&gt;
+var foo = 1;
+</code></pre><p>结果：打印函数。</p>
+<p><strong>分析：</strong>之前我们是用变量提升来解释的，现在我们可以更深一层，用变量对象来解释了，由 VO 的初始化顺序得知：若变量名跟已声明的函数相同，则变量声明不会干扰它。<br>也就是说，初始化会先处理函数声明，其次才处理变量声明</p>
+<h2 id="关于变量（拓展）"><a href="#关于变量（拓展）" class="headerlink" title="关于变量（拓展）"></a>关于变量（拓展）</h2><p>例一：</p>
+<pre><code>a = 10;
+</code></pre><p>分析：<br>这仅仅是给全局对象创建了一个新属性，然而它并不是变量，因为它不符合 ECMAScript 规范中的变量概念。它之所以能成为全局对象的属性，完全是因为 VO(globalContext) === global</p>
+<p>例二：</p>
+<pre><code>alert(a); // undefined
+alert(b); // Uncaught ReferenceError: b is not defined
 
-&lt;script&gt;
-    import router from &apos;../../router/index&apos;;
-    import { Big_Value } from &apos;../../test1&apos;;
+b = 10;
+var a = 20;
+</code></pre><p>分析：<br>根源仍然是 VO、进入上下文阶段、代码执行阶段。<br>在进入上下文阶段：</p>
+<pre><code>VO = {
+  a: undefined
+};
+</code></pre><p>我们可以看到，因为 b 不是一个变量，所以在这个阶段根本就没有 b，b 将在代码执行阶段才会出现（但是在我们这个例子里，还没有到那就已经出错了）。</p>
+<p>例三：</p>
+<pre><code>alert(a); // undefined, 这个大家都知道
 
-    export default {
-        created() {
-            console.log(&apos;test.vue创建时 Big_Value：&apos; + Big_Value);
+b = 10;
+alert(b); // 10, 代码执行阶段创建
 
-            setTimeout(() =&gt; {
-                console.log(&apos;来自test.vue，10秒后 Big_Value：&apos; + Big_Value);
-            }, 10000);
-        },
-        methods: {
-            back() {
-                router.push(&apos;/&apos;)
-            }
-        }
-    }
-
-&lt;/script&gt;
-</code></pre><p>anotherTest.vue</p>
-<pre><code>&lt;template&gt;
-    &lt;div&gt;
-        &lt;h1&gt;另一个测试&lt;/h1&gt;
-        &lt;div @click=&quot;back&quot;&gt;返回&lt;/div&gt;
-    &lt;/div&gt;
-
-&lt;/template&gt;
-
-&lt;script&gt;
-    import { Big_Value } from &apos;../../test1&apos;;
-    import router from &apos;../../router/index&apos;;
-    export default {
-        created() {
-            console.log(&apos;anotherTest.vue创建时：&apos; + Big_Value);
-        },
-        methods: {
-            back() {
-                router.push(&apos;/&apos;)
-            }
-        }
-    }
-&lt;/script&gt;
-</code></pre><p>结果：<br><img src="/img/20181027/5.jpg"></p>
-<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>综上：ES6 的模块加载，import 加载的值，如果是通过调用函数得到的返回值，该函数若内部返回值发生改变，加载的值并不会发生改变（并不会重新调用函数去获取返回值）。</p>
-
+var a = 20;
+alert(a); // 20, 代码执行阶段修改
+</code></pre>
       
     </div>
     
@@ -550,7 +503,7 @@ console.log(&apos;test1.js刚执行时，Big_Value：&apos; + Big_Value);
       
         <div class="post-tags">
           
-            <a href="/tags/ES6/" rel="tag"># ES6</a>
+            <a href="/tags/Js作用域/" rel="tag"># Js作用域</a>
           
         </div>
       
@@ -563,8 +516,8 @@ console.log(&apos;test1.js刚执行时，Big_Value：&apos; + Big_Value);
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Mac搭建Android-Studio/" rel="next" title="Mac搭建Android Studio">
-                <i class="fa fa-chevron-left"></i> Mac搭建Android Studio
+              <a href="/深入Js作用域：执行上下文/" rel="next" title="深入Js作用域：执行上下文">
+                <i class="fa fa-chevron-left"></i> 深入Js作用域：执行上下文
               </a>
             
           </div>
@@ -572,10 +525,6 @@ console.log(&apos;test1.js刚执行时，Big_Value：&apos; + Big_Value);
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/聊聊混合开发/" rel="prev" title="聊聊混合开发">
-                聊聊混合开发 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -732,7 +681,7 @@ console.log(&apos;test1.js刚执行时，Big_Value：&apos; + Big_Value);
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x95EE;&#x9898;" class="headerlink" title="&#x95EE;&#x9898;"></a>&#x95EE;&#x9898;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#探究"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x63A2;&#x7A76;" class="headerlink" title="&#x63A2;&#x7A76;"></a>&#x63A2;&#x7A76;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#猜想：export-的变量是引用赋值，被引用对象改变，import-的变量会跟着变"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#&#x731C;&#x60F3;&#xFF1A;export-&#x7684;&#x53D8;&#x91CF;&#x662F;&#x5F15;&#x7528;&#x8D4B;&#x503C;&#xFF0C;&#x88AB;&#x5F15;&#x7528;&#x5BF9;&#x8C61;&#x6539;&#x53D8;&#xFF0C;import-&#x7684;&#x53D8;&#x91CF;&#x4F1A;&#x8DDF;&#x7740;&#x53D8;" class="headerlink" title="&#x731C;&#x60F3;&#xFF1A;export &#x7684;&#x53D8;&#x91CF;&#x662F;&#x5F15;&#x7528;&#x8D4B;&#x503C;&#xFF0C;&#x88AB;&#x5F15;&#x7528;&#x5BF9;&#x8C61;&#x6539;&#x53D8;&#xFF0C;import &#x7684;&#x53D8;&#x91CF;&#x4F1A;&#x8DDF;&#x7740;&#x53D8;"></a>&#x731C;&#x60F3;&#xFF1A;export &#x7684;&#x53D8;&#x91CF;&#x662F;&#x5F15;&#x7528;&#x8D4B;&#x503C;&#xFF0C;&#x88AB;&#x5F15;&#x7528;&#x5BF9;&#x8C61;&#x6539;&#x53D8;&#xFF0C;import &#x7684;&#x53D8;&#x91CF;&#x4F1A;&#x8DDF;&#x7740;&#x53D8;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#验证一"><span class="nav-number">2.1.1.</span> <span class="nav-text"><a href="#&#x9A8C;&#x8BC1;&#x4E00;" class="headerlink" title="&#x9A8C;&#x8BC1;&#x4E00;"></a>&#x9A8C;&#x8BC1;&#x4E00;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证二"><span class="nav-number">2.1.2.</span> <span class="nav-text"><a href="#&#x9A8C;&#x8BC1;&#x4E8C;" class="headerlink" title="&#x9A8C;&#x8BC1;&#x4E8C;"></a>&#x9A8C;&#x8BC1;&#x4E8C;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证三"><span class="nav-number">2.1.3.</span> <span class="nav-text"><a href="#&#x9A8C;&#x8BC1;&#x4E09;" class="headerlink" title="&#x9A8C;&#x8BC1;&#x4E09;"></a>&#x9A8C;&#x8BC1;&#x4E09;</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结论"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x7ED3;&#x8BBA;" class="headerlink" title="&#x7ED3;&#x8BBA;"></a>&#x7ED3;&#x8BBA;</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#变量对象"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x53D8;&#x91CF;&#x5BF9;&#x8C61;" class="headerlink" title="&#x53D8;&#x91CF;&#x5BF9;&#x8C61;"></a>&#x53D8;&#x91CF;&#x5BF9;&#x8C61;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#全局上下文VO"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x5168;&#x5C40;&#x4E0A;&#x4E0B;&#x6587;VO" class="headerlink" title="&#x5168;&#x5C40;&#x4E0A;&#x4E0B;&#x6587;VO"></a>&#x5168;&#x5C40;&#x4E0A;&#x4E0B;&#x6587;VO</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数上下文VO-AO"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x51FD;&#x6570;&#x4E0A;&#x4E0B;&#x6587;VO-AO" class="headerlink" title="&#x51FD;&#x6570;&#x4E0A;&#x4E0B;&#x6587;VO/AO"></a>&#x51FD;&#x6570;&#x4E0A;&#x4E0B;&#x6587;VO/AO</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#处理上下文代码过程"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x5904;&#x7406;&#x4E0A;&#x4E0B;&#x6587;&#x4EE3;&#x7801;&#x8FC7;&#x7A0B;" class="headerlink" title="&#x5904;&#x7406;&#x4E0A;&#x4E0B;&#x6587;&#x4EE3;&#x7801;&#x8FC7;&#x7A0B;"></a>&#x5904;&#x7406;&#x4E0A;&#x4E0B;&#x6587;&#x4EE3;&#x7801;&#x8FC7;&#x7A0B;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#进入执行上下文"><span class="nav-number">4.1.</span> <span class="nav-text"><a href="#&#x8FDB;&#x5165;&#x6267;&#x884C;&#x4E0A;&#x4E0B;&#x6587;" class="headerlink" title="&#x8FDB;&#x5165;&#x6267;&#x884C;&#x4E0A;&#x4E0B;&#x6587;"></a>&#x8FDB;&#x5165;&#x6267;&#x884C;&#x4E0A;&#x4E0B;&#x6587;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行代码"><span class="nav-number">4.2.</span> <span class="nav-text"><a href="#&#x6267;&#x884C;&#x4EE3;&#x7801;" class="headerlink" title="&#x6267;&#x884C;&#x4EE3;&#x7801;"></a>&#x6267;&#x884C;&#x4EE3;&#x7801;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#示例"><span class="nav-number">4.3.</span> <span class="nav-text"><a href="#&#x793A;&#x4F8B;" class="headerlink" title="&#x793A;&#x4F8B;"></a>&#x793A;&#x4F8B;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于变量（拓展）"><span class="nav-number">4.4.</span> <span class="nav-text"><a href="#&#x5173;&#x4E8E;&#x53D8;&#x91CF;&#xFF08;&#x62D3;&#x5C55;&#xFF09;" class="headerlink" title="&#x5173;&#x4E8E;&#x53D8;&#x91CF;&#xFF08;&#x62D3;&#x5C55;&#xFF09;"></a>&#x5173;&#x4E8E;&#x53D8;&#x91CF;&#xFF08;&#x62D3;&#x5C55;&#xFF09;</span></a></li></ol></li></ol></div>
             
 
           </div>
