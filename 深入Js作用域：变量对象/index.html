@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="CKR技术博客">
 <meta property="og:description" content="变量对象Variable Object，简称 VO，它是一个与执行上下文相关的特殊对象。它存储着在上下文中定义的：  变量声明函数声明 (FunctionDeclaration，FD)函数的形参  我们可以把 VO 理解为执行上下文的一个属性（property）。当我们声明一个变量或一个函数的时候，就像我们为 VO 增加一个新属性一样。 变量对象只是一个抽象概念。(从本质上说，在具体执行上下文中，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-08T11:55:14.237Z">
+<meta property="og:updated_time" content="2019-01-09T06:42:58.381Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入Js作用域：变量对象">
 <meta name="twitter:description" content="变量对象Variable Object，简称 VO，它是一个与执行上下文相关的特殊对象。它存储着在上下文中定义的：  变量声明函数声明 (FunctionDeclaration，FD)函数的形参  我们可以把 VO 理解为执行上下文的一个属性（property）。当我们声明一个变量或一个函数的时候，就像我们为 VO 增加一个新属性一样。 变量对象只是一个抽象概念。(从本质上说，在具体执行上下文中，">
@@ -455,7 +455,8 @@ test(10); // call
     d: &lt;reference to FunctionDeclaration &quot;d&quot;&gt;
     e: &lt;reference to FunctionDeclaration &quot;_e&quot;&gt;
 };
-</code></pre><h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><pre><code>console.log(foo);
+</code></pre><p><strong>注：</strong>通常，当执行期上下文被销毁时，函数的 AO 也就被销毁了。但是当有闭包引用时，激活对象就不会被销毁，因为他仍然被引用。<br>别急，闭包我们会在后边的章节细说。</p>
+<h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><pre><code>console.log(foo);
 
 function foo(){
     console.log(&quot;foo&quot;);
@@ -464,7 +465,7 @@ function foo(){
 var foo = 1;
 </code></pre><p>结果：打印函数。</p>
 <p><strong>分析：</strong>之前我们是用变量提升来解释的，现在我们可以更深一层，用变量对象来解释了，由 VO 的初始化顺序得知：若变量名跟已声明的函数相同，则变量声明不会干扰它。<br>也就是说，初始化会先处理函数声明，其次才处理变量声明</p>
-<h2 id="关于变量（拓展）"><a href="#关于变量（拓展）" class="headerlink" title="关于变量（拓展）"></a>关于变量（拓展）</h2><p>例一：</p>
+<h1 id="关于变量（拓展）"><a href="#关于变量（拓展）" class="headerlink" title="关于变量（拓展）"></a>关于变量（拓展）</h1><p>例一：</p>
 <pre><code>a = 10;
 </code></pre><p>分析：<br>这仅仅是给全局对象创建了一个新属性，然而它并不是变量，因为它不符合 ECMAScript 规范中的变量概念。它之所以能成为全局对象的属性，完全是因为 VO(globalContext) === global</p>
 <p>例二：</p>
@@ -525,6 +526,10 @@ alert(a); // 20, 代码执行阶段修改
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/深入Js作用域：作用域链/" rel="prev" title="深入Js作用域：作用域链">
+                深入Js作用域：作用域链 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -610,7 +615,7 @@ alert(a); // 20, 代码执行阶段修改
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -681,7 +686,7 @@ alert(a); // 20, 代码执行阶段修改
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#变量对象"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x53D8;&#x91CF;&#x5BF9;&#x8C61;" class="headerlink" title="&#x53D8;&#x91CF;&#x5BF9;&#x8C61;"></a>&#x53D8;&#x91CF;&#x5BF9;&#x8C61;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#全局上下文VO"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x5168;&#x5C40;&#x4E0A;&#x4E0B;&#x6587;VO" class="headerlink" title="&#x5168;&#x5C40;&#x4E0A;&#x4E0B;&#x6587;VO"></a>&#x5168;&#x5C40;&#x4E0A;&#x4E0B;&#x6587;VO</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数上下文VO-AO"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x51FD;&#x6570;&#x4E0A;&#x4E0B;&#x6587;VO-AO" class="headerlink" title="&#x51FD;&#x6570;&#x4E0A;&#x4E0B;&#x6587;VO/AO"></a>&#x51FD;&#x6570;&#x4E0A;&#x4E0B;&#x6587;VO/AO</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#处理上下文代码过程"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x5904;&#x7406;&#x4E0A;&#x4E0B;&#x6587;&#x4EE3;&#x7801;&#x8FC7;&#x7A0B;" class="headerlink" title="&#x5904;&#x7406;&#x4E0A;&#x4E0B;&#x6587;&#x4EE3;&#x7801;&#x8FC7;&#x7A0B;"></a>&#x5904;&#x7406;&#x4E0A;&#x4E0B;&#x6587;&#x4EE3;&#x7801;&#x8FC7;&#x7A0B;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#进入执行上下文"><span class="nav-number">4.1.</span> <span class="nav-text"><a href="#&#x8FDB;&#x5165;&#x6267;&#x884C;&#x4E0A;&#x4E0B;&#x6587;" class="headerlink" title="&#x8FDB;&#x5165;&#x6267;&#x884C;&#x4E0A;&#x4E0B;&#x6587;"></a>&#x8FDB;&#x5165;&#x6267;&#x884C;&#x4E0A;&#x4E0B;&#x6587;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行代码"><span class="nav-number">4.2.</span> <span class="nav-text"><a href="#&#x6267;&#x884C;&#x4EE3;&#x7801;" class="headerlink" title="&#x6267;&#x884C;&#x4EE3;&#x7801;"></a>&#x6267;&#x884C;&#x4EE3;&#x7801;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#示例"><span class="nav-number">4.3.</span> <span class="nav-text"><a href="#&#x793A;&#x4F8B;" class="headerlink" title="&#x793A;&#x4F8B;"></a>&#x793A;&#x4F8B;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于变量（拓展）"><span class="nav-number">4.4.</span> <span class="nav-text"><a href="#&#x5173;&#x4E8E;&#x53D8;&#x91CF;&#xFF08;&#x62D3;&#x5C55;&#xFF09;" class="headerlink" title="&#x5173;&#x4E8E;&#x53D8;&#x91CF;&#xFF08;&#x62D3;&#x5C55;&#xFF09;"></a>&#x5173;&#x4E8E;&#x53D8;&#x91CF;&#xFF08;&#x62D3;&#x5C55;&#xFF09;</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#变量对象"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x53D8;&#x91CF;&#x5BF9;&#x8C61;" class="headerlink" title="&#x53D8;&#x91CF;&#x5BF9;&#x8C61;"></a>&#x53D8;&#x91CF;&#x5BF9;&#x8C61;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#全局上下文VO"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x5168;&#x5C40;&#x4E0A;&#x4E0B;&#x6587;VO" class="headerlink" title="&#x5168;&#x5C40;&#x4E0A;&#x4E0B;&#x6587;VO"></a>&#x5168;&#x5C40;&#x4E0A;&#x4E0B;&#x6587;VO</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数上下文VO-AO"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x51FD;&#x6570;&#x4E0A;&#x4E0B;&#x6587;VO-AO" class="headerlink" title="&#x51FD;&#x6570;&#x4E0A;&#x4E0B;&#x6587;VO/AO"></a>&#x51FD;&#x6570;&#x4E0A;&#x4E0B;&#x6587;VO/AO</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#处理上下文代码过程"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x5904;&#x7406;&#x4E0A;&#x4E0B;&#x6587;&#x4EE3;&#x7801;&#x8FC7;&#x7A0B;" class="headerlink" title="&#x5904;&#x7406;&#x4E0A;&#x4E0B;&#x6587;&#x4EE3;&#x7801;&#x8FC7;&#x7A0B;"></a>&#x5904;&#x7406;&#x4E0A;&#x4E0B;&#x6587;&#x4EE3;&#x7801;&#x8FC7;&#x7A0B;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#进入执行上下文"><span class="nav-number">4.1.</span> <span class="nav-text"><a href="#&#x8FDB;&#x5165;&#x6267;&#x884C;&#x4E0A;&#x4E0B;&#x6587;" class="headerlink" title="&#x8FDB;&#x5165;&#x6267;&#x884C;&#x4E0A;&#x4E0B;&#x6587;"></a>&#x8FDB;&#x5165;&#x6267;&#x884C;&#x4E0A;&#x4E0B;&#x6587;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行代码"><span class="nav-number">4.2.</span> <span class="nav-text"><a href="#&#x6267;&#x884C;&#x4EE3;&#x7801;" class="headerlink" title="&#x6267;&#x884C;&#x4EE3;&#x7801;"></a>&#x6267;&#x884C;&#x4EE3;&#x7801;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#示例"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x793A;&#x4F8B;" class="headerlink" title="&#x793A;&#x4F8B;"></a>&#x793A;&#x4F8B;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于变量（拓展）"><span class="nav-number">6.</span> <span class="nav-text"><a href="#&#x5173;&#x4E8E;&#x53D8;&#x91CF;&#xFF08;&#x62D3;&#x5C55;&#xFF09;" class="headerlink" title="&#x5173;&#x4E8E;&#x53D8;&#x91CF;&#xFF08;&#x62D3;&#x5C55;&#xFF09;"></a>&#x5173;&#x4E8E;&#x53D8;&#x91CF;&#xFF08;&#x62D3;&#x5C55;&#xFF09;</span></a></li></ol></div>
             
 
           </div>

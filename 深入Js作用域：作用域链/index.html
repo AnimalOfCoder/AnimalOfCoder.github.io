@@ -81,18 +81,20 @@
 
 
 
-<meta name="description" content="闲言最近在看《高性能Js》，里边提到了作用域相关的知识点，回头看了之前我写过关于作用域和闭包的博客，发现写得过于简洁。在翻阅了《Js权威指南》和《你不知道的Js》等相关文章后，有了一些更深刻的感悟，并尽可能详细、清晰地描述相关概念。 执行上下文Execution Contexts 简称 EC。每次当控制器转到 ECMAScript 可执行代码（Executable Code）的时候，会创建并进入一">
+<meta name="description" content="前言之前在执行上下文那篇博客中提到，每个执行上下文都有三个重要属性：  变量对象（Variable Object，VO）Scope（作用域链，Scope Chain）this  我们这里就来重点讲一下作用域链。 作用域链Scope Chain，可以将其理解为表示 执行上下文 与 对应VO 之间联系的一个对象表或链表。  在 Js 最顶层代码中（也就是全局代码），作用域链上有一个全局对象。在不包含嵌">
 <meta name="keywords" content="Js作用域">
 <meta property="og:type" content="article">
-<meta property="og:title" content="深入Js作用域：执行上下文">
-<meta property="og:url" content="https://animalofcoder.github.io/深入Js作用域：执行上下文/index.html">
+<meta property="og:title" content="深入Js作用域：作用域链">
+<meta property="og:url" content="https://animalofcoder.github.io/深入Js作用域：作用域链/index.html">
 <meta property="og:site_name" content="CKR技术博客">
-<meta property="og:description" content="闲言最近在看《高性能Js》，里边提到了作用域相关的知识点，回头看了之前我写过关于作用域和闭包的博客，发现写得过于简洁。在翻阅了《Js权威指南》和《你不知道的Js》等相关文章后，有了一些更深刻的感悟，并尽可能详细、清晰地描述相关概念。 执行上下文Execution Contexts 简称 EC。每次当控制器转到 ECMAScript 可执行代码（Executable Code）的时候，会创建并进入一">
+<meta property="og:description" content="前言之前在执行上下文那篇博客中提到，每个执行上下文都有三个重要属性：  变量对象（Variable Object，VO）Scope（作用域链，Scope Chain）this  我们这里就来重点讲一下作用域链。 作用域链Scope Chain，可以将其理解为表示 执行上下文 与 对应VO 之间联系的一个对象表或链表。  在 Js 最顶层代码中（也就是全局代码），作用域链上有一个全局对象。在不包含嵌">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-10T02:13:48.201Z">
+<meta property="og:image" content="https://animalofcoder.github.io/img/20190109/1.jpg">
+<meta property="og:updated_time" content="2019-01-10T11:16:29.452Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="深入Js作用域：执行上下文">
-<meta name="twitter:description" content="闲言最近在看《高性能Js》，里边提到了作用域相关的知识点，回头看了之前我写过关于作用域和闭包的博客，发现写得过于简洁。在翻阅了《Js权威指南》和《你不知道的Js》等相关文章后，有了一些更深刻的感悟，并尽可能详细、清晰地描述相关概念。 执行上下文Execution Contexts 简称 EC。每次当控制器转到 ECMAScript 可执行代码（Executable Code）的时候，会创建并进入一">
+<meta name="twitter:title" content="深入Js作用域：作用域链">
+<meta name="twitter:description" content="前言之前在执行上下文那篇博客中提到，每个执行上下文都有三个重要属性：  变量对象（Variable Object，VO）Scope（作用域链，Scope Chain）this  我们这里就来重点讲一下作用域链。 作用域链Scope Chain，可以将其理解为表示 执行上下文 与 对应VO 之间联系的一个对象表或链表。  在 Js 最顶层代码中（也就是全局代码），作用域链上有一个全局对象。在不包含嵌">
+<meta name="twitter:image" content="https://animalofcoder.github.io/img/20190109/1.jpg">
 
 
 
@@ -122,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="https://animalofcoder.github.io/深入Js作用域：执行上下文/"/>
+  <link rel="canonical" href="https://animalofcoder.github.io/深入Js作用域：作用域链/"/>
 
 
 
 
 
-  <title>深入Js作用域：执行上下文 | CKR技术博客</title>
+  <title>深入Js作用域：作用域链 | CKR技术博客</title>
   
 
 
@@ -265,7 +267,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://animalofcoder.github.io/深入Js作用域：执行上下文/">
+    <link itemprop="mainEntityOfPage" href="https://animalofcoder.github.io/深入Js作用域：作用域链/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="陈柯蓉">
@@ -282,7 +284,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">深入Js作用域：执行上下文</h1>
+          <h1 class="post-title" itemprop="name headline">深入Js作用域：作用域链</h1>
         
 
         <div class="post-meta">
@@ -294,8 +296,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-03T13:59:09+08:00">
-                2019-01-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-09T13:00:08+08:00">
+                2019-01-09
               </time>
             
 
@@ -334,7 +336,7 @@
 
           
           
-             <span id="/深入Js作用域：执行上下文/" class="leancloud_visitors" data-flag-title="深入Js作用域：执行上下文">
+             <span id="/深入Js作用域：作用域链/" class="leancloud_visitors" data-flag-title="深入Js作用域：作用域链">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -365,58 +367,136 @@
       
 
       
-        <h1 id="闲言"><a href="#闲言" class="headerlink" title="闲言"></a>闲言</h1><p>最近在看《高性能Js》，里边提到了作用域相关的知识点，回头看了之前我写过关于作用域和闭包的博客，发现写得过于简洁。在翻阅了《Js权威指南》和《你不知道的Js》等相关文章后，有了一些更深刻的感悟，并尽可能详细、清晰地描述相关概念。</p>
-<h1 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h1><p>Execution Contexts 简称 EC。<br>每次当控制器转到 ECMAScript 可执行代码（Executable Code）的时候，会创建并进入一个执行上下文中。每个 EC 都包含三个重要属性：</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>之前在执行上下文那篇博客中提到，每个执行上下文都有三个重要属性：</p>
 <blockquote>
 <p>变量对象（Variable Object，VO）<br>Scope（作用域链，Scope Chain）<br>this</p>
 </blockquote>
-<p><strong>注：Executable Code</strong> 包含了全局代码（不包括任何函数体内的代码）、函数代码（不包括内部函数代码）、Eval 代码</p>
-<h1 id="EC-类型"><a href="#EC-类型" class="headerlink" title="EC 类型"></a>EC 类型</h1><p><strong>全局执行上下文：</strong>Global Context，它是最外围的一个 EC。当<strong>执行</strong>全局代码时，会创建全局执行上下文。</p>
-<p><strong>函数执行上下文：</strong>Function Context，每个函数都有自己的 EC，当<strong>执行</strong>函数代码时，会创建函数执行上下文。</p>
-<p>这些 EC 会通过执行上下文栈（Execution context stack，ECS）管理，ECS 底部永远都是全局上下文，而顶部就是当前（活动的）EC。</p>
-<h1 id="EC-生命周期"><a href="#EC-生命周期" class="headerlink" title="EC 生命周期"></a>EC 生命周期</h1><p><strong>1.创建阶段</strong><br>在执行 Executable Code 时 EC 被创建。在这个阶段中，EC 会分别创建变量对象 VO，建立作用域链，以及确定 this 指向。</p>
-<p><strong>2.EC 中代码执行阶段</strong><br>创建完成之后，就会开始执行代码，这个时候，会完成 V0 中变量赋值，函数引用，以及执行其他代码。</p>
-<p><strong>3.EC 中代码执行完毕</strong><br>对应 EC 被销毁，保存在其中的变量和函数定义也随之销毁。<br>注：全局 EC 直到应用程序退出（如关闭网页或浏览器）时才被销毁。</p>
-<p>变量对象的修改变化与前两个阶段紧密相关，我们会在变量对象那节进行详细介绍。</p>
-<h1 id="过程模拟"><a href="#过程模拟" class="headerlink" title="过程模拟"></a>过程模拟</h1><p><strong>声明：</strong>此处仅对 EC 进行模拟，EC 内部变化会在相关概念介绍完时，进行一次整体模拟。</p>
-<p>我们直接通过伪代码来模拟执行上下文栈：</p>
-<p>首先，ESC我们这样表示：</p>
-<pre><code>ECStack = [];
-</code></pre><p>Js 解析时，首先执行全局代码</p>
-<pre><code>创建 globalContext;
+<p>我们这里就来重点讲一下作用域链。</p>
+<h1 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h1><p>Scope Chain，可以将其理解为表示 执行上下文 与 对应VO 之间联系的一个<strong>对象表或链表</strong>。</p>
+<blockquote>
+<p>在 Js 最顶层代码中（也就是全局代码），作用域链上有一个全局对象。<br>在不包含嵌套的函数体内，作用域链上有两个 VO，分别是函数执行上下文 VO、全局对象。<br>在一个嵌套函数体内，作用域链上至少有三个 VO。</p>
+</blockquote>
+<h2 id="函数-scope-属性"><a href="#函数-scope-属性" class="headerlink" title="函数 [[scope]] 属性"></a>函数 [[scope]] 属性</h2><p>函数对象具有仅供 Js 引擎内部使用，但不能通过代码访问的一系列内部属性。其中一个就是 <strong>[[scope]]</strong> 属性。</p>
+<blockquote>
+<p><strong>[[scope]]</strong> 是所有<strong>父变量对象的层级链</strong>，处于当前函数上下文之上，在函数创建时被存储（静态，不变的），直至函数销毁。即：函数可以永不调用，但 <strong>[[scope]]</strong> 属性已经写入，并存储在函数对象中。</p>
+</blockquote>
+<p>很多书提到，在 <strong>[[scope]]</strong> 中存放作用域链，其实最易理解不易混淆的应该是父变量对象的层级链。</p>
+<p><strong>注：</strong>标识符解析就是沿着作用域链一级一级地查找变量对象中变量的过程，查找顺序是从作用域链前端开始，逐级向后。</p>
+<p>这种联合和标识符解析过程与函数的生命周期相关。</p>
+<h1 id="函数生命周期"><a href="#函数生命周期" class="headerlink" title="函数生命周期"></a>函数生命周期</h1><p>函数的的生命周期分为创建和激活阶段（调用时），我们分别进行分析。</p>
+<h2 id="函数创建"><a href="#函数创建" class="headerlink" title="函数创建"></a>函数创建</h2><p>不存在嵌套：</p>
+<pre><code>Fun.[[scope]] = [
+    globalContext.VO // === Global
+]
+</code></pre><p>存在嵌套：</p>
+<pre><code>Fun1.[[scope]] = [
+    Fun2Context.AO, 
+    ...,
+    globalContext.VO // === Global
+]
+</code></pre><h2 id="函数激活"><a href="#函数激活" class="headerlink" title="函数激活"></a>函数激活</h2><p>函数上下文的作用域链是在函数调用时创建的，包含 VO 和这个函数内部的 [[scope]] 属性。</p>
+<pre><code>ActiveExecutionContext = {
+    VO: {...}, // or AO
+    this: thisValue,
+    Scope: [ // Scope Chain
+      // 所有变量对象的列表
+      // 用于标识符解析
+    ]
+};
+</code></pre><p>其scope定义如下：</p>
+<pre><code>Scope = AO + [[Scope]] 
+</code></pre><p>由此可知：与作用域链对比，<strong>[[scope]]</strong> 是函数的一个属性而非上下文，即 <strong>[[scope]]</strong> 并不代表完整的作用域链。<br>下面通过一个例子来看看。</p>
+<h2 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h2><p>创建时：</p>
+<pre><code>function add(a, b) {
+    var c = a + b;
+    return c;
+}
+</code></pre><p>此时：</p>
+<pre><code>add.[[Scope]] = [
+  globalContext.VO // === Global
+];    
+</code></pre><p>调用时：</p>
+<pre><code>var total = add(1, 2);
+</code></pre><p>此时：</p>
+<pre><code>addContext.Scope = AO.concat(add.[[Scope]])
 
-将 globalContext 压入 ECS： ECStack.push(globalContext);
-
-ECStack = [
+addContext = {
+    AO: 略，
+    Scope: [AO, globalContext.VO]
+    this: undefined
+}
+</code></pre><p>标识符解析    </p>
+<p>对应图解过程：<br><img src="/img/20190109/1.jpg"></p>
+<h1 id="知识串联"><a href="#知识串联" class="headerlink" title="知识串联"></a>知识串联</h1><p>我在此处将 <strong>执行上下文（EC）、变量对象（VO）、作用域链</strong> 进行串联，融合到一个例子中进行流程梳理。</p>
+<pre><code>var scope = &quot;global scope&quot;;
+function checkscope(){
+    var scope = &quot;local scope&quot;;
+    function f(){
+        return scope;
+    }
+    return f();
+}
+checkscope();
+</code></pre><p><strong>1、执行全局代码，创建 全局EC，全局EC 被压入 ECS</strong></p>
+<pre><code>ECStack = [
     globalContext
 ];
-</code></pre><p>接着，遇到如下代码：</p>
-<pre><code>function fun3() {
-    console.log(&apos;fun3&apos;)
+</code></pre><p><strong>2、EC 初始化</strong></p>
+<pre><code>globalContext = {
+    VO: [global],
+    Scope: [globalContext.VO],
+    this: globalContext.VO
 }
-
-function fun2() {
-    fun3();
+</code></pre><p><strong>初始化的同时，checkscope 函数被创建，保存作用域链到函数的内部属性 [[scope]]</strong></p>
+<pre><code>checkscope.[[scope]] = [
+    globalContext.VO
+];
+</code></pre><p><strong>3、执行 checkscope 函数，创建 checkscope 函数EC，checkscope 函数EC 被压入 ECS</strong></p>
+<pre><code>ECStack = [
+    checkscopeContext,
+    globalContext
+];
+</code></pre><p><strong>4、checkscope 函数EC 初始化：</strong></p>
+<p>复制函数 [[scope]] 属性创建作用域链，<br>用 arguments 创建活动对象，<br>初始化活动对象，即加入形参、函数声明、变量声明，<br>将活动对象压入 checkscope 作用域链顶端。<br>同时 f 函数被创建，保存作用域链到 f 函数的内部属性[[scope]]</p>
+<pre><code>checkscopeContext = {
+    AO: {
+      arguments: {
+          length: 0
+      },
+      scope: undefined,
+      f: reference to function f(){}
+    },
+    Scope: [AO, globalContext.VO],
+    this: undefined
 }
-
-function fun1() {
-    fun2();
+</code></pre><p><strong>5、执行 f 函数，创建 f 函数执行上下文，f 函数执行上下文被压入执行上下文栈</strong></p>
+<pre><code>ECStack = [
+    fContext,
+    checkscopeContext,
+    globalContext
+];
+</code></pre><p><strong>6、f 函数执行上下文初始化, 以下跟第 4 步相同：</strong></p>
+<p>复制函数 [[scope]] 属性创建作用域链<br>用 arguments 创建活动对象<br>初始化活动对象，即加入形参、函数声明、变量声明<br>将活动对象压入 f 作用域链顶端</p>
+<pre><code>fContext = {
+    AO: {
+        arguments: {
+            length: 0
+        }
+    },
+    Scope: [AO, checkscopeContext.AO, globalContext.VO],
+    this: undefined
 }
-
-fun1();
-</code></pre><p>当执行一个函数的时候，就会创建一个 EC，并且压入 ECS，当函数执行完毕的时候，就会将函数的 EC 从 ECS 中弹出。过程如下：</p>
-<pre><code>执行fun1 ==&gt; ECStack.push(&lt;fun1&gt; functionContext);
-
-执行fun2 ==&gt; ECStack.push(&lt;fun2&gt; functionContext);
-
-执行fun3 ==&gt; ECStack.push(&lt;fun3&gt; functionContext);
-
-fun3执行完毕 ==&gt; ECStack.pop();
-
-fun2执行完毕 ==&gt; ECStack.pop();
-
-fun1执行完毕 ==&gt; ECStack.pop();
-</code></pre><p>相关代码执行完毕后，ECStack 只会保持着 globalContext，一直到整个应用程序结束。</p>
+</code></pre><p><strong>7、f 函数执行，沿着作用域链查找 scope 值，返回 scope 值</strong></p>
+<p><strong>8、f 函数执行完毕，f 函数上下文从执行上下文栈中弹出</strong></p>
+<pre><code>ECStack = [
+    checkscopeContext,
+    globalContext
+];
+</code></pre><p><strong>9、checkscope 函数执行完毕，checkscope 执行上下文从执行上下文栈中弹出</strong></p>
+<pre><code>ECStack = [
+    globalContext
+];
+</code></pre><h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>看到这里，关于 Js 作用域已经介绍了大半，最后还剩下闭包这个概念，我会在下一篇文章给大家进行讲解。</p>
 
       
     </div>
@@ -447,8 +527,8 @@ fun1执行完毕 ==&gt; ECStack.pop();
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/聊聊Js计时器精准度/" rel="next" title="聊聊Js计时器精准度">
-                <i class="fa fa-chevron-left"></i> 聊聊Js计时器精准度
+              <a href="/深入Js作用域：变量对象/" rel="next" title="深入Js作用域：变量对象">
+                <i class="fa fa-chevron-left"></i> 深入Js作用域：变量对象
               </a>
             
           </div>
@@ -456,10 +536,6 @@ fun1执行完毕 ==&gt; ECStack.pop();
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/深入Js作用域：变量对象/" rel="prev" title="深入Js作用域：变量对象">
-                深入Js作用域：变量对象 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -616,7 +692,7 @@ fun1执行完毕 ==&gt; ECStack.pop();
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#闲言"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x95F2;&#x8A00;" class="headerlink" title="&#x95F2;&#x8A00;"></a>&#x95F2;&#x8A00;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#执行上下文"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x6267;&#x884C;&#x4E0A;&#x4E0B;&#x6587;" class="headerlink" title="&#x6267;&#x884C;&#x4E0A;&#x4E0B;&#x6587;"></a>&#x6267;&#x884C;&#x4E0A;&#x4E0B;&#x6587;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#EC-类型"><span class="nav-number">3.</span> <span class="nav-text"><a href="#EC-&#x7C7B;&#x578B;" class="headerlink" title="EC &#x7C7B;&#x578B;"></a>EC &#x7C7B;&#x578B;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#EC-生命周期"><span class="nav-number">4.</span> <span class="nav-text"><a href="#EC-&#x751F;&#x547D;&#x5468;&#x671F;" class="headerlink" title="EC &#x751F;&#x547D;&#x5468;&#x671F;"></a>EC &#x751F;&#x547D;&#x5468;&#x671F;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#过程模拟"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x8FC7;&#x7A0B;&#x6A21;&#x62DF;" class="headerlink" title="&#x8FC7;&#x7A0B;&#x6A21;&#x62DF;"></a>&#x8FC7;&#x7A0B;&#x6A21;&#x62DF;</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x524D;&#x8A00;" class="headerlink" title="&#x524D;&#x8A00;"></a>&#x524D;&#x8A00;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#作用域链"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x4F5C;&#x7528;&#x57DF;&#x94FE;" class="headerlink" title="&#x4F5C;&#x7528;&#x57DF;&#x94FE;"></a>&#x4F5C;&#x7528;&#x57DF;&#x94FE;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#函数-scope-属性"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#&#x51FD;&#x6570;-scope-&#x5C5E;&#x6027;" class="headerlink" title="&#x51FD;&#x6570; [[scope]] &#x5C5E;&#x6027;"></a>&#x51FD;&#x6570; [[scope]] &#x5C5E;&#x6027;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数生命周期"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x51FD;&#x6570;&#x751F;&#x547D;&#x5468;&#x671F;" class="headerlink" title="&#x51FD;&#x6570;&#x751F;&#x547D;&#x5468;&#x671F;"></a>&#x51FD;&#x6570;&#x751F;&#x547D;&#x5468;&#x671F;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#函数创建"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#&#x51FD;&#x6570;&#x521B;&#x5EFA;" class="headerlink" title="&#x51FD;&#x6570;&#x521B;&#x5EFA;"></a>&#x51FD;&#x6570;&#x521B;&#x5EFA;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数激活"><span class="nav-number">3.2.</span> <span class="nav-text"><a href="#&#x51FD;&#x6570;&#x6FC0;&#x6D3B;" class="headerlink" title="&#x51FD;&#x6570;&#x6FC0;&#x6D3B;"></a>&#x51FD;&#x6570;&#x6FC0;&#x6D3B;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#样例"><span class="nav-number">3.3.</span> <span class="nav-text"><a href="#&#x6837;&#x4F8B;" class="headerlink" title="&#x6837;&#x4F8B;"></a>&#x6837;&#x4F8B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#知识串联"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x77E5;&#x8BC6;&#x4E32;&#x8054;" class="headerlink" title="&#x77E5;&#x8BC6;&#x4E32;&#x8054;"></a>&#x77E5;&#x8BC6;&#x4E32;&#x8054;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小结"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x5C0F;&#x7ED3;" class="headerlink" title="&#x5C0F;&#x7ED3;"></a>&#x5C0F;&#x7ED3;</span></a></li></ol></div>
             
 
           </div>
