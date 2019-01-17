@@ -90,7 +90,7 @@
 <meta property="og:description" content="闲言在上篇文章中，我们系统了解了 Js 运行机制，我们接着来说说 Js 计时器的精准度问题。计时器功能主要由 setTimeout() 和 setInterval() 这两个函数来完成，它们的内部运行机制完全一样，区别在于前者指定的代码是一次性执行，后者则为反复执行。我们直接来看一些例子吧。 定时器时延无法保证setTimeout： let time1 = new Date().getTime()">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://animalofcoder.github.io/img/20181222/1.jpg">
-<meta property="og:updated_time" content="2018-12-22T09:17:58.027Z">
+<meta property="og:updated_time" content="2019-01-17T01:00:21.636Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="聊聊Js计时器精准度">
 <meta name="twitter:description" content="闲言在上篇文章中，我们系统了解了 Js 运行机制，我们接着来说说 Js 计时器的精准度问题。计时器功能主要由 setTimeout() 和 setInterval() 这两个函数来完成，它们的内部运行机制完全一样，区别在于前者指定的代码是一次性执行，后者则为反复执行。我们直接来看一些例子吧。 定时器时延无法保证setTimeout： let time1 = new Date().getTime()">
@@ -402,34 +402,7 @@ setInterval执行的差值时间：9.005s
 setInterval执行的差值时间：10.004s
 */
 </code></pre><p>对于 setInterval，都不需要让它去等待主线程，它本身就不准。</p>
-<h1 id="疑问"><a href="#疑问" class="headerlink" title="疑问"></a>疑问</h1><p>我在这篇博客 <a href="https://fanyi.baidu.com/translate#en/zh/" target="_blank" rel="noopener">https://fanyi.baidu.com/translate#en/zh/</a> （需要梯子）中看到这张图：<br><img src="/img/20181222/1.jpg"><br>我们注意到图中标红的 Dropped! ，作者观点的大致意思是：setInterval 的回调在任务队列排队阶段，若此时未等到执行，并又一次触发回调时（达到指定的时延），该回调将会被移除。<br>这使得我比较困惑，我用如下代码验证了一下：</p>
-<pre><code>let time1 = new Date().getTime();
-setInterval(() =&gt; {
-     let time2 = new Date().getTime();
-     console.log(&quot;setInterval执行的差值时间：&quot; + (time2-time1) + &apos;ms&apos;);
-}, 1000);
-for (let i = 0; i &lt; 10000; i++) {
-    console.log(&quot;任务执行中&quot;)
-}
-/*
-setInterval执行的差值时间：1163ms
-setInterval执行的差值时间：2000ms
-setInterval执行的差值时间：3002ms
-setInterval执行的差值时间：4002ms
-setInterval执行的差值时间：5003ms
-setInterval执行的差值时间：6004ms
-setInterval执行的差值时间：7004ms
-setInterval执行的差值时间：8004ms
-setInterval执行的差值时间：9003ms
-setInterval执行的差值时间：10003ms
-setInterval执行的差值时间：11004ms
-setInterval执行的差值时间：12006ms
-setInterval执行的差值时间：13005ms
-setInterval执行的差值时间：14005ms
-setInterval执行的差值时间：15001ms
-*/
-</code></pre><p>发现并没有出现被移除的情况，执行时，直接输入了 4 行。然后每隔一秒输出一次。</p>
-<p>因为在好多博客中看到那张图，终于找到了出处，本来跑完这代码以后，验证了这个结论有问题后，我就不打算说了的，但是查了一下作者是：<br>John Resig，jQuery 的创始人和技术领袖，目前在 Mozilla 担任 JavaScript 工具开发工程师。于是我去搜了一下相关的问题，但是始终没有找到答案，于是我尝试去给作者提问，看看咋说。<br>未完待续。。。。。。</p>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>我在这篇博客 <a href="https://fanyi.baidu.com/translate#en/zh/" target="_blank" rel="noopener">https://fanyi.baidu.com/translate#en/zh/</a> （需要梯子）中看到这张图：<br><img src="/img/20181222/1.jpg"><br>我们注意到图中标红的 Dropped! ，作者观点的大致意思是：setInterval 的回调在任务队列排队阶段，若此时未等到执行，并又一次触发回调时（达到指定的时延），该回调将会被移除。<br>即队列中保证只能有一个 setInterval 触发的回调。</p>
 
       
     </div>
@@ -629,7 +602,7 @@ setInterval执行的差值时间：15001ms
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#闲言"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x95F2;&#x8A00;" class="headerlink" title="&#x95F2;&#x8A00;"></a>&#x95F2;&#x8A00;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定时器时延无法保证"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x5B9A;&#x65F6;&#x5668;&#x65F6;&#x5EF6;&#x65E0;&#x6CD5;&#x4FDD;&#x8BC1;" class="headerlink" title="&#x5B9A;&#x65F6;&#x5668;&#x65F6;&#x5EF6;&#x65E0;&#x6CD5;&#x4FDD;&#x8BC1;"></a>&#x5B9A;&#x65F6;&#x5668;&#x65F6;&#x5EF6;&#x65E0;&#x6CD5;&#x4FDD;&#x8BC1;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#疑问"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x7591;&#x95EE;" class="headerlink" title="&#x7591;&#x95EE;"></a>&#x7591;&#x95EE;</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#闲言"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x95F2;&#x8A00;" class="headerlink" title="&#x95F2;&#x8A00;"></a>&#x95F2;&#x8A00;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定时器时延无法保证"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x5B9A;&#x65F6;&#x5668;&#x65F6;&#x5EF6;&#x65E0;&#x6CD5;&#x4FDD;&#x8BC1;" class="headerlink" title="&#x5B9A;&#x65F6;&#x5668;&#x65F6;&#x5EF6;&#x65E0;&#x6CD5;&#x4FDD;&#x8BC1;"></a>&#x5B9A;&#x65F6;&#x5668;&#x65F6;&#x5EF6;&#x65E0;&#x6CD5;&#x4FDD;&#x8BC1;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最后"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x6700;&#x540E;" class="headerlink" title="&#x6700;&#x540E;"></a>&#x6700;&#x540E;</span></a></li></ol></div>
             
 
           </div>
