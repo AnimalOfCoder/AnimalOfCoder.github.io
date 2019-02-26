@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="CKR技术博客">
 <meta property="og:description" content="变量对象Variable Object，简称 VO，它是一个与执行上下文相关的特殊对象。它存储着在上下文中定义的：  变量声明函数声明 (FunctionDeclaration，FD)函数的形参  我们可以把 VO 理解为执行上下文的一个属性（property）。当我们声明一个变量或一个函数的时候，就像我们为 VO 增加一个新属性一样。 变量对象只是一个抽象概念。(从本质上说，在具体执行上下文中，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-09T06:42:58.381Z">
+<meta property="og:updated_time" content="2019-02-26T00:57:39.158Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入Js作用域：变量对象">
 <meta name="twitter:description" content="变量对象Variable Object，简称 VO，它是一个与执行上下文相关的特殊对象。它存储着在上下文中定义的：  变量声明函数声明 (FunctionDeclaration，FD)函数的形参  我们可以把 VO 理解为执行上下文的一个属性（property）。当我们声明一个变量或一个函数的时候，就像我们为 VO 增加一个新属性一样。 变量对象只是一个抽象概念。(从本质上说，在具体执行上下文中，">
@@ -431,7 +431,7 @@ test(10); // call
 </code></pre><p>进入函数 EC 时：</p>
 <pre><code>AO(test) = {
     arguments: {
-    0: 1,
+    0: 10,
     1: undefined,
     length: 2
 },
@@ -445,7 +445,7 @@ test(10); // call
 <h2 id="执行代码"><a href="#执行代码" class="headerlink" title="执行代码"></a>执行代码</h2><p>在执行代码阶段，AO 已经拥有了属性(不过，并不是所有的属性都有值，大部分属性的值还是系统默认的初始值 undefined)。<br>此时会顺序执行代码，根据代码，修改变量对象的值。接上边例子，此时 AO：</p>
 <pre><code>AO(test) = {
     arguments: {
-      0: 1,
+      0: 10,
       1: undefined,
       length: 2
     },
